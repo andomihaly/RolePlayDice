@@ -18,10 +18,6 @@ namespace RolePlayDice
             this.rolePlayGamers = rolePlayGamers;
         }
 
-        private void RolePlay_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void loadGame_Click(object sender, EventArgs e)
         {
@@ -137,7 +133,7 @@ namespace RolePlayDice
             {
                 Convert.ToInt32(number);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

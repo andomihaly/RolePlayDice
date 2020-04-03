@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="Entity\Player.cs" />
     <Compile Include="Entity\Skill.cs" />
+    <Compile Include="Entity\Story.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePlayGamers.cs" />
-    <Compile Include="FileRolePlay\SimpleGamers.cs" />
+    <Compile Include="SimpleGamer.cs" />
+    <Compile Include="StoreGateway.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

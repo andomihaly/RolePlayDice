@@ -302,7 +302,6 @@
             this.Controls.Add(this.playersComboBox);
             this.Name = "RolePlay";
             this.Text = "RolePlay";
-            this.Load += new System.EventHandler(this.RolePlay_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

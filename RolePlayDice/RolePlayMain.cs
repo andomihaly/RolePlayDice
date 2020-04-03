@@ -1,4 +1,5 @@
-﻿using RolePlaySet;
+﻿using RolePlayFileBasedStorage;
+using RolePlaySet;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,8 @@ namespace RolePlayDice
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            RolePlayGamers rolePlayGamers = new SimpleGamers();
+            StoreGateway storeGateway = new RolePlayFileStore();
+            RolePlayGamers rolePlayGamers = new SimpleGamer(storeGateway);
             Application.Run(new RolePlay(rolePlayGamers));
         }
     }
