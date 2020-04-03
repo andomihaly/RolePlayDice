@@ -9,14 +9,14 @@ on:
 jobs:
   build:
 
-    runs-on: [windows]
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 4.6.1
+        dotnet-version: 4.8
     - name: Install dependencies
       run: dotnet restore
     - name: Build
