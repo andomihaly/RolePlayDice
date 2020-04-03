@@ -5,7 +5,7 @@ using System.IO;
 
 namespace RolePlayFileBasedStorage
 {
-    public class RolePlayFileStore : StoreGateway
+    public class RolePlayFileStorage : StoreGateway
     {
         private string gameName;
         private string path;

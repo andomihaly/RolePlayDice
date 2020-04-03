@@ -1,9 +1,9 @@
-﻿using RolePlayFileBasedStorage;
-using RolePlaySet;
+﻿using RolePlaySet;
+using RolePlayFileBasedStorage;
 using System;
 using System.Windows.Forms;
 
-namespace RolePlayDice
+namespace ERolePlay
 {
     static class RolePlayMain
     {
@@ -15,7 +15,7 @@ namespace RolePlayDice
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            StoreGateway storeGateway = new RolePlayFileStore();
+            StoreGateway storeGateway = new RolePlayFileStorage();
             RolePlayGamers rolePlayGamers = new SimpleGamer(storeGateway);
             Application.Run(new RolePlay(rolePlayGamers));
         }

@@ -7,8 +7,8 @@
     <ProjectGuid>{9D5F2804-64B4-40AE-B565-0796B1463307}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileBasedStorage</RootNamespace>
-    <AssemblyName>FileBasedStorage</AssemblyName>
+    <RootNamespace>RolePlayFileBasedStorage</RootNamespace>
+    <AssemblyName>RolePlayFileBasedStorage</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CouldNotCreateNewGameFileStructure.cs" />
-    <Compile Include="RolePlayFileStore.cs" />
+    <Compile Include="RolePlayFileStorage.cs" />
     <Compile Include="GameNameIsNotValid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

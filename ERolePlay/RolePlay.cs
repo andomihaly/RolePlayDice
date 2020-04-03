@@ -4,7 +4,7 @@ using System;
 using System.Windows.Forms;
 
 
-namespace RolePlayDice
+namespace ERolePlay
 {
     public partial class RolePlay : Form
     {
@@ -139,6 +139,11 @@ namespace RolePlayDice
                 return false;
             }
             return true;
+        }
+
+        private void RolePlay_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
