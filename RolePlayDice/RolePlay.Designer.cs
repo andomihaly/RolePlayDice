@@ -114,9 +114,9 @@
             // 
             // opponentPoint
             // 
-            this.opponentPoint.Location = new System.Drawing.Point(574, 103);
+            this.opponentPoint.Location = new System.Drawing.Point(574, 102);
             this.opponentPoint.Name = "opponentPoint";
-            this.opponentPoint.Size = new System.Drawing.Size(100, 20);
+            this.opponentPoint.Size = new System.Drawing.Size(106, 20);
             this.opponentPoint.TabIndex = 6;
             this.opponentPoint.TextChanged += new System.EventHandler(this.opponentPoint_TextChanged);
             // 
@@ -143,7 +143,7 @@
             this.storyBox.Multiline = true;
             this.storyBox.Name = "storyBox";
             this.storyBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.storyBox.Size = new System.Drawing.Size(653, 218);
+            this.storyBox.Size = new System.Drawing.Size(668, 218);
             this.storyBox.TabIndex = 9;
             // 
             // actualEvent
@@ -174,7 +174,7 @@
             // 
             // generateGame
             // 
-            this.generateGame.Location = new System.Drawing.Point(500, 390);
+            this.generateGame.Location = new System.Drawing.Point(515, 390);
             this.generateGame.Name = "generateGame";
             this.generateGame.Size = new System.Drawing.Size(165, 23);
             this.generateGame.TabIndex = 14;
@@ -184,7 +184,7 @@
             // 
             // newGameName
             // 
-            this.newGameName.Location = new System.Drawing.Point(394, 390);
+            this.newGameName.Location = new System.Drawing.Point(409, 390);
             this.newGameName.Name = "newGameName";
             this.newGameName.Size = new System.Drawing.Size(100, 20);
             this.newGameName.TabIndex = 13;

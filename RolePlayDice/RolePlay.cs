@@ -26,7 +26,7 @@ namespace RolePlayDice
         private void loadGame_Click(object sender, EventArgs e)
         {
             rolePlayGamers.loadGame(rolePlayGameName.Text);
-            foreach (Player OnePlayerName in rolePlayGamers.getPlayersName())
+            foreach (Player OnePlayerName in rolePlayGamers.getPlayers())
             {
                 playersComboBox.Items.Add(OnePlayerName.name);
             }
@@ -40,8 +40,17 @@ namespace RolePlayDice
         private void playersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedText);
-            foreach (Skill skill in selectedPlayer.skills)
-                playerSkillComboBox.Items.Add(skill);
+            if (selectedPlayer == null)
+            {
+                MessageBox.Show("Nem találtuk meg a \""+ playersComboBox.SelectedText + "\"játékost!");
+            }
+            else
+            {
+                foreach (Skill skill in selectedPlayer.skills)
+                {
+                    playerSkillComboBox.Items.Add(skill);
+                }
+            }
         }
 
         private void playerSkillComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,7 +121,7 @@ namespace RolePlayDice
         {
             if (isConverttableToInt(sumPlayerPoint.Text) && isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text))
             {
-                rolePlayGamers.AddTurn(Convert.ToInt32(sumPlayerPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedText, Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.CanSelect);
+                rolePlayGamers.AddTurn(eventDescription.Text, Convert.ToInt32(sumPlayerPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedText, Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.CanSelect);
             }
             opponenetThrowDiceToo.Checked = false;
             storyBox.Clear();
