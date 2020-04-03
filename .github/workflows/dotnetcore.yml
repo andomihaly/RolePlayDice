@@ -13,8 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET Core 4.8
+      uses: actions/setup-dotnet@sxs-with-fallback
       with:
         dotnet-version: 4.8.03761
     - name: Install dependencies
