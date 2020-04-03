@@ -15,6 +15,7 @@ namespace RolePlayDice
 
         public RolePlay(RolePlayGamers rolePlayGamers)
         {
+            InitializeComponent();
             this.rolePlayGamers = rolePlayGamers;
         }
 
