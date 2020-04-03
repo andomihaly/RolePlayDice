@@ -9,6 +9,6 @@ namespace RolePlaySet
         Player getPlayerByName(string playerName);
         void generateNewGame(string gameName);
         void AddTurn(string actualEventDescription, int playerPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo);
-        string[] loadStory();
+        string[] getStory();
     }
 }

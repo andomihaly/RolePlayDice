@@ -1,8 +1,10 @@
-﻿namespace RolePlaySet.Entity
+﻿using System.Collections.Generic;
+
+namespace RolePlaySet.Entity
 {
     public class Player
     {
         public string name;
-        public Skill[] skills;
+        public List<Skill> skills;
     }
 }

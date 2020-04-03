@@ -22,8 +22,17 @@ namespace RolePlaySet
         public void loadGame(string gameName)
         {
             this.gameName = gameName;
+            try
+            {
+                players = storeGateway.loadPlayers(gameName);
+            }
+            catch(Exception)
+            {
+                players = null;
+            }
+
             story = storeGateway.loadStory(gameName);
-            players = storeGateway.loadPlayers(gameName);
+            
         }
 
         public Player getPlayerByName(string playerName)
@@ -43,7 +52,7 @@ namespace RolePlaySet
             storeGateway.createNewGame(gameName);
         }
 
-        public string[] loadStory()
+        public string[] getStory()
         {
             return story.events;
         }
