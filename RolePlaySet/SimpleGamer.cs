@@ -6,7 +6,7 @@ namespace RolePlaySet
 {
     public class SimpleGamer : RolePlayGamers
     {
-        private Story story;
+        private Story story = new Story();
         private Player[] players;
         private String gameName;
         private StoreGateway storeGateway;
@@ -22,7 +22,37 @@ namespace RolePlaySet
 
         public void loadGame(string gameName)
         {
-            this.gameName = gameName;
+            checkGameName(gameName);
+            this.gameName = reformatGameName(gameName);
+
+            loadPlayers(gameName);
+            loadStory(gameName);
+        }
+
+        private void checkGameName(string gameName)
+        {
+            if (gameName == null)
+            {
+                throw new GameNameIsNotValid(gameName);
+            }
+            gameName = gameName.Trim();
+            if (gameName.Equals(""))
+            {
+                throw new GameNameIsNotValid(gameName);
+            }
+        }
+
+        private string reformatGameName(String gameName)
+        {
+            foreach (char c in System.IO.Path.GetInvalidFileNameChars())
+            {
+                gameName = gameName.Replace(c, '_');
+            }
+            return gameName;
+        }
+
+        private void loadPlayers(string gameName)
+        {
             try
             {
                 players = storeGateway.loadPlayers(gameName);
@@ -31,18 +61,27 @@ namespace RolePlaySet
             {
                 players = null;
             }
-
-            story = storeGateway.loadStory(gameName);
-
         }
+
+        private void loadStory(string gameName)
+        {
+            Story teamStory = storeGateway.loadStory(gameName);
+            if (teamStory != null)
+            {
+                story = teamStory;
+            }
+        }   
 
         public Player getPlayerByName(string playerName)
         {
-            foreach (Player onePlayer in players)
+            if (!(players == null))
             {
-                if (onePlayer.name.Equals(playerName))
+                foreach (Player onePlayer in players)
                 {
-                    return onePlayer;
+                    if (onePlayer.name.Equals(playerName))
+                    {
+                        return onePlayer;
+                    }
                 }
             }
             return null;
@@ -50,6 +89,9 @@ namespace RolePlaySet
 
         public void generateNewGame(string gameName)
         {
+            checkGameName(gameName);
+            this.gameName = reformatGameName(gameName);
+
             storeGateway.createNewGame(gameName);
         }
 

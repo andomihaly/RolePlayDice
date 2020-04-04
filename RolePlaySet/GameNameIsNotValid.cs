@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace RolePlayFileBasedStorage
+namespace RolePlaySet
 {
     [Serializable]
-    internal class GameNameIsNotValid : Exception
+    public class GameNameIsNotValid : Exception
     {
         public GameNameIsNotValid()
         {

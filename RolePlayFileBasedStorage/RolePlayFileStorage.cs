@@ -46,7 +46,7 @@ namespace RolePlayFileBasedStorage
             Story story = new Story();
             story.events = System.IO.File.ReadAllLines(storyFile).OfType<string>().ToList();
             return story;
-            
+
         }
 
         public void saveGame(Story story, string gameName)
@@ -60,8 +60,15 @@ namespace RolePlayFileBasedStorage
 
         private void checkGameName(string gameName)
         {
-            if (gameName == null || gameName == "" || gameName == " ")
-                throw new GameNameIsNotValid("\"" + gameName + "\" is not valid");
+            if (gameName == null)
+            {
+                throw new GameNameIsNotValid(gameName);
+            }
+            gameName = gameName.Trim();
+            if (gameName.Equals(""))
+            {
+                throw new GameNameIsNotValid(gameName);
+            }
         }
 
         private void generateGameStructure()
@@ -131,7 +138,7 @@ namespace RolePlayFileBasedStorage
             playerFileLines = System.IO.File.ReadAllLines(playerFile);
             players = new List<Player>();
             rowIndex = 0;
-            
+
             while (rowIndex < playerFileLines.Length)
             {
                 parseAndAddNextPlayerToList();
@@ -147,13 +154,13 @@ namespace RolePlayFileBasedStorage
             {
                 Player player = new Player();
                 player.name = tempLine.Substring(1);
-                while ((rowIndex+1)<playerFileLines.Length && playerFileLines[rowIndex + 1][0].Equals(SKILL_FLAG[0]))
+                while ((rowIndex + 1) < playerFileLines.Length && playerFileLines[rowIndex + 1][0].Equals(SKILL_FLAG[0]))
                 {
                     rowIndex++;
                     parseAndAddNextSkillToPlayer(player);
                 }
                 players.Add(player);
-            }   
+            }
         }
 
         private void parseAndAddNextSkillToPlayer(Player player)

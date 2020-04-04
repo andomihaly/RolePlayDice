@@ -15,7 +15,7 @@ namespace RandomDice.RandomGenerator.Tests
             for (int i = 0; i < 100; i++)
             {
                 int generatedNumber = randomGenerator.generateRandomNumber(lowerBound, upperBound);
-                Assert.IsTrue((lowerBound <= generatedNumber && generatedNumber <= upperBound),"["+lowerBound+ "," + upperBound +"] Generated number:"+generatedNumber);
+                Assert.IsTrue((lowerBound <= generatedNumber && generatedNumber <= upperBound), "[" + lowerBound + "," + upperBound + "] Generated number:" + generatedNumber);
             }
         }
         [TestMethod()]
@@ -30,10 +30,10 @@ namespace RandomDice.RandomGenerator.Tests
                 int generatedNumber = randomGenerator.generateRandomNumber(lowerBound, upperBound);
                 generatedInteger[generatedNumber + 1]++;
             }
-            for(int i=0; i<generatedInteger.Length; i++)
+            for (int i = 0; i < generatedInteger.Length; i++)
             {
-                Assert.IsTrue(1000<generatedInteger[i],"Missing dice value is "+(i-1)+". Total generated number from this value:"+ generatedInteger[i]);
-            }            
+                Assert.IsTrue(1000 < generatedInteger[i], "Missing dice value is " + (i - 1) + ". Total generated number from this value:" + generatedInteger[i]);
+            }
         }
     }
 }

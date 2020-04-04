@@ -5,6 +5,6 @@ namespace RolePlaySet.Entity
 {
     public class Story
     {
-        public List<String> events;
+        public List<String> events = new List<String>();
     }
 }

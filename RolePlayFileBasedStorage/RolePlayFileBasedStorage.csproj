@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="CouldNotCreateNewGameFileStructure.cs" />
     <Compile Include="RolePlayFileStorage.cs" />
-    <Compile Include="GameNameIsNotValid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
