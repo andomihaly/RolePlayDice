@@ -32,7 +32,7 @@ namespace ERolePlay
             }
             catch(Exception)
             {
-                MessageBox.Show("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\"játékot!");
+                MessageBox.Show("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\" játékot!");
             }
 
             
@@ -48,7 +48,7 @@ namespace ERolePlay
             }
             else
             {
-                MessageBox.Show("Nem tudtuk betölteni a játékosokat a \"" + rolePlayGameName.Text + "\"játékból!");
+                MessageBox.Show("Nem tudtuk betölteni a játékosokat a \"" + rolePlayGameName.Text + "\" játékból!");
             }
             foreach (string actualDiceType in diceTypes)
             {
@@ -59,28 +59,34 @@ namespace ERolePlay
 
         private void playersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedText);
+            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
             if (selectedPlayer == null)
             {
-                MessageBox.Show("Nem találtuk meg a \""+ playersComboBox.SelectedText + "\"játékost!");
+                MessageBox.Show("Nem találtuk meg a \""+ playersComboBox.SelectedItem + "\"játékost!");
             }
             else
             {
+                playerSkillComboBox.SelectedItem = null;
                 playerSkillComboBox.Items.Clear();
                 foreach (Skill skill in selectedPlayer.skills)
                 {
-                    playerSkillComboBox.Items.Add(skill);
+                    playerSkillComboBox.Items.Add(skill.name);
                 }
+                setThePlayerBasedPoint();
             }
         }
 
         private void playerSkillComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedText);
+            setThePlayerBasedPoint();
+        }
+        private void setThePlayerBasedPoint()
+        {
+            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
             playerBasedPoint.Text = ZERO.ToString();
-            for (int i=0; i<selectedPlayer.skills.Count; i++)
+            for (int i = 0; i < selectedPlayer.skills.Count; i++)
             {
-                if (playerSkillComboBox.SelectedText == selectedPlayer.skills[i].name)
+                if (playerSkillComboBox.SelectedItem != null && playerSkillComboBox.SelectedItem.ToString().Equals(selectedPlayer.skills[i].name))
                 {
                     playerBasedPoint.Text = selectedPlayer.skills[i].score.ToString();
                 }
@@ -142,7 +148,7 @@ namespace ERolePlay
         {
             if (isConverttableToInt(sumPlayerPoint.Text) && isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text))
             {
-                rolePlayGamers.AddTurn(eventDescription.Text, Convert.ToInt32(sumPlayerPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedText, Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.CanSelect);
+                rolePlayGamers.AddTurn(eventDescription.Text, Convert.ToInt32(sumPlayerPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.CanSelect);
             }
             opponenetThrowDiceToo.Checked = false;
             refillStoryBox();

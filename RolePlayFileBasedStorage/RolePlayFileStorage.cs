@@ -106,7 +106,8 @@ namespace RolePlayFileBasedStorage
                     sw.WriteLine(SKILL_FLAG + "Skill2Name" + SKILL_SEPARATOR + "+3");
                     sw.WriteLine(SKILL_FLAG + "Skill3Name" + SKILL_SEPARATOR + "0");
                     sw.WriteLine(SKILL_FLAG + "Skill4Name" + SKILL_SEPARATOR + "-1");
-
+                    sw.WriteLine(PLAYER_NAME_FLAG + "Name3");
+                    sw.WriteLine(PLAYER_NAME_FLAG + "Name4");
                 }
             }
         }
@@ -145,7 +146,7 @@ namespace RolePlayFileBasedStorage
             {
                 Player player = new Player();
                 player.name = tempLine.Substring(1);
-                while (playerFileLines[rowIndex + 1].Equals(SKILL_FLAG[0]))
+                while ((rowIndex+1)<playerFileLines.Length && playerFileLines[rowIndex + 1][0].Equals(SKILL_FLAG[0]))
                 {
                     rowIndex++;
                     parseAndAddNextSkillToPlayer(player);

@@ -5,6 +5,6 @@ namespace RolePlaySet.Entity
     public class Player
     {
         public string name;
-        public List<Skill> skills;
+        public List<Skill> skills = new List<Skill>();
     }
 }
