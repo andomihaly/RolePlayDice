@@ -70,7 +70,7 @@ namespace RolePlayGUI
             this.playersComboBox.Location = new System.Drawing.Point(12, 102);
             this.playersComboBox.Name = "playersComboBox";
             this.playersComboBox.Size = new System.Drawing.Size(121, 21);
-            this.playersComboBox.TabIndex = 0;
+            this.playersComboBox.TabIndex = 15;
             this.playersComboBox.SelectedIndexChanged += new System.EventHandler(this.playersComboBox_SelectedIndexChanged);
             // 
             // playerBasedPoint
@@ -78,7 +78,7 @@ namespace RolePlayGUI
             this.playerBasedPoint.Location = new System.Drawing.Point(269, 102);
             this.playerBasedPoint.Name = "playerBasedPoint";
             this.playerBasedPoint.Size = new System.Drawing.Size(100, 20);
-            this.playerBasedPoint.TabIndex = 1;
+            this.playerBasedPoint.TabIndex = 25;
             this.playerBasedPoint.TextChanged += new System.EventHandler(this.playerBasedPoint_TextChanged);
             // 
             // playerSkillComboBox
@@ -90,7 +90,7 @@ namespace RolePlayGUI
             this.playerSkillComboBox.Location = new System.Drawing.Point(142, 102);
             this.playerSkillComboBox.Name = "playerSkillComboBox";
             this.playerSkillComboBox.Size = new System.Drawing.Size(121, 21);
-            this.playerSkillComboBox.TabIndex = 2;
+            this.playerSkillComboBox.TabIndex = 20;
             this.playerSkillComboBox.SelectedIndexChanged += new System.EventHandler(this.playerSkillComboBox_SelectedIndexChanged);
             // 
             // extraPoint
@@ -98,7 +98,7 @@ namespace RolePlayGUI
             this.extraPoint.Location = new System.Drawing.Point(375, 102);
             this.extraPoint.Name = "extraPoint";
             this.extraPoint.Size = new System.Drawing.Size(100, 20);
-            this.extraPoint.TabIndex = 3;
+            this.extraPoint.TabIndex = 30;
             this.extraPoint.TextChanged += new System.EventHandler(this.extraPoint_TextChanged);
             // 
             // vsLabel
@@ -117,14 +117,14 @@ namespace RolePlayGUI
             this.diceType.Location = new System.Drawing.Point(486, 46);
             this.diceType.Name = "diceType";
             this.diceType.Size = new System.Drawing.Size(71, 21);
-            this.diceType.TabIndex = 5;
+            this.diceType.TabIndex = 40;
             // 
             // opponentPoint
             // 
             this.opponentPoint.Location = new System.Drawing.Point(574, 102);
             this.opponentPoint.Name = "opponentPoint";
             this.opponentPoint.Size = new System.Drawing.Size(106, 20);
-            this.opponentPoint.TabIndex = 6;
+            this.opponentPoint.TabIndex = 45;
             this.opponentPoint.TextChanged += new System.EventHandler(this.opponentPoint_TextChanged);
             // 
             // eventDescription
@@ -133,7 +133,7 @@ namespace RolePlayGUI
             this.eventDescription.Multiline = true;
             this.eventDescription.Name = "eventDescription";
             this.eventDescription.Size = new System.Drawing.Size(399, 48);
-            this.eventDescription.TabIndex = 7;
+            this.eventDescription.TabIndex = 10;
             // 
             // historyLabel
             // 
@@ -151,7 +151,8 @@ namespace RolePlayGUI
             this.storyBox.Name = "storyBox";
             this.storyBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.storyBox.Size = new System.Drawing.Size(668, 218);
-            this.storyBox.TabIndex = 9;
+            this.storyBox.TabIndex = 600;
+            this.storyBox.TabStop = false;
             // 
             // actualEvent
             // 
@@ -167,7 +168,8 @@ namespace RolePlayGUI
             this.rolePlayGameName.Location = new System.Drawing.Point(12, 403);
             this.rolePlayGameName.Name = "rolePlayGameName";
             this.rolePlayGameName.Size = new System.Drawing.Size(100, 20);
-            this.rolePlayGameName.TabIndex = 11;
+            this.rolePlayGameName.TabIndex = 600;
+            this.rolePlayGameName.TabStop = false;
             // 
             // loadGame
             // 
@@ -176,7 +178,8 @@ namespace RolePlayGUI
             this.loadGame.Location = new System.Drawing.Point(118, 406);
             this.loadGame.Name = "loadGame";
             this.loadGame.Size = new System.Drawing.Size(106, 23);
-            this.loadGame.TabIndex = 12;
+            this.loadGame.TabIndex = 600;
+            this.loadGame.TabStop = false;
             this.loadGame.Text = "jb";
             this.loadGame.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.loadGame.UseVisualStyleBackColor = true;
@@ -189,7 +192,8 @@ namespace RolePlayGUI
             this.generateGame.Location = new System.Drawing.Point(515, 403);
             this.generateGame.Name = "generateGame";
             this.generateGame.Size = new System.Drawing.Size(165, 23);
-            this.generateGame.TabIndex = 14;
+            this.generateGame.TabIndex = 600;
+            this.generateGame.TabStop = false;
             this.generateGame.Text = "ujl";
             this.generateGame.UseVisualStyleBackColor = true;
             this.generateGame.Click += new System.EventHandler(this.generateGame_Click);
@@ -199,7 +203,8 @@ namespace RolePlayGUI
             this.newGameName.Location = new System.Drawing.Point(409, 403);
             this.newGameName.Name = "newGameName";
             this.newGameName.Size = new System.Drawing.Size(100, 20);
-            this.newGameName.TabIndex = 13;
+            this.newGameName.TabIndex = 600;
+            this.newGameName.TabStop = false;
             // 
             // basePontLabel
             // 
@@ -253,7 +258,7 @@ namespace RolePlayGUI
             this.throwDice.Location = new System.Drawing.Point(574, 44);
             this.throwDice.Name = "throwDice";
             this.throwDice.Size = new System.Drawing.Size(106, 23);
-            this.throwDice.TabIndex = 20;
+            this.throwDice.TabIndex = 60;
             this.throwDice.Text = "d";
             this.throwDice.UseVisualStyleBackColor = true;
             this.throwDice.Click += new System.EventHandler(this.throwDice_Click);
@@ -263,7 +268,7 @@ namespace RolePlayGUI
             this.numberOfDice.Location = new System.Drawing.Point(431, 47);
             this.numberOfDice.Name = "numberOfDice";
             this.numberOfDice.Size = new System.Drawing.Size(49, 20);
-            this.numberOfDice.TabIndex = 21;
+            this.numberOfDice.TabIndex = 35;
             this.numberOfDice.TextChanged += new System.EventHandler(this.numberOfDice_TextChanged);
             // 
             // diceLabel
@@ -281,7 +286,7 @@ namespace RolePlayGUI
             this.opponenetThrowDiceToo.Location = new System.Drawing.Point(576, 135);
             this.opponenetThrowDiceToo.Name = "opponenetThrowDiceToo";
             this.opponenetThrowDiceToo.Size = new System.Drawing.Size(38, 17);
-            this.opponenetThrowDiceToo.TabIndex = 23;
+            this.opponenetThrowDiceToo.TabIndex = 50;
             this.opponenetThrowDiceToo.Text = "ed";
             this.opponenetThrowDiceToo.UseVisualStyleBackColor = true;
             // 
@@ -292,8 +297,7 @@ namespace RolePlayGUI
             this.languageRadioButtonHu.Location = new System.Drawing.Point(6, 19);
             this.languageRadioButtonHu.Name = "languageRadioButtonHu";
             this.languageRadioButtonHu.Size = new System.Drawing.Size(37, 17);
-            this.languageRadioButtonHu.TabIndex = 24;
-            this.languageRadioButtonHu.TabStop = true;
+            this.languageRadioButtonHu.TabIndex = 600;
             this.languageRadioButtonHu.Text = "hu";
             this.languageRadioButtonHu.UseVisualStyleBackColor = true;
             this.languageRadioButtonHu.CheckedChanged += new System.EventHandler(this.languageRadioButtonHu_CheckedChanged);
@@ -304,7 +308,7 @@ namespace RolePlayGUI
             this.languageRadioButtonEn.Location = new System.Drawing.Point(49, 19);
             this.languageRadioButtonEn.Name = "languageRadioButtonEn";
             this.languageRadioButtonEn.Size = new System.Drawing.Size(37, 17);
-            this.languageRadioButtonEn.TabIndex = 25;
+            this.languageRadioButtonEn.TabIndex = 600;
             this.languageRadioButtonEn.Text = "en";
             this.languageRadioButtonEn.UseVisualStyleBackColor = true;
             this.languageRadioButtonEn.CheckedChanged += new System.EventHandler(this.languageRadioButtonEn_CheckedChanged);
@@ -316,7 +320,7 @@ namespace RolePlayGUI
             this.languageGroupBox.Location = new System.Drawing.Point(269, 390);
             this.languageGroupBox.Name = "languageGroupBox";
             this.languageGroupBox.Size = new System.Drawing.Size(94, 49);
-            this.languageGroupBox.TabIndex = 26;
+            this.languageGroupBox.TabIndex = 600;
             this.languageGroupBox.TabStop = false;
             this.languageGroupBox.Text = "ln";
             // 
