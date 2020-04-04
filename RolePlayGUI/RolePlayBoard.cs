@@ -12,11 +12,15 @@ namespace RolePlayGUI
         private RolePlayGamers rolePlayGamers;
         private static int ZERO = 0;
         private static int DEFAULT_NUMBER_OF_DICE = 4;
-        private static string[] diceTypes = {"d3","dF3"};
+        private static string[] diceTypes = { "d3", "dF3" };
+        private static string NEW_LINE = "\r\n";
+
         private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
         private CultureInfo enCultureInfo = new CultureInfo("en-US");
         private CultureInfo actualCultureInfo;
         ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
+
+
 
         public RolePlayBoard(RolePlayGamers rolePlayGamers)
         {
@@ -35,12 +39,12 @@ namespace RolePlayGUI
                 rolePlayGamers.loadGame(rolePlayGameName.Text);
                 fillGUIWithGame();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 createNotificationFormFauilt("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\" játékot!");
             }
 
-            
+
         }
         private void fillGUIWithGame()
         {
@@ -124,7 +128,7 @@ namespace RolePlayGUI
         private void opponentPoint_TextChanged(object sender, EventArgs e)
         {
             if (!isConverttableToInt(opponentPoint.Text))
-            { 
+            {
                 opponentPoint.Text = ZERO.ToString();
             }
         }
@@ -134,7 +138,7 @@ namespace RolePlayGUI
             if (!isConverttableToInt(numberOfDice.Text))
             {
                 numberOfDice.Text = DEFAULT_NUMBER_OF_DICE.ToString();
-            }          
+            }
         }
 
         private void generateGame_Click(object sender, EventArgs e)
@@ -145,7 +149,7 @@ namespace RolePlayGUI
             }
             else
             {
-                
+
                 createNotificationFormFauilt(rm.GetString("errorAddNameNewGame", actualCultureInfo));
             }
         }
@@ -167,7 +171,7 @@ namespace RolePlayGUI
             storyBox.Clear();
             foreach (String OneEvent in rolePlayGamers.getStory())
             {
-                storyBox.AppendText("\r\n" + OneEvent);
+                storyBox.AppendText(NEW_LINE + OneEvent);
             }
         }
         private bool isConverttableToInt(String number)

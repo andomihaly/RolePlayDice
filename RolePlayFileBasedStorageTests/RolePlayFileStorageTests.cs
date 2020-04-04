@@ -12,7 +12,7 @@ namespace RolePlayFileBasedStorage.Tests
         {
 
             string gameName = "unitTest";
-            string path = Directory.GetCurrentDirectory() + "\\"+ gameName;
+            string path = Directory.GetCurrentDirectory() + "\\" + gameName;
             DirectoryInfo directory = new DirectoryInfo(path);
             if (directory.Exists)
                 directory.Delete(true);
@@ -21,11 +21,11 @@ namespace RolePlayFileBasedStorage.Tests
 
             fs.createNewGame(gameName);
 
-            Player[] players =fs.loadPlayers(gameName);
+            Player[] players = fs.loadPlayers(gameName);
             Assert.AreEqual("Name1", players[0].name);
             Assert.AreEqual("Skill1Name", players[0].skills[0].name);
             Assert.AreEqual(1, players[0].skills[0].score);
-           
+
             Assert.AreEqual("Name2", players[1].name);
             Assert.AreEqual("Skill4Name", players[1].skills[3].name);
             Assert.AreEqual(-1, players[1].skills[3].score);
