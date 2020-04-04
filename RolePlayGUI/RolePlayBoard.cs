@@ -2,7 +2,8 @@
 using RolePlaySet.Entity;
 using System;
 using System.Windows.Forms;
-
+using System.Resources;
+using System.Globalization;
 
 namespace RolePlayGUI
 {
@@ -13,6 +14,10 @@ namespace RolePlayGUI
         private static int DEFAULT_NUMBER_OF_DICE = 4;
         private static string ERROR_TEXT = "Hiba";
         private static string[] diceTypes = {"d3","dF3"};
+        private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
+        private CultureInfo enCultureInfo = new CultureInfo("en-US");
+        private CultureInfo actualCultureInfo;
+        ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
 
         public RolePlayBoard(RolePlayGamers rolePlayGamers)
         {
@@ -49,31 +54,31 @@ namespace RolePlayGUI
             }
             else
             {
-                createNotificationFormFauilt("Nem tudtuk betölteni a játékosokat a \"" + rolePlayGameName.Text + "\" játékból!");
-            }
-            foreach (string actualDiceType in diceTypes)
-            {
-                diceType.Items.Add(actualDiceType);
+                createNotificationFormFauilt(rm.GetString("errorNotLoad", actualCultureInfo) + rolePlayGameName.Text + rm.GetString("errorFromGame", actualCultureInfo));
             }
             refillStoryBox();
         }
 
         private void playersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
-            if (selectedPlayer == null)
+            if (!playersComboBox.SelectedItem.ToString().Equals(""))
             {
-                createNotificationFormFauilt("Nem találtuk meg a \"" + playersComboBox.SelectedItem + "\"játékost!");
-            }
-            else
-            {
-                playerSkillComboBox.SelectedItem = null;
-                playerSkillComboBox.Items.Clear();
-                foreach (Skill skill in selectedPlayer.skills)
+                Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
+                if (selectedPlayer == null)
                 {
-                    playerSkillComboBox.Items.Add(skill.name);
+                    createNotificationFormFauilt(rm.GetString("errorNotFound", actualCultureInfo) + playersComboBox.SelectedItem + rm.GetString("errorNotFoundPlayer", actualCultureInfo));
                 }
-                setThePlayerBasedPoint();
+                else
+                {
+                    playerSkillComboBox.SelectedItem = null;
+                    playerSkillComboBox.Items.Clear();
+                    foreach (Skill skill in selectedPlayer.skills)
+                    {
+                        playerSkillComboBox.Items.Add(skill.name);
+                    }
+                    playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
+                    setThePlayerBasedPoint();
+                }
             }
         }
 
@@ -141,7 +146,8 @@ namespace RolePlayGUI
             }
             else
             {
-                createNotificationFormFauilt("El kell nevezni az új játékot!");
+                
+                createNotificationFormFauilt(rm.GetString("errorAddNameNewGame", actualCultureInfo));
             }
         }
 
@@ -185,6 +191,54 @@ namespace RolePlayGUI
 
         private void RolePlay_Load(object sender, EventArgs e)
         {
+            actualCultureInfo = huCultureInfo;
+            loadLanguageTexts();
+        }
+
+        private void languageRadioButtonHu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (languageRadioButtonHu.Checked)
+            {
+                actualCultureInfo = huCultureInfo;
+                loadLanguageTexts();
+            }
+        }
+
+        private void languageRadioButtonEn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (languageRadioButtonEn.Checked)
+            {
+                actualCultureInfo = enCultureInfo;
+                loadLanguageTexts();
+            }
+        }
+
+        private void loadLanguageTexts()
+        {
+            this.Text = rm.GetString("rolePlayBoard", actualCultureInfo);
+            actualEvent.Text = rm.GetString("actualEvent", actualCultureInfo);
+            diceLabel.Text = rm.GetString("diceInstruction", actualCultureInfo);
+            throwDice.Text = rm.GetString("throwDice", actualCultureInfo);
+            basePontLabel.Text = rm.GetString("basePoint", actualCultureInfo);
+            extraPointLabel.Text = rm.GetString("extraPoint", actualCultureInfo);
+            sumPointLabel.Text = rm.GetString("sumPoint", actualCultureInfo);
+            opponentPointLabel.Text = rm.GetString("opponentPoint", actualCultureInfo);
+            vsLabel.Text = rm.GetString("vs", actualCultureInfo);
+            opponenetThrowDiceToo.Text = rm.GetString("opponentThrowToo", actualCultureInfo);
+            languageGroupBox.Text = rm.GetString("languageTag", actualCultureInfo);
+            languageRadioButtonHu.Text = rm.GetString("hu", actualCultureInfo);
+            languageRadioButtonEn.Text = rm.GetString("en", actualCultureInfo);
+            loadGame.Text = rm.GetString("loadGame", actualCultureInfo); ;
+            generateGame.Text = rm.GetString("generateGame", actualCultureInfo);
+            historyLabel.Text = rm.GetString("story", actualCultureInfo);
+            playersComboBox.Text = rm.GetString("playerName", actualCultureInfo);
+            playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
+
+            diceType.Items.Clear();
+            foreach (string actualDiceType in diceTypes)
+            {
+                diceType.Items.Add(actualDiceType);
+            }
 
         }
     }

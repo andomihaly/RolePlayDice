@@ -1,4 +1,6 @@
-﻿namespace RolePlayGUI
+﻿using System.Resources;
+
+namespace RolePlayGUI
 {
     public partial class RolePlayBoard
     {
@@ -33,26 +35,30 @@
             this.playerBasedPoint = new System.Windows.Forms.TextBox();
             this.playerSkillComboBox = new System.Windows.Forms.ComboBox();
             this.extraPoint = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.vsLabel = new System.Windows.Forms.Label();
             this.diceType = new System.Windows.Forms.ComboBox();
             this.opponentPoint = new System.Windows.Forms.TextBox();
             this.eventDescription = new System.Windows.Forms.TextBox();
-            this.history = new System.Windows.Forms.Label();
+            this.historyLabel = new System.Windows.Forms.Label();
             this.storyBox = new System.Windows.Forms.TextBox();
             this.actualEvent = new System.Windows.Forms.Label();
             this.rolePlayGameName = new System.Windows.Forms.TextBox();
             this.loadGame = new System.Windows.Forms.Button();
             this.generateGame = new System.Windows.Forms.Button();
             this.newGameName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.basePontLabel = new System.Windows.Forms.Label();
+            this.extraPointLabel = new System.Windows.Forms.Label();
+            this.opponentPointLabel = new System.Windows.Forms.Label();
+            this.sumPointLabel = new System.Windows.Forms.Label();
             this.sumPlayerPoint = new System.Windows.Forms.Label();
             this.throwDice = new System.Windows.Forms.Button();
             this.numberOfDice = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.diceLabel = new System.Windows.Forms.Label();
             this.opponenetThrowDiceToo = new System.Windows.Forms.CheckBox();
+            this.languageRadioButtonHu = new System.Windows.Forms.RadioButton();
+            this.languageRadioButtonEn = new System.Windows.Forms.RadioButton();
+            this.languageGroupBox = new System.Windows.Forms.GroupBox();
+            this.languageGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // playersComboBox
@@ -95,15 +101,15 @@
             this.extraPoint.TabIndex = 3;
             this.extraPoint.TextChanged += new System.EventHandler(this.extraPoint_TextChanged);
             // 
-            // label1
+            // vsLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(536, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Tag = "";
-            this.label1.Text = "vs.";
+            this.vsLabel.AutoSize = true;
+            this.vsLabel.Location = new System.Drawing.Point(536, 105);
+            this.vsLabel.Name = "vsLabel";
+            this.vsLabel.Size = new System.Drawing.Size(13, 13);
+            this.vsLabel.TabIndex = 4;
+            this.vsLabel.Tag = "";
+            this.vsLabel.Text = "v";
             // 
             // diceType
             // 
@@ -129,14 +135,14 @@
             this.eventDescription.Size = new System.Drawing.Size(399, 48);
             this.eventDescription.TabIndex = 7;
             // 
-            // history
+            // historyLabel
             // 
-            this.history.AutoSize = true;
-            this.history.Location = new System.Drawing.Point(12, 150);
-            this.history.Name = "history";
-            this.history.Size = new System.Drawing.Size(50, 13);
-            this.history.TabIndex = 8;
-            this.history.Text = "Történet:";
+            this.historyLabel.AutoSize = true;
+            this.historyLabel.Location = new System.Drawing.Point(12, 150);
+            this.historyLabel.Name = "historyLabel";
+            this.historyLabel.Size = new System.Drawing.Size(10, 13);
+            this.historyLabel.TabIndex = 8;
+            this.historyLabel.Text = "t";
             // 
             // storyBox
             // 
@@ -152,13 +158,13 @@
             this.actualEvent.AutoSize = true;
             this.actualEvent.Location = new System.Drawing.Point(12, 12);
             this.actualEvent.Name = "actualEvent";
-            this.actualEvent.Size = new System.Drawing.Size(92, 13);
+            this.actualEvent.Size = new System.Drawing.Size(19, 13);
             this.actualEvent.TabIndex = 10;
-            this.actualEvent.Text = "Aktuális esemény:";
+            this.actualEvent.Text = "ae";
             // 
             // rolePlayGameName
             // 
-            this.rolePlayGameName.Location = new System.Drawing.Point(12, 390);
+            this.rolePlayGameName.Location = new System.Drawing.Point(12, 403);
             this.rolePlayGameName.Name = "rolePlayGameName";
             this.rolePlayGameName.Size = new System.Drawing.Size(100, 20);
             this.rolePlayGameName.TabIndex = 11;
@@ -167,11 +173,11 @@
             // 
             this.loadGame.Image = global::RolePlayGUI.Properties.Resources.open;
             this.loadGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.loadGame.Location = new System.Drawing.Point(119, 390);
+            this.loadGame.Location = new System.Drawing.Point(118, 406);
             this.loadGame.Name = "loadGame";
             this.loadGame.Size = new System.Drawing.Size(106, 23);
             this.loadGame.TabIndex = 12;
-            this.loadGame.Text = "játék betöltése";
+            this.loadGame.Text = "jb";
             this.loadGame.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.loadGame.UseVisualStyleBackColor = true;
             this.loadGame.Click += new System.EventHandler(this.loadGame_Click);
@@ -180,56 +186,56 @@
             // 
             this.generateGame.Image = global::RolePlayGUI.Properties.Resources.create;
             this.generateGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.generateGame.Location = new System.Drawing.Point(515, 390);
+            this.generateGame.Location = new System.Drawing.Point(515, 403);
             this.generateGame.Name = "generateGame";
             this.generateGame.Size = new System.Drawing.Size(165, 23);
             this.generateGame.TabIndex = 14;
-            this.generateGame.Text = "új játék létrehozása";
+            this.generateGame.Text = "ujl";
             this.generateGame.UseVisualStyleBackColor = true;
             this.generateGame.Click += new System.EventHandler(this.generateGame_Click);
             // 
             // newGameName
             // 
-            this.newGameName.Location = new System.Drawing.Point(409, 390);
+            this.newGameName.Location = new System.Drawing.Point(409, 403);
             this.newGameName.Name = "newGameName";
             this.newGameName.Size = new System.Drawing.Size(100, 20);
             this.newGameName.TabIndex = 13;
             // 
-            // label2
+            // basePontLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(266, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Alap pont:";
+            this.basePontLabel.AutoSize = true;
+            this.basePontLabel.Location = new System.Drawing.Point(266, 86);
+            this.basePontLabel.Name = "basePontLabel";
+            this.basePontLabel.Size = new System.Drawing.Size(19, 13);
+            this.basePontLabel.TabIndex = 15;
+            this.basePontLabel.Text = "ap";
             // 
-            // label3
+            // extraPointLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(372, 86);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Extra pont:";
+            this.extraPointLabel.AutoSize = true;
+            this.extraPointLabel.Location = new System.Drawing.Point(372, 86);
+            this.extraPointLabel.Name = "extraPointLabel";
+            this.extraPointLabel.Size = new System.Drawing.Size(19, 13);
+            this.extraPointLabel.TabIndex = 16;
+            this.extraPointLabel.Text = "ep";
             // 
-            // label4
+            // opponentPointLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(571, 86);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Ellen pont:";
+            this.opponentPointLabel.AutoSize = true;
+            this.opponentPointLabel.Location = new System.Drawing.Point(571, 86);
+            this.opponentPointLabel.Name = "opponentPointLabel";
+            this.opponentPointLabel.Size = new System.Drawing.Size(19, 13);
+            this.opponentPointLabel.TabIndex = 17;
+            this.opponentPointLabel.Text = "ep";
             // 
-            // label5
+            // sumPointLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(483, 86);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Összpont:";
+            this.sumPointLabel.AutoSize = true;
+            this.sumPointLabel.Location = new System.Drawing.Point(483, 86);
+            this.sumPointLabel.Name = "sumPointLabel";
+            this.sumPointLabel.Size = new System.Drawing.Size(18, 13);
+            this.sumPointLabel.TabIndex = 18;
+            this.sumPointLabel.Text = "sp";
             // 
             // sumPlayerPoint
             // 
@@ -248,7 +254,7 @@
             this.throwDice.Name = "throwDice";
             this.throwDice.Size = new System.Drawing.Size(106, 23);
             this.throwDice.TabIndex = 20;
-            this.throwDice.Text = "dobás";
+            this.throwDice.Text = "d";
             this.throwDice.UseVisualStyleBackColor = true;
             this.throwDice.Click += new System.EventHandler(this.throwDice_Click);
             // 
@@ -260,50 +266,86 @@
             this.numberOfDice.TabIndex = 21;
             this.numberOfDice.TextChanged += new System.EventHandler(this.numberOfDice_TextChanged);
             // 
-            // label6
+            // diceLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(428, 28);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Kockák száma és típusa:";
+            this.diceLabel.AutoSize = true;
+            this.diceLabel.Location = new System.Drawing.Point(428, 28);
+            this.diceLabel.Name = "diceLabel";
+            this.diceLabel.Size = new System.Drawing.Size(29, 13);
+            this.diceLabel.TabIndex = 22;
+            this.diceLabel.Text = "kszt:";
             // 
             // opponenetThrowDiceToo
             // 
             this.opponenetThrowDiceToo.AutoSize = true;
             this.opponenetThrowDiceToo.Location = new System.Drawing.Point(576, 135);
             this.opponenetThrowDiceToo.Name = "opponenetThrowDiceToo";
-            this.opponenetThrowDiceToo.Size = new System.Drawing.Size(91, 17);
+            this.opponenetThrowDiceToo.Size = new System.Drawing.Size(38, 17);
             this.opponenetThrowDiceToo.TabIndex = 23;
-            this.opponenetThrowDiceToo.Text = "Ellenfél is dob";
+            this.opponenetThrowDiceToo.Text = "ed";
             this.opponenetThrowDiceToo.UseVisualStyleBackColor = true;
+            // 
+            // languageRadioButtonHu
+            // 
+            this.languageRadioButtonHu.AutoSize = true;
+            this.languageRadioButtonHu.Checked = true;
+            this.languageRadioButtonHu.Location = new System.Drawing.Point(6, 19);
+            this.languageRadioButtonHu.Name = "languageRadioButtonHu";
+            this.languageRadioButtonHu.Size = new System.Drawing.Size(37, 17);
+            this.languageRadioButtonHu.TabIndex = 24;
+            this.languageRadioButtonHu.TabStop = true;
+            this.languageRadioButtonHu.Text = "hu";
+            this.languageRadioButtonHu.UseVisualStyleBackColor = true;
+            this.languageRadioButtonHu.CheckedChanged += new System.EventHandler(this.languageRadioButtonHu_CheckedChanged);
+            // 
+            // languageRadioButtonEn
+            // 
+            this.languageRadioButtonEn.AutoSize = true;
+            this.languageRadioButtonEn.Location = new System.Drawing.Point(49, 19);
+            this.languageRadioButtonEn.Name = "languageRadioButtonEn";
+            this.languageRadioButtonEn.Size = new System.Drawing.Size(37, 17);
+            this.languageRadioButtonEn.TabIndex = 25;
+            this.languageRadioButtonEn.Text = "en";
+            this.languageRadioButtonEn.UseVisualStyleBackColor = true;
+            this.languageRadioButtonEn.CheckedChanged += new System.EventHandler(this.languageRadioButtonEn_CheckedChanged);
+            // 
+            // languageGroupBox
+            // 
+            this.languageGroupBox.Controls.Add(this.languageRadioButtonHu);
+            this.languageGroupBox.Controls.Add(this.languageRadioButtonEn);
+            this.languageGroupBox.Location = new System.Drawing.Point(269, 390);
+            this.languageGroupBox.Name = "languageGroupBox";
+            this.languageGroupBox.Size = new System.Drawing.Size(94, 49);
+            this.languageGroupBox.TabIndex = 26;
+            this.languageGroupBox.TabStop = false;
+            this.languageGroupBox.Text = "ln";
             // 
             // RolePlayBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 433);
+            this.ClientSize = new System.Drawing.Size(692, 451);
+            this.Controls.Add(this.languageGroupBox);
             this.Controls.Add(this.opponenetThrowDiceToo);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.diceLabel);
             this.Controls.Add(this.numberOfDice);
             this.Controls.Add(this.throwDice);
             this.Controls.Add(this.sumPlayerPoint);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.sumPointLabel);
+            this.Controls.Add(this.opponentPointLabel);
+            this.Controls.Add(this.extraPointLabel);
+            this.Controls.Add(this.basePontLabel);
             this.Controls.Add(this.generateGame);
             this.Controls.Add(this.newGameName);
             this.Controls.Add(this.loadGame);
             this.Controls.Add(this.rolePlayGameName);
             this.Controls.Add(this.actualEvent);
             this.Controls.Add(this.storyBox);
-            this.Controls.Add(this.history);
+            this.Controls.Add(this.historyLabel);
             this.Controls.Add(this.eventDescription);
             this.Controls.Add(this.opponentPoint);
             this.Controls.Add(this.diceType);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.vsLabel);
             this.Controls.Add(this.extraPoint);
             this.Controls.Add(this.playerSkillComboBox);
             this.Controls.Add(this.playerBasedPoint);
@@ -313,6 +355,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Szerepjáték Story Tábla";
             this.Load += new System.EventHandler(this.RolePlay_Load);
+            this.languageGroupBox.ResumeLayout(false);
+            this.languageGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,26 +368,29 @@
         private System.Windows.Forms.TextBox playerBasedPoint;
         private System.Windows.Forms.ComboBox playerSkillComboBox;
         private System.Windows.Forms.TextBox extraPoint;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label vsLabel;
         private System.Windows.Forms.ComboBox diceType;
         private System.Windows.Forms.TextBox opponentPoint;
         private System.Windows.Forms.TextBox eventDescription;
-        private System.Windows.Forms.Label history;
+        private System.Windows.Forms.Label historyLabel;
         private System.Windows.Forms.TextBox storyBox;
         private System.Windows.Forms.Label actualEvent;
         private System.Windows.Forms.TextBox rolePlayGameName;
         private System.Windows.Forms.Button loadGame;
         private System.Windows.Forms.Button generateGame;
         private System.Windows.Forms.TextBox newGameName;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label basePontLabel;
+        private System.Windows.Forms.Label extraPointLabel;
+        private System.Windows.Forms.Label opponentPointLabel;
+        private System.Windows.Forms.Label sumPointLabel;
         private System.Windows.Forms.Label sumPlayerPoint;
         private System.Windows.Forms.Button throwDice;
         private System.Windows.Forms.TextBox numberOfDice;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label diceLabel;
         private System.Windows.Forms.CheckBox opponenetThrowDiceToo;
+        private System.Windows.Forms.RadioButton languageRadioButtonHu;
+        private System.Windows.Forms.RadioButton languageRadioButtonEn;
+        private System.Windows.Forms.GroupBox languageGroupBox;
     }
 }
 
