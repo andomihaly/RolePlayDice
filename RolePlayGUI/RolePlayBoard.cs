@@ -12,7 +12,6 @@ namespace RolePlayGUI
         private RolePlayGamers rolePlayGamers;
         private static int ZERO = 0;
         private static int DEFAULT_NUMBER_OF_DICE = 4;
-        private static string ERROR_TEXT = "Hiba";
         private static string[] diceTypes = {"d3","dF3"};
         private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
         private CultureInfo enCultureInfo = new CultureInfo("en-US");
@@ -186,7 +185,7 @@ namespace RolePlayGUI
 
         private void createNotificationFormFauilt(string message)
         {
-            MessageBox.Show(message, ERROR_TEXT, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            MessageBox.Show(message, rm.GetString("errorTag", actualCultureInfo), MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
         private void RolePlay_Load(object sender, EventArgs e)

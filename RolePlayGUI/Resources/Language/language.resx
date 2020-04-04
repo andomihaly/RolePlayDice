@@ -129,9 +129,6 @@
   <data name="en" xml:space="preserve">
     <value>en</value>
   </data>
-  <data name="error" xml:space="preserve">
-    <value>Error</value>
-  </data>
   <data name="errorAddNameNewGame" xml:space="preserve">
     <value>Please give a name for the new role-play game!</value>
   </data>
@@ -146,6 +143,9 @@
   </data>
   <data name="errorNotLoad" xml:space="preserve">
     <value>Program could not know to load the players form "</value>
+  </data>
+  <data name="errorTag" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="extraPoint" xml:space="preserve">
     <value>Extra point:</value>

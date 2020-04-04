@@ -97,15 +97,6 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        internal static string error {
-            get {
-                return ResourceManager.GetString("error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please give a name for the new role-play game!.
         /// </summary>
         internal static string errorAddNameNewGame {
@@ -147,6 +138,15 @@ namespace RolePlayGUI.Resources.Language {
         internal static string errorNotLoad {
             get {
                 return ResourceManager.GetString("errorNotLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string errorTag {
+            get {
+                return ResourceManager.GetString("errorTag", resourceCulture);
             }
         }
         

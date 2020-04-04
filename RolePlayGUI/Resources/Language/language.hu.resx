@@ -144,7 +144,7 @@
   <data name="errorNotLoad" xml:space="preserve">
     <value>Nem tudtuk betölteni a játékosokat a "</value>
   </data>
-  <data name="errror" xml:space="preserve">
+  <data name="errorTag" xml:space="preserve">
     <value>Hiba</value>
   </data>
   <data name="extraPoint" xml:space="preserve">
