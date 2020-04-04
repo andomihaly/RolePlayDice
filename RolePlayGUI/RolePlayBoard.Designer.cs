@@ -279,7 +279,7 @@
             this.opponenetThrowDiceToo.Text = "Ellenfél is dob";
             this.opponenetThrowDiceToo.UseVisualStyleBackColor = true;
             // 
-            // RolePlay
+            // RolePlayBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -309,7 +309,8 @@
             this.Controls.Add(this.playerBasedPoint);
             this.Controls.Add(this.playersComboBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "RolePlay";
+            this.Name = "RolePlayBoard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Szerepjáték Story Tábla";
             this.Load += new System.EventHandler(this.RolePlay_Load);
             this.ResumeLayout(false);

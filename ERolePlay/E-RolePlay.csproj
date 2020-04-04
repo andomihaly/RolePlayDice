@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AM-logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,28 +64,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="RolePlay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RolePlay.Designer.cs">
-      <DependentUpon>RolePlay.cs</DependentUpon>
-    </Compile>
     <Compile Include="RolePlayMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -117,31 +100,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RolePlay.resx">
-      <DependentUpon>RolePlay.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AM-logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dice-21.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dice.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\open.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\create.png" />
+    <Content Include="AM-logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

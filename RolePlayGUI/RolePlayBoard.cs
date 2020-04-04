@@ -11,6 +11,7 @@ namespace RolePlayGUI
         private RolePlayGamers rolePlayGamers;
         private static int ZERO = 0;
         private static int DEFAULT_NUMBER_OF_DICE = 4;
+        private static string ERROR_TEXT = "Hiba";
         private static string[] diceTypes = {"d3","dF3"};
 
         public RolePlayBoard(RolePlayGamers rolePlayGamers)
@@ -32,7 +33,7 @@ namespace RolePlayGUI
             }
             catch(Exception)
             {
-                MessageBox.Show("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\" játékot!");
+                createNotificationFormFauilt("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\" játékot!");
             }
 
             
@@ -48,7 +49,7 @@ namespace RolePlayGUI
             }
             else
             {
-                MessageBox.Show("Nem tudtuk betölteni a játékosokat a \"" + rolePlayGameName.Text + "\" játékból!");
+                createNotificationFormFauilt("Nem tudtuk betölteni a játékosokat a \"" + rolePlayGameName.Text + "\" játékból!");
             }
             foreach (string actualDiceType in diceTypes)
             {
@@ -62,7 +63,7 @@ namespace RolePlayGUI
             Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
             if (selectedPlayer == null)
             {
-                MessageBox.Show("Nem találtuk meg a \""+ playersComboBox.SelectedItem + "\"játékost!");
+                createNotificationFormFauilt("Nem találtuk meg a \"" + playersComboBox.SelectedItem + "\"játékost!");
             }
             else
             {
@@ -140,7 +141,7 @@ namespace RolePlayGUI
             }
             else
             {
-                MessageBox.Show("El kell nevezni az új játékot!");
+                createNotificationFormFauilt("El kell nevezni az új játékot!");
             }
         }
 
@@ -175,6 +176,11 @@ namespace RolePlayGUI
                 return false;
             }
             return true;
+        }
+
+        private void createNotificationFormFauilt(string message)
+        {
+            MessageBox.Show(message, ERROR_TEXT, MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
         private void RolePlay_Load(object sender, EventArgs e)

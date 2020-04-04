@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ElectronicRolePlay")]
-[assembly: AssemblyDescription("Help to track a roleplay game")]
+[assembly: AssemblyTitle("Electronic role-play story board")]
+[assembly: AssemblyDescription("Help to track a role-play game")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Andó Mihály")]
-[assembly: AssemblyProduct("E-RolePlay")]
+[assembly: AssemblyCompany("Mihály Andó")]
+[assembly: AssemblyProduct("AM role-play app")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Mihály Andó")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
