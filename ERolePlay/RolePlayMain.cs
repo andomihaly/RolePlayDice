@@ -1,5 +1,6 @@
 ﻿using RolePlaySet;
 using RolePlayFileBasedStorage;
+using RolePlayGUI;
 using System;
 using System.Windows.Forms;
 
@@ -7,9 +8,6 @@ namespace ERolePlay
 {
     static class RolePlayMain
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -17,7 +15,7 @@ namespace ERolePlay
             Application.SetCompatibleTextRenderingDefault(false);
             StoreGateway storeGateway = new RolePlayFileStorage();
             RolePlayGamers rolePlayGamers = new SimpleGamer(storeGateway);
-            Application.Run(new RolePlay(rolePlayGamers));
+            Application.Run(new RolePlayBoard(rolePlayGamers));
         }
     }
 }

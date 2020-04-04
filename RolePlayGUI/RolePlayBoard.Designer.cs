@@ -1,6 +1,6 @@
-﻿namespace ERolePlay
+﻿namespace RolePlayGUI
 {
-    partial class RolePlay
+    public partial class RolePlayBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RolePlay));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RolePlayBoard));
             this.playersComboBox = new System.Windows.Forms.ComboBox();
             this.playerBasedPoint = new System.Windows.Forms.TextBox();
             this.playerSkillComboBox = new System.Windows.Forms.ComboBox();
@@ -165,7 +165,7 @@
             // 
             // loadGame
             // 
-            this.loadGame.Image = global::ERolePlay.Properties.Resources.open;
+            this.loadGame.Image = global::RolePlayGUI.Properties.Resources.open;
             this.loadGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.loadGame.Location = new System.Drawing.Point(119, 390);
             this.loadGame.Name = "loadGame";
@@ -178,7 +178,7 @@
             // 
             // generateGame
             // 
-            this.generateGame.Image = global::ERolePlay.Properties.Resources.create;
+            this.generateGame.Image = global::RolePlayGUI.Properties.Resources.create;
             this.generateGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.generateGame.Location = new System.Drawing.Point(515, 390);
             this.generateGame.Name = "generateGame";
@@ -310,7 +310,7 @@
             this.Controls.Add(this.playersComboBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RolePlay";
-            this.Text = "Szerepjáték Story Tábla Regi";
+            this.Text = "Szerepjáték Story Tábla";
             this.Load += new System.EventHandler(this.RolePlay_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

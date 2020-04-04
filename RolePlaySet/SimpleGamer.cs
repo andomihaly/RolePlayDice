@@ -1,4 +1,5 @@
-﻿using RolePlaySet.Entity;
+﻿using RandomDice;
+using RolePlaySet.Entity;
 using System;
 
 namespace RolePlaySet
@@ -26,18 +27,18 @@ namespace RolePlaySet
             {
                 players = storeGateway.loadPlayers(gameName);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 players = null;
             }
 
             story = storeGateway.loadStory(gameName);
-            
+
         }
 
         public Player getPlayerByName(string playerName)
         {
-            foreach(Player onePlayer in players)
+            foreach (Player onePlayer in players)
             {
                 if (onePlayer.name.Equals(playerName))
                 {
@@ -54,11 +55,20 @@ namespace RolePlaySet
 
         public string[] getStory()
         {
-            return story.events;
+            return story.events.ToArray();
         }
 
-        public void AddTurn(string actualEventDescription, int playerPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
+        public void AddTurn(string actualEventDescription, string playerName, int playerPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
         {
+            //Dice dice;
+            //if (diceType.Equals("df3"))
+            //{
+            //    dice = new DiceFudge3();
+            //}
+
+            string nextEvent = playerName + " " + actualEventDescription + " ";
+            story.events.Add(nextEvent);
+
             storeGateway.saveGame(story, gameName);
         }
     }

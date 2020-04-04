@@ -61,6 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RolePlay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +92,10 @@
       <Project>{9d5f2804-64b4-40ae-b565-0796b1463307}</Project>
       <Name>RolePlayFileBasedStorage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RolePlayGUI\RolePlayGUI.csproj">
+      <Project>{d8e2b4e4-d6c1-4f6d-8f23-3f14ed26b944}</Project>
+      <Name>RolePlayGUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RolePlaySet\RolePlaySet.csproj">
       <Project>{F7BD3A2A-B241-479A-8B45-E1720C96B561}</Project>
       <Name>RolePlaySet</Name>
@@ -106,6 +115,33 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RolePlay.resx">
+      <DependentUpon>RolePlay.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AM-logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice-21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\create.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

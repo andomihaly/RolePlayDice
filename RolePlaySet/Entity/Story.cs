@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RolePlaySet.Entity
 {
     public class Story
     {
-        public String[] events;
+        public List<String> events;
     }
 }

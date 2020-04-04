@@ -4,16 +4,16 @@ using System;
 using System.Windows.Forms;
 
 
-namespace ERolePlay
+namespace RolePlayGUI
 {
-    public partial class RolePlay : Form
+    public partial class RolePlayBoard : Form
     {
         private RolePlayGamers rolePlayGamers;
         private static int ZERO = 0;
         private static int DEFAULT_NUMBER_OF_DICE = 4;
         private static string[] diceTypes = {"d3","dF3"};
 
-        public RolePlay(RolePlayGamers rolePlayGamers)
+        public RolePlayBoard(RolePlayGamers rolePlayGamers)
         {
             InitializeComponent();
             this.rolePlayGamers = rolePlayGamers;

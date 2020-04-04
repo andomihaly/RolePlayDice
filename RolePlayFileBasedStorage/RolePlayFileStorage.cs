@@ -3,6 +3,7 @@ using RolePlaySet.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace RolePlayFileBasedStorage
 {
@@ -43,7 +44,7 @@ namespace RolePlayFileBasedStorage
             path = generatePath();
             String storyFile = path + "\\" + STORY_FILE_NAME;
             Story story = new Story();
-            story.events = System.IO.File.ReadAllLines(storyFile);
+            story.events = System.IO.File.ReadAllLines(storyFile).OfType<string>().ToList();
             return story;
             
         }
