@@ -12,7 +12,7 @@ namespace RolePlayGUI
         private RolePlayGamers rolePlayGamers;
         private static int ZERO = 0;
         private static int DEFAULT_NUMBER_OF_DICE = 4;
-        private static string[] diceTypes = { "d3", "dF3" };
+        private static string[] diceTypes = { "dF3", "d3", "d6" };
         private static string NEW_LINE = "\r\n";
 
         private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
@@ -33,7 +33,6 @@ namespace RolePlayGUI
         {
             try
             {
-                diceType.Items.Clear();
                 playersComboBox.Items.Clear();
                 playerSkillComboBox.Items.Clear();
                 rolePlayGamers.loadGame(rolePlayGameName.Text);
@@ -48,6 +47,7 @@ namespace RolePlayGUI
         }
         private void fillGUIWithGame()
         {
+            notSavedGameLabel.Visible = false;
             if (rolePlayGamers.getPlayers() != null)
             {
                 foreach (Player OnePlayerName in rolePlayGamers.getPlayers())
@@ -118,11 +118,11 @@ namespace RolePlayGUI
             {
                 playerBasedPoint.Text = ZERO.ToString();
             }
-            if (!isConverttableToInt(extraPoint.Text))
+            if (!isConverttableToInt(playerExtraPoint.Text))
             {
-                extraPoint.Text = ZERO.ToString();
+                playerExtraPoint.Text = ZERO.ToString();
             }
-            sumPlayerPoint.Text = (Convert.ToInt32(playerBasedPoint.Text) + Convert.ToInt32(extraPoint.Text)).ToString();
+            sumPlayerPoint.Text = (Convert.ToInt32(playerBasedPoint.Text) + Convert.ToInt32(playerExtraPoint.Text)).ToString();
         }
 
         private void opponentPoint_TextChanged(object sender, EventArgs e)
@@ -156,12 +156,20 @@ namespace RolePlayGUI
 
         private void throwDice_Click(object sender, EventArgs e)
         {
-            if (isConverttableToInt(sumPlayerPoint.Text) && isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text))
+            if (isConverttableToInt(playerBasedPoint.Text) && isConverttableToInt(playerExtraPoint.Text) && isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text))
             {
-                //rolePlayGamers.AddTurn(eventDescription.Text, Convert.ToInt32(sumPlayerPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.CanSelect);
+                try
+                {
+                    rolePlayGamers.AddTurn(eventDescription.Text, playersComboBox.SelectedText, Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
+                }
+                catch(Exception)
+                {
+                    notSavedGameLabel.Visible = true;
+                }
+                
             }
             opponenetThrowDiceToo.Checked = false;
-            extraPoint.Text = ZERO.ToString();
+            playerExtraPoint.Text = ZERO.ToString();
             actualEvent.Text = "";
             refillStoryBox();
         }
@@ -236,12 +244,18 @@ namespace RolePlayGUI
             historyLabel.Text = rm.GetString("story", actualCultureInfo);
             playersComboBox.Text = rm.GetString("playerName", actualCultureInfo);
             playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
+            notSavedGameLabel.Text = rm.GetString("gameIsNotSaved", actualCultureInfo);
 
             diceType.Items.Clear();
             foreach (string actualDiceType in diceTypes)
             {
                 diceType.Items.Add(actualDiceType);
             }
+            diceType.SelectedIndex = 0;
+            playerBasedPoint.Text = ZERO.ToString();
+            playerExtraPoint.Text = ZERO.ToString();
+            opponentPoint.Text = ZERO.ToString();
+            numberOfDice.Text = ZERO.ToString();
 
         }
     }

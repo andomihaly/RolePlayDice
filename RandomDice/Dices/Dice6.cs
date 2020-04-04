@@ -9,6 +9,9 @@ namespace RandomDice.Dices
             PlusOne = DiceValue.PlusOne,
             PlusTwo = DiceValue.PlusTwo,
             PlusThree = DiceValue.PlusThree,
+            PlusFour = DiceValue.PlusFour,
+            PlusFive = DiceValue.PlusFive,
+            PlusSix = DiceValue.PlusSix,
         }
         private IntervalRandomGenerator randomGenerator;
 
@@ -21,7 +24,7 @@ namespace RandomDice.Dices
         {
             Dice6Value value;
 
-            int generatedNumber = randomGenerator.generateRandomNumber(1, 3);
+            int generatedNumber = randomGenerator.generateRandomNumber(1, 6);
             if (Enum.IsDefined(typeof(Dice6Value), generatedNumber) && Enum.IsDefined(typeof(DiceValue), generatedNumber))
             {
                 value = (Dice6Value)generatedNumber;

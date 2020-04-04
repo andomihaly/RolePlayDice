@@ -160,6 +160,15 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The game is not saved. Story line will be lose..
+        /// </summary>
+        internal static string gameIsNotSaved {
+            get {
+                return ResourceManager.GetString("gameIsNotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new game.
         /// </summary>
         internal static string generateGame {

@@ -150,6 +150,9 @@
   <data name="extraPoint" xml:space="preserve">
     <value>Extra point:</value>
   </data>
+  <data name="gameIsNotSaved" xml:space="preserve">
+    <value>The game is not saved. Story line will be lose.</value>
+  </data>
   <data name="generateGame" xml:space="preserve">
     <value>Create new game</value>
   </data>

@@ -150,6 +150,9 @@
   <data name="extraPoint" xml:space="preserve">
     <value>Extra pont:</value>
   </data>
+  <data name="gameIsNotSaved" xml:space="preserve">
+    <value>A játék nincs mentve, a történet el fog veszni!</value>
+  </data>
   <data name="generateGame" xml:space="preserve">
     <value>Új játék létrehozása</value>
   </data>

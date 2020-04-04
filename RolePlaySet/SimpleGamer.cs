@@ -122,6 +122,7 @@ namespace RolePlaySet
                 playerStep.throwDice = true;
                 playerStep.dicePoint = genereateSumOfThrowDice(diceType, numberOfDice);
             }
+
             TurnResult tr = TurnResult.win;
             int playerScore = playerStep.basePoint + playerStep.extraPoint + playerStep.dicePoint;
             int opponentScore = opponentStep.basePoint + opponentStep.dicePoint;
@@ -131,8 +132,9 @@ namespace RolePlaySet
                 tr = TurnResult.lose;
             if (playerScore > opponentPoint)
                 tr = TurnResult.win;
-            story.events.Add(NewTurnTextBuilder.GeneratePlayerText(actualEventDescription, playerStep,opponentStep,tr));
 
+
+            story.events.Add(NewTurnTextBuilder.GeneratePlayerText(actualEventDescription, playerStep,opponentStep,tr));
             storeGateway.saveGame(story, gameName);
         }
 
@@ -144,7 +146,7 @@ namespace RolePlaySet
             {
                 dice = new Dice1(intervalRandomGenerator);
             }
-            if (diceType.Equals("df3"))
+            if (diceType.Equals("dF3"))
             {
                 dice = new DiceFudge3(intervalRandomGenerator);
             }
@@ -160,7 +162,8 @@ namespace RolePlaySet
             int throwDice= 0;
             while (throwDice<numberOfDice)
             {
-                sumPoint += (int)dice.throwADice();
+                DiceValue dv = dice.throwADice();
+                sumPoint += (int)dv;
                 throwDice++;
             }
             return sumPoint;
