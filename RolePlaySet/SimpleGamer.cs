@@ -1,4 +1,5 @@
 ﻿using RandomDice;
+using RandomDice.Dices;
 using RolePlaySet.Entity;
 using System;
 
@@ -10,10 +11,12 @@ namespace RolePlaySet
         private Player[] players;
         private String gameName;
         private StoreGateway storeGateway;
+        private IntervalRandomGenerator intervalRandomGenerator;
 
-        public SimpleGamer(StoreGateway storeGateway)
+        public SimpleGamer(StoreGateway storeGateway, IntervalRandomGenerator intervalRandomGenerator)
         {
             this.storeGateway = storeGateway;
+            this.intervalRandomGenerator = intervalRandomGenerator;
         }
         public Player[] getPlayers()
         {
@@ -135,14 +138,32 @@ namespace RolePlaySet
 
         private int genereateSumOfThrowDice(string diceType, int numberOfDice)
         {
-            return 1;
-            //Dice dice;
-            //if (diceType.Equals("df3"))
-            //{
-            //    dice = new DiceFudge3();
-            //}
 
-            ;
+            Dice dice = new Dice0(intervalRandomGenerator);
+            if (diceType.Equals("d1"))
+            {
+                dice = new Dice1(intervalRandomGenerator);
+            }
+            if (diceType.Equals("df3"))
+            {
+                dice = new DiceFudge3(intervalRandomGenerator);
+            }
+            if (diceType.Equals("d3"))
+            {
+                dice = new Dice3(intervalRandomGenerator);
+            }
+            if (diceType.Equals("d6"))
+            {
+                dice = new Dice6(intervalRandomGenerator);
+            }
+            int sumPoint = 0;
+            int throwDice= 0;
+            while (throwDice<numberOfDice)
+            {
+                sumPoint += (int)dice.throwADice();
+                throwDice++;
+            }
+            return sumPoint;
         }
     }
 }

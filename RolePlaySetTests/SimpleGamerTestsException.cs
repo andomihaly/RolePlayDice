@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RandomDice.RandomGenerator;
 using RolePlaySet;
 using RolePlaySetTests;
 
@@ -7,11 +8,12 @@ namespace RolePlaySet.Tests
     [TestClass()]
     public class SimpleGamerTestsExceptions
     {
+        private SimpleGamer sg = new SimpleGamer(new StubStoreGateway(), new VisualStudioRandomGenerator());
+
         [ExpectedException(typeof(GameNameIsNotValid))]
         [TestMethod()]
         public void chechEmptyGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("");
         }
 
@@ -19,7 +21,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void chechNullGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame(null);
         }
 
@@ -27,7 +28,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void chechOnlySpacesGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("   ");
         }
 
@@ -35,7 +35,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void generateNewEmptyGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.generateNewGame("");
         }
 
@@ -43,7 +42,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void generateNewNullGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.generateNewGame(null);
         }
 
@@ -51,7 +49,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void generateNewOnlySpacesGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.generateNewGame("   ");
         }
     }

@@ -3,6 +3,8 @@ using RolePlayFileBasedStorage;
 using RolePlayGUI;
 using System;
 using System.Windows.Forms;
+using RandomDice.RandomGenerator;
+using RandomDice;
 
 namespace ERolePlay
 {
@@ -14,7 +16,8 @@ namespace ERolePlay
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             StoreGateway storeGateway = new RolePlayFileStorage();
-            RolePlayGamers rolePlayGamers = new SimpleGamer(storeGateway);
+            IntervalRandomGenerator intervalRandomGenerator = new VisualStudioRandomGenerator();
+            RolePlayGamers rolePlayGamers = new SimpleGamer(storeGateway, intervalRandomGenerator);
             Application.Run(new RolePlayBoard(rolePlayGamers));
         }
     }

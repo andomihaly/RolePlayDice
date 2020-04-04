@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RandomDice.RandomGenerator;
 using RolePlaySet;
 using RolePlaySetTests;
 
@@ -7,10 +8,11 @@ namespace RolePlaySet.Tests
     [TestClass()]
     public class SimpleGamerTests
     {
+        private SimpleGamer sg = new SimpleGamer(new StubStoreGateway(), new VisualStudioRandomGenerator());
+
         [TestMethod()]
         public void chechValidGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("ValidName");
             Assert.AreEqual(null, sg.getPlayers());
             Assert.AreEqual(0, sg.getStory().Length);
@@ -22,7 +24,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void loadNotExistsGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("InvalidGame");
             Assert.AreEqual(null, sg.getPlayers());
             Assert.AreEqual(0, sg.getStory().Length);
@@ -31,7 +32,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void loadValidGameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("ValidGame");
             Assert.AreEqual(2, sg.getPlayers().Length);
             Assert.AreEqual(3, sg.getStory().Length);
@@ -40,7 +40,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void getPlayerByValidNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("ValidGame");
             string playerName = "A Player";
             Assert.AreEqual(playerName, sg.getPlayerByName(playerName).name);
@@ -49,7 +48,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void getPlayerByInValidNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("ValidGame");
             string invalidPlayerName = "Null Player";
             Assert.IsNull(sg.getPlayerByName(invalidPlayerName));
@@ -58,7 +56,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void getPlayerByInValidNameWithourPlayersTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("InValidGame");
             string invalidPlayerName = "Null Player";
             Assert.IsNull(sg.getPlayerByName(invalidPlayerName));
@@ -67,7 +64,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void generateNewValidGameNameTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.generateNewGame("ValidName");
             sg.generateNewGame("*");
         }

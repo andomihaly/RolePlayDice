@@ -71,6 +71,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RandomDice\RandomDice.csproj">
+      <Project>{49381FCA-F663-407C-85BC-DE58A897705B}</Project>
+      <Name>RandomDice</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RolePlayFileBasedStorage\RolePlayFileBasedStorage.csproj">
       <Project>{9d5f2804-64b4-40ae-b565-0796b1463307}</Project>
       <Name>RolePlayFileBasedStorage</Name>

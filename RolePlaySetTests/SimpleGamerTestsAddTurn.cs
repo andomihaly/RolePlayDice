@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RandomDice.RandomGenerator;
 using RolePlaySetTests;
 using System;
 
@@ -7,10 +8,11 @@ namespace RolePlaySet.Tests
     [TestClass()]
     public class SimpleGamerTestsAddTurn
     {
+        private SimpleGamer sg = new SimpleGamer(new StubStoreGateway(), new VisualStudioRandomGenerator());
         [TestMethod()]
         public void drawGameWithoutThrowTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
+            
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
             sg.AddTurn("", "",0, 0, 0, "d3", 0, false);
@@ -21,7 +23,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void complexGameWithoutThrowTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
             sg.AddTurn(("Micsoda Csata"+ Environment.NewLine.ToString()+" Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d3", 5, false);
@@ -32,7 +33,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void simpleGameWithOneThrowTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
             sg.AddTurn("A", "B", 0, 0, 1, "d1", 0, false);
@@ -43,7 +43,6 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void simpleGameBothThrowDiceTest()
         {
-            SimpleGamer sg = new SimpleGamer(new StubStoreGateway());
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
             sg.AddTurn("A", "B", 1, 0, 1, "d1", 0, true);

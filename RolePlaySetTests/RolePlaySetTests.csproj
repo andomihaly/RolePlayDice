@@ -59,6 +59,10 @@
     <Compile Include="StubStoreGateway.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RandomDice\RandomDice.csproj">
+      <Project>{49381FCA-F663-407C-85BC-DE58A897705B}</Project>
+      <Name>RandomDice</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RolePlaySet\RolePlaySet.csproj">
       <Project>{F7BD3A2A-B241-479A-8B45-E1720C96B561}</Project>
       <Name>RolePlaySet</Name>
