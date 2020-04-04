@@ -135,7 +135,7 @@ namespace RolePlaySet
 
         private int genereateSumOfThrowDice(string diceType, int numberOfDice)
         {
-            throw new NotImplementedException();
+            return 1;
             //Dice dice;
             //if (diceType.Equals("df3"))
             //{
