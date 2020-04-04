@@ -6,5 +6,6 @@ namespace RolePlaySet.Entity
     {
         public string name;
         public List<Skill> skills = new List<Skill>();
+        public string image="";
     }
 }

@@ -9,7 +9,8 @@ namespace RolePlaySet
     {
         private Story story = new Story();
         private Player[] players;
-        private String gameName;
+        private string gameName;
+        private string defaultImage ="";
         private StoreGateway storeGateway;
         private IntervalRandomGenerator intervalRandomGenerator;
 
@@ -27,7 +28,7 @@ namespace RolePlaySet
         {
             checkGameName(gameName);
             this.gameName = reformatGameName(gameName);
-
+            defaultImage = storeGateway.loadDefaultImage(gameName);
             loadPlayers(gameName);
             loadStory(gameName);
         }
@@ -167,6 +168,11 @@ namespace RolePlaySet
                 throwDice++;
             }
             return sumPoint;
+        }
+
+        public string getDefaultImage()
+        {
+            return defaultImage;
         }
     }
 }

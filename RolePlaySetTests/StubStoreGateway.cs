@@ -11,6 +11,11 @@ namespace RolePlaySetTests
             
         }
 
+        public string loadDefaultImage(string gameName)
+        {
+            return "";
+        }
+
         public Player[] loadPlayers(string gameName)
         {
             if (gameName.Equals("ValidGame"))

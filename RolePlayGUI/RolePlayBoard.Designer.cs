@@ -59,7 +59,9 @@ namespace RolePlayGUI
             this.throwDice = new System.Windows.Forms.Button();
             this.generateGame = new System.Windows.Forms.Button();
             this.loadGame = new System.Windows.Forms.Button();
+            this.playerPicture = new System.Windows.Forms.PictureBox();
             this.languageGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // playersComboBox
@@ -339,11 +341,20 @@ namespace RolePlayGUI
             this.loadGame.UseVisualStyleBackColor = true;
             this.loadGame.Click += new System.EventHandler(this.loadGame_Click);
             // 
+            // playerPicture
+            // 
+            this.playerPicture.Location = new System.Drawing.Point(704, 23);
+            this.playerPicture.Name = "playerPicture";
+            this.playerPicture.Size = new System.Drawing.Size(275, 400);
+            this.playerPicture.TabIndex = 602;
+            this.playerPicture.TabStop = false;
+            // 
             // RolePlayBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 451);
+            this.ClientSize = new System.Drawing.Size(995, 451);
+            this.Controls.Add(this.playerPicture);
             this.Controls.Add(this.notSavedGameLabel);
             this.Controls.Add(this.languageGroupBox);
             this.Controls.Add(this.opponenetThrowDiceToo);
@@ -377,6 +388,7 @@ namespace RolePlayGUI
             this.Load += new System.EventHandler(this.RolePlay_Load);
             this.languageGroupBox.ResumeLayout(false);
             this.languageGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -412,6 +424,7 @@ namespace RolePlayGUI
         private System.Windows.Forms.RadioButton languageRadioButtonEn;
         private System.Windows.Forms.GroupBox languageGroupBox;
         private System.Windows.Forms.Label notSavedGameLabel;
+        private System.Windows.Forms.PictureBox playerPicture;
     }
 }
 

@@ -30,6 +30,9 @@ namespace RolePlayFileBasedStorage.Tests
             Assert.AreEqual("Skill4Name", players[1].skills[3].name);
             Assert.AreEqual(-1, players[1].skills[3].score);
             Assert.AreEqual("Name4", players[3].name);
+            Assert.AreEqual("", players[0].image);
+            //Assert.AreEqual("actor450pxHeigh.jpg", players[1].image);
+            Assert.AreEqual("", players[2].image);
 
             Assert.AreEqual(0, players[3].skills.Count);
         }

@@ -14,6 +14,7 @@ namespace RolePlayFileBasedStorage
         private static string PLAYER_NAME_FLAG = "+";
         private static string SKILL_FLAG = "-";
         private static string SKILL_SEPARATOR = "|";
+        private static string IMAGE_FLAG = "*";
 
         private string gameName;
         private string path;
@@ -35,6 +36,25 @@ namespace RolePlayFileBasedStorage
             checkGameName(gameName);
             this.gameName = gameName;
             return loadPlayersFromFile();
+        }
+
+        public string loadDefaultImage(string gameName)
+        {
+            checkGameName(gameName);
+            this.gameName = gameName;
+
+            string defaultImage = generatePath() + "\\default.png";
+            if (File.Exists(defaultImage))
+            {
+                return defaultImage;
+            }
+            defaultImage = generatePath() + "\\default.jpg";
+            if (File.Exists(defaultImage))
+            {
+                return defaultImage;
+            }
+
+            return "";
         }
 
         public Story loadStory(string gameName)
@@ -103,7 +123,6 @@ namespace RolePlayFileBasedStorage
             String playerFile = path + "\\" + PLAYER_FILE_NAME;
             if (!File.Exists(playerFile))
             {
-                // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(playerFile))
                 {
                     sw.WriteLine(PLAYER_NAME_FLAG + "Name1");
@@ -114,8 +133,10 @@ namespace RolePlayFileBasedStorage
                     sw.WriteLine(SKILL_FLAG + "Skill2Name" + SKILL_SEPARATOR + "+3");
                     sw.WriteLine(SKILL_FLAG + "Skill3Name" + SKILL_SEPARATOR + "0");
                     sw.WriteLine(SKILL_FLAG + "Skill4Name" + SKILL_SEPARATOR + "-1");
+                    sw.WriteLine(IMAGE_FLAG + "actor400pxHeigh.jpg");
                     sw.WriteLine(PLAYER_NAME_FLAG + "Name3");
-                    sw.WriteLine(PLAYER_NAME_FLAG + "Name4");
+                    sw.WriteLine(IMAGE_FLAG + "image.png");
+                    sw.WriteLine(PLAYER_NAME_FLAG + "Name4");                    
                 }
             }
         }
@@ -158,6 +179,15 @@ namespace RolePlayFileBasedStorage
                 {
                     rowIndex++;
                     parseAndAddNextSkillToPlayer(player);
+                }
+                if ((rowIndex + 1) < playerFileLines.Length && playerFileLines[rowIndex + 1][0].Equals(IMAGE_FLAG[0]))
+                {
+                    rowIndex++;
+                    player.image = path + "\\" + playerFileLines[rowIndex].Substring(1);
+                    if (!File.Exists(player.image))
+                    {
+                        player.image = "";
+                    }
                 }
                 players.Add(player);
             }

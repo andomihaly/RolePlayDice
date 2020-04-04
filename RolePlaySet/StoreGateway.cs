@@ -8,5 +8,6 @@ namespace RolePlaySet
         void saveGame(Story story, string gameName);
         Player[] loadPlayers(string gameName);
         Story loadStory(string gameName);
+        string loadDefaultImage(string gameName);
     }
 }

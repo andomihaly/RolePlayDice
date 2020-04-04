@@ -10,5 +10,6 @@ namespace RolePlaySet
         void generateNewGame(string gameName);
         void AddTurn(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo);
         string[] getStory();
+        string getDefaultImage();
     }
 }

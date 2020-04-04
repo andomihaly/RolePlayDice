@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using System.Resources;
 using System.Globalization;
+using System.Drawing;
 
 namespace RolePlayGUI
 {
@@ -59,6 +60,10 @@ namespace RolePlayGUI
             {
                 createNotificationFormFauilt(rm.GetString("errorNotLoad", actualCultureInfo) + rolePlayGameName.Text + rm.GetString("errorFromGame", actualCultureInfo));
             }
+            if (!rolePlayGamers.getDefaultImage().Equals(""))
+            {
+                playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
+            }
             refillStoryBox();
         }
 
@@ -80,6 +85,17 @@ namespace RolePlayGUI
                         playerSkillComboBox.Items.Add(skill.name);
                     }
                     playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
+                    if (!selectedPlayer.image.Equals(""))
+                    { 
+                       playerPicture.Image = Image.FromFile(selectedPlayer.image);
+                    }
+                    else
+                    {
+                        if (!rolePlayGamers.getDefaultImage().Equals(""))
+                        {
+                            playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
+                        }
+                    }
                     setThePlayerBasedPoint();
                 }
             }
@@ -212,6 +228,10 @@ namespace RolePlayGUI
         {
             actualCultureInfo = huCultureInfo;
             loadLanguageTexts();
+            if (!rolePlayGamers.getDefaultImage().Equals(""))
+            {
+                playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
+            }
         }
 
         private void languageRadioButtonHu_CheckedChanged(object sender, EventArgs e)
