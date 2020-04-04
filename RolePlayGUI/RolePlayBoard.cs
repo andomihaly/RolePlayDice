@@ -13,7 +13,7 @@ namespace RolePlayGUI
         private static int ZERO = 0;
         private static int DEFAULT_NUMBER_OF_DICE = 4;
         private static string[] diceTypes = { "dF3", "d3", "d6" };
-        private static string NEW_LINE = "\r\n";
+        private static string NEW_LINE = Environment.NewLine;
 
         private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
         private CultureInfo enCultureInfo = new CultureInfo("en-US");
@@ -177,10 +177,18 @@ namespace RolePlayGUI
         private void refillStoryBox()
         {
             storyBox.Clear();
-            foreach (String OneEvent in rolePlayGamers.getStory())
+            string[] tempStory = rolePlayGamers.getStory();
+            for (int i=tempStory.Length; i>0; i--)
             {
-                storyBox.AppendText(NEW_LINE + OneEvent);
+                storyBox.Text += i.ToString()+". lépés:"+ (tempStory[i-1] + NEW_LINE);
+                if (i== tempStory.Length)
+                {
+                    storyBox.Text += (NEW_LINE);
+                }
             }
+
+
+            
         }
         private bool isConverttableToInt(String number)
         {

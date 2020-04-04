@@ -5,19 +5,16 @@ namespace RolePlaySet
 {
     public static class NewTurnTextBuilder
     {
-        public static string GenerateText(string actionDescription, RealPlayerStep player, PlayerStep opponent)
-        {
-            string generatedText = addSpace(player.playerName) + addSpace(actionDescription);
-            return generatedText.Trim();
-        }
         public static string GeneratePlayerText(string actionDescription, RealPlayerStep player, PlayerStep opponent, TurnResult turnResult)
         {
             string generatedText = addSpace(player.playerName) +
                 generateTurnResultText(turnResult) +
                 genereteOverallScores(player, opponent) +
-                actionDescription +
+                generateDescription(actionDescription) +
                 Environment.NewLine.ToString() +
                 generateDetail(player, opponent);
+
+            generatedText = changeFirstCharacterToUpperIfNeeded(player, generatedText);
             return generatedText.Trim();
         }
 
@@ -39,18 +36,26 @@ namespace RolePlaySet
 
         private static string genereteOverallScores(RealPlayerStep player, PlayerStep opponent)
         {
-            return "(" + (player.basePoint + player.extraPoint + player.dicePoint) + "-" + (opponent.basePoint+opponent.dicePoint) + ")!";
+            return "(" + (player.basePoint + player.extraPoint + player.dicePoint) + "-" + (opponent.basePoint + opponent.dicePoint) + ")!";
+        }
+
+        private static string generateDescription(string actionDescription)
+        {
+            return actionDescription.Equals("") ? "" : Environment.NewLine.ToString() + actionDescription;
         }
 
         private static string generateDetail(RealPlayerStep player, PlayerStep opponent)
         {
-            string details = "Részletek: " + player.playerName + ": " + getPoints(player) + "ellenfél: " + getBasePointText(opponent.basePoint);
+            string details = "Részletek: ";
+            details += player.playerName.Equals("") ? "" : player.playerName + ": ";
+            details += getPoints(player) + "ellenfél: " + getBasePointText(opponent.basePoint);
             if (opponent.throwDice)
             {
                 details += getDicePointText(opponent.dicePoint);
             }
             return details;
         }
+
 
         private static string getPoints(RealPlayerStep player)
         {
@@ -82,5 +87,14 @@ namespace RolePlaySet
             return "+ " + dicePoint.ToString() + " DP ";
         }
 
+        private static string changeFirstCharacterToUpperIfNeeded(RealPlayerStep player, string generatedText)
+        {
+            if (player.playerName.Equals(""))
+            {
+                generatedText = char.ToUpper(generatedText[0]) + generatedText.Substring(1);
+            }
+
+            return generatedText;
+        }
     }
 }

@@ -147,6 +147,7 @@ namespace RolePlayGUI
             // 
             // storyBox
             // 
+            this.storyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.storyBox.Location = new System.Drawing.Point(12, 166);
             this.storyBox.Multiline = true;
             this.storyBox.Name = "storyBox";
@@ -166,7 +167,7 @@ namespace RolePlayGUI
             // 
             // rolePlayGameName
             // 
-            this.rolePlayGameName.Location = new System.Drawing.Point(12, 403);
+            this.rolePlayGameName.Location = new System.Drawing.Point(12, 408);
             this.rolePlayGameName.Name = "rolePlayGameName";
             this.rolePlayGameName.Size = new System.Drawing.Size(100, 20);
             this.rolePlayGameName.TabIndex = 600;
