@@ -41,9 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Player.cs" />
+    <Compile Include="Entity\PlayerStep.cs" />
+    <Compile Include="Entity\RealPlayerStep.cs" />
     <Compile Include="Entity\Skill.cs" />
     <Compile Include="Entity\Story.cs" />
+    <Compile Include="Entity\TurnResult.cs" />
     <Compile Include="GameNameIsNotValid.cs" />
+    <Compile Include="NewTurnTextBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePlayGamers.cs" />
     <Compile Include="SimpleGamer.cs" />

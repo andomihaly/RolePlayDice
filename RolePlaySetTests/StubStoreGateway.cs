@@ -38,7 +38,7 @@ namespace RolePlaySetTests
 
         public void saveGame(Story story, string gameName)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

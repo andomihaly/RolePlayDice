@@ -100,18 +100,49 @@ namespace RolePlaySet
             return story.events.ToArray();
         }
 
-        public void AddTurn(string actualEventDescription, string playerName, int playerPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
+        public void AddTurn(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
         {
+            PlayerStep opponentStep = new PlayerStep();
+            opponentStep.basePoint = opponentPoint;
+            if (isOpponentThrowToo)
+            {
+                opponentStep.throwDice = true;
+                opponentStep.dicePoint = genereateSumOfThrowDice(diceType, numberOfDice);
+            }
+
+            RealPlayerStep playerStep = new RealPlayerStep();
+            playerStep.playerName = playerName.Equals("")?"Játékos":playerName;
+            playerStep.basePoint = basePoint;
+            playerStep.extraPoint = extraPoint;
+            if (numberOfDice>0)
+            {
+                playerStep.throwDice = true;
+                playerStep.dicePoint = genereateSumOfThrowDice(diceType, numberOfDice);
+            }
+            TurnResult tr = TurnResult.win;
+            int playerScore = playerStep.basePoint + playerStep.extraPoint + playerStep.dicePoint;
+            int opponentScore = opponentStep.basePoint + opponentStep.dicePoint;
+            if (playerScore == opponentPoint)
+                tr = TurnResult.draw;
+            if (playerScore < opponentPoint)
+                tr = TurnResult.lose;
+            if (playerScore > opponentPoint)
+                tr = TurnResult.win;
+            story.events.Add(NewTurnTextBuilder.GeneratePlayerText(actualEventDescription, playerStep,opponentStep,tr));
+
+            storeGateway.saveGame(story, gameName);
+        }
+
+        private int genereateSumOfThrowDice(string diceType, int numberOfDice)
+        {
+            throw new NotImplementedException();
             //Dice dice;
             //if (diceType.Equals("df3"))
             //{
             //    dice = new DiceFudge3();
             //}
 
-            string nextEvent = playerName + " " + actualEventDescription + " ";
-            story.events.Add(nextEvent);
-
-            storeGateway.saveGame(story, gameName);
+            ;
         }
     }
 }
