@@ -176,7 +176,7 @@ namespace RolePlayGUI
             {
                 try
                 {
-                    rolePlayGamers.AddTurn(eventDescription.Text, playersComboBox.SelectedText, Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
+                    rolePlayGamers.AddTurn(eventDescription.Text, playersComboBox.SelectedItem.ToString(), Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
                 }
                 catch(Exception)
                 {
