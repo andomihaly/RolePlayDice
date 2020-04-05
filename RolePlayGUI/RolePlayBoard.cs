@@ -19,9 +19,7 @@ namespace RolePlayGUI
         private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
         private CultureInfo enCultureInfo = new CultureInfo("en-US");
         private CultureInfo actualCultureInfo;
-        ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
-
-
+        private ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
 
         public RolePlayBoard(RolePlayGamers rolePlayGamers)
         {
@@ -29,131 +27,13 @@ namespace RolePlayGUI
             this.rolePlayGamers = rolePlayGamers;
         }
 
-
-        private void loadGame_Click(object sender, EventArgs e)
+        private void RolePlay_Load(object sender, EventArgs e)
         {
-            try
-            {
-                playersComboBox.Items.Clear();
-                playerSkillComboBox.Items.Clear();
-                rolePlayGamers.loadGame(rolePlayGameName.Text);
-                fillGUIWithGame();
-            }
-            catch (Exception)
-            {
-                createNotificationFormFauilt("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\" játékot!");
-            }
-
-
-        }
-        private void fillGUIWithGame()
-        {
-            notSavedGameLabel.Visible = false;
-            if (rolePlayGamers.getPlayers() != null)
-            {
-                foreach (Player OnePlayerName in rolePlayGamers.getPlayers())
-                {
-                    playersComboBox.Items.Add(OnePlayerName.name);
-                }
-            }
-            else
-            {
-                createNotificationFormFauilt(rm.GetString("errorNotLoad", actualCultureInfo) + rolePlayGameName.Text + rm.GetString("errorFromGame", actualCultureInfo));
-            }
+            actualCultureInfo = huCultureInfo;
+            loadLanguageTexts();
             if (!rolePlayGamers.getDefaultImage().Equals(""))
             {
                 playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
-            }
-            refillStoryBox();
-        }
-
-        private void playersComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!playersComboBox.SelectedItem.ToString().Equals(""))
-            {
-                Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
-                if (selectedPlayer == null)
-                {
-                    createNotificationFormFauilt(rm.GetString("errorNotFound", actualCultureInfo) + playersComboBox.SelectedItem + rm.GetString("errorNotFoundPlayer", actualCultureInfo));
-                }
-                else
-                {
-                    playerSkillComboBox.SelectedItem = null;
-                    playerSkillComboBox.Items.Clear();
-                    foreach (Skill skill in selectedPlayer.skills)
-                    {
-                        playerSkillComboBox.Items.Add(skill.name);
-                    }
-                    playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
-                    if (!selectedPlayer.image.Equals(""))
-                    { 
-                       playerPicture.Image = Image.FromFile(selectedPlayer.image);
-                    }
-                    else
-                    {
-                        if (!rolePlayGamers.getDefaultImage().Equals(""))
-                        {
-                            playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
-                        }
-                    }
-                    setThePlayerBasedPoint();
-                }
-            }
-        }
-
-        private void playerSkillComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            setThePlayerBasedPoint();
-        }
-        private void setThePlayerBasedPoint()
-        {
-            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
-            playerBasedPoint.Text = ZERO.ToString();
-            for (int i = 0; i < selectedPlayer.skills.Count; i++)
-            {
-                if (playerSkillComboBox.SelectedItem != null && playerSkillComboBox.SelectedItem.ToString().Equals(selectedPlayer.skills[i].name))
-                {
-                    playerBasedPoint.Text = selectedPlayer.skills[i].score.ToString();
-                }
-            }
-        }
-
-        private void playerBasedPoint_TextChanged(object sender, EventArgs e)
-        {
-            calculateSumPlayerPoint();
-        }
-
-        private void extraPoint_TextChanged(object sender, EventArgs e)
-        {
-            calculateSumPlayerPoint();
-        }
-
-        private void calculateSumPlayerPoint()
-        {
-            if (!isConverttableToInt(playerBasedPoint.Text))
-            {
-                playerBasedPoint.Text = ZERO.ToString();
-            }
-            if (!isConverttableToInt(playerExtraPoint.Text))
-            {
-                playerExtraPoint.Text = ZERO.ToString();
-            }
-            sumPlayerPoint.Text = (Convert.ToInt32(playerBasedPoint.Text) + Convert.ToInt32(playerExtraPoint.Text)).ToString();
-        }
-
-        private void opponentPoint_TextChanged(object sender, EventArgs e)
-        {
-            if (!isConverttableToInt(opponentPoint.Text))
-            {
-                opponentPoint.Text = ZERO.ToString();
-            }
-        }
-
-        private void numberOfDice_TextChanged(object sender, EventArgs e)
-        {
-            if (!isConverttableToInt(numberOfDice.Text))
-            {
-                numberOfDice.Text = DEFAULT_NUMBER_OF_DICE.ToString();
             }
         }
 
@@ -173,17 +53,19 @@ namespace RolePlayGUI
 
         private void throwDice_Click(object sender, EventArgs e)
         {
+            notSavedGameLabel.Visible = false;
             if (isConverttableToInt(playerBasedPoint.Text) && isConverttableToInt(playerExtraPoint.Text) && isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text))
             {
                 try
                 {
                     rolePlayGamers.AddTurn(eventDescription.Text, playersComboBox.SelectedItem.ToString(), Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
+                    eventDescription.Text = "";
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     notSavedGameLabel.Visible = true;
                 }
-                
+
             }
             opponenetThrowDiceToo.Checked = false;
             playerExtraPoint.Text = ZERO.ToString();
@@ -191,49 +73,97 @@ namespace RolePlayGUI
             refillStoryBox();
         }
 
-        private void refillStoryBox()
-        {
-            storyBox.Clear();
-            string[] tempStory = rolePlayGamers.getStory();
-            for (int i=tempStory.Length; i>0; i--)
-            {
-                storyBox.Text += i.ToString()+". lépés:"+ (tempStory[i-1] + NEW_LINE);
-                if (i== tempStory.Length)
-                {
-                    storyBox.Text += (NEW_LINE);
-                }
-            }
-
-
-            
-        }
-        private bool isConverttableToInt(String number)
+        private void loadGame_Click(object sender, EventArgs e)
         {
             try
             {
-                Convert.ToInt32(number);
+                playersComboBox.Items.Clear();
+                playerSkillComboBox.Items.Clear();
+                rolePlayGamers.loadGame(rolePlayGameName.Text);
+                fillGUIWithGame();
             }
             catch (Exception)
             {
-                return false;
+                createNotificationFormFauilt("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\" játékot!");
             }
-            return true;
         }
 
-        private void createNotificationFormFauilt(string message)
+        
+        private void playersComboBox_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show(message, rm.GetString("errorTag", actualCultureInfo), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
+            playerSkillComboBox.Items.Clear();
+            playerBasedPoint.Text = ZERO.ToString();
         }
 
-        private void RolePlay_Load(object sender, EventArgs e)
+        private void playersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            actualCultureInfo = huCultureInfo;
-            loadLanguageTexts();
-            if (!rolePlayGamers.getDefaultImage().Equals(""))
+            if (!playersComboBox.SelectedItem.ToString().Equals(""))
             {
-                playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
+                Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
+                if (selectedPlayer == null)
+                {
+                    createNotificationFormFauilt(rm.GetString("errorNotFound", actualCultureInfo) + 
+                                                    playersComboBox.SelectedItem + 
+                                                    rm.GetString("errorNotFoundPlayer", actualCultureInfo));
+                }
+                else
+                {
+                    reloadSkillList(selectedPlayer);
+                    reloadImage(selectedPlayer);
+                    playerBasedPoint.Text = ZERO.ToString();
+                }
             }
         }
+
+        private void playerSkillComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setThePlayerBasedPoint();
+        }
+
+        private void setThePlayerBasedPoint()
+        {
+            playerBasedPoint.Text = ZERO.ToString();
+            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
+            if (selectedPlayer != null && playerSkillComboBox.SelectedItem != null)
+            {
+                for (int i = 0; i < selectedPlayer.skills.Count; i++)
+                {
+                    if (playerSkillComboBox.SelectedItem.ToString().Equals(selectedPlayer.skills[i].name))
+                    {
+                        playerBasedPoint.Text = selectedPlayer.skills[i].score.ToString();
+                    }
+                }
+            }
+        }
+
+        private void playerBasedPoint_TextChanged(object sender, EventArgs e)
+        {
+            calculateSumPlayerPoint();
+        }
+
+        private void extraPoint_TextChanged(object sender, EventArgs e)
+        {
+            calculateSumPlayerPoint();
+        }
+
+       
+
+        private void opponentPoint_TextChanged(object sender, EventArgs e)
+        {
+            if (!isConverttableToInt(opponentPoint.Text))
+            {
+                opponentPoint.Text = ZERO.ToString();
+            }
+        }
+
+        private void numberOfDice_TextChanged(object sender, EventArgs e)
+        {
+            if (!isConverttableToInt(numberOfDice.Text))
+            {
+                numberOfDice.Text = DEFAULT_NUMBER_OF_DICE.ToString();
+            }
+        }      
 
         private void languageRadioButtonHu_CheckedChanged(object sender, EventArgs e)
         {
@@ -253,39 +183,9 @@ namespace RolePlayGUI
             }
         }
 
-        private void loadLanguageTexts()
+        private void createNotificationFormFauilt(string message)
         {
-            this.Text = rm.GetString("rolePlayBoard", actualCultureInfo);
-            actualEvent.Text = rm.GetString("actualEvent", actualCultureInfo);
-            diceLabel.Text = rm.GetString("diceInstruction", actualCultureInfo);
-            throwDice.Text = rm.GetString("throwDice", actualCultureInfo);
-            basePontLabel.Text = rm.GetString("basePoint", actualCultureInfo);
-            extraPointLabel.Text = rm.GetString("extraPoint", actualCultureInfo);
-            sumPointLabel.Text = rm.GetString("sumPoint", actualCultureInfo);
-            opponentPointLabel.Text = rm.GetString("opponentPoint", actualCultureInfo);
-            vsLabel.Text = rm.GetString("vs", actualCultureInfo);
-            opponenetThrowDiceToo.Text = rm.GetString("opponentThrowToo", actualCultureInfo);
-            languageGroupBox.Text = rm.GetString("languageTag", actualCultureInfo);
-            languageRadioButtonHu.Text = rm.GetString("hu", actualCultureInfo);
-            languageRadioButtonEn.Text = rm.GetString("en", actualCultureInfo);
-            loadGame.Text = rm.GetString("loadGame", actualCultureInfo); ;
-            generateGame.Text = rm.GetString("generateGame", actualCultureInfo);
-            historyLabel.Text = rm.GetString("story", actualCultureInfo);
-            playersComboBox.Text = rm.GetString("playerName", actualCultureInfo);
-            playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
-            notSavedGameLabel.Text = rm.GetString("gameIsNotSaved", actualCultureInfo);
-
-            diceType.Items.Clear();
-            foreach (string actualDiceType in diceTypes)
-            {
-                diceType.Items.Add(actualDiceType);
-            }
-            diceType.SelectedIndex = 0;
-            playerBasedPoint.Text = ZERO.ToString();
-            playerExtraPoint.Text = ZERO.ToString();
-            opponentPoint.Text = ZERO.ToString();
-            numberOfDice.Text = ZERO.ToString();
-
+            MessageBox.Show(message, rm.GetString("errorTag", actualCultureInfo), MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
     }
 }

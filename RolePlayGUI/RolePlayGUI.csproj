@@ -58,6 +58,9 @@
     <Compile Include="RolePlayBoard.Designer.cs">
       <DependentUpon>RolePlayBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="RolePlayBoard.Operation.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Resources\Language\language.hu.resx" />
     <EmbeddedResource Include="Resources\Language\language.resx">
       <Generator>ResXFileCodeGenerator</Generator>

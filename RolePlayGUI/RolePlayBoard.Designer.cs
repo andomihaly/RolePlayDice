@@ -1,6 +1,4 @@
-﻿using System.Resources;
-
-namespace RolePlayGUI
+﻿namespace RolePlayGUI
 {
     public partial class RolePlayBoard
     {
@@ -75,6 +73,7 @@ namespace RolePlayGUI
             this.playersComboBox.Size = new System.Drawing.Size(121, 21);
             this.playersComboBox.TabIndex = 15;
             this.playersComboBox.SelectedIndexChanged += new System.EventHandler(this.playersComboBox_SelectedIndexChanged);
+            this.playersComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.playersComboBox_KeyDown);
             // 
             // playerBasedPoint
             // 
