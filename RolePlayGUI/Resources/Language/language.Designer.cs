@@ -304,7 +304,7 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Throw dice.
+        ///   Looks up a localized string similar to Roll dice.
         /// </summary>
         internal static string throwDice {
             get {

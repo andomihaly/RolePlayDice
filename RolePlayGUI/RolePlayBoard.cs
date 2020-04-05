@@ -126,6 +126,7 @@ namespace RolePlayGUI
             playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
             playerSkillComboBox.Items.Clear();
             playerBasedPoint.Text = ZERO.ToString();
+            reloadDefaultImage();
         }
 
         private void playersComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,6 +135,7 @@ namespace RolePlayGUI
             {
                 playersComboBox.SelectedText = "";
                 playersComboBox.Text = "";
+                reloadDefaultImage();
             }
             else if (!playersComboBox.SelectedItem.ToString().Equals(""))
             {

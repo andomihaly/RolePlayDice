@@ -199,7 +199,7 @@
     <value>task</value>
   </data>
   <data name="throwDice" xml:space="preserve">
-    <value>Throw dice</value>
+    <value>Roll dice</value>
   </data>
   <data name="vs" xml:space="preserve">
     <value>vs.</value>

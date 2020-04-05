@@ -96,10 +96,14 @@ namespace RolePlayGUI
             }
             else
             {
-                if (!rolePlayGamers.getDefaultImage().Equals(""))
-                {
-                    playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
-                }
+                reloadDefaultImage();
+            }
+        }
+        private void reloadDefaultImage()
+        {
+            if (!rolePlayGamers.getDefaultImage().Equals(""))
+            {
+                playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
             }
         }
 
@@ -159,6 +163,7 @@ namespace RolePlayGUI
             playerExtraPoint.Text = ZERO.ToString();
             opponentPoint.Text = ZERO.ToString();
             numberOfDice.Text = ZERO.ToString();
+            reloadDefaultImage();
         }
 
 
