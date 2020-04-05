@@ -19,13 +19,14 @@ namespace RolePlayFileBasedStorage
         private static string SKILL_FLAG = "-";
         private static string SKILL_SEPARATOR = "|";
         private static string IMAGE_FLAG = "*";
+        private static string STORY_FLAG = "###";
 
         private string gameName;
         private string path;
         private int rowIndex;
         private List<Player> players;
         string[] playerFileLines;
-        
+
 
         public void createNewGame(string gameName)
         {
@@ -66,8 +67,33 @@ namespace RolePlayFileBasedStorage
             this.gameName = gameName;
             path = generatePath();
             String storyFile = path + "\\" + STORY_FILE_NAME;
+
             Story story = new Story();
-            story.events = File.ReadAllLines(storyFile).OfType<string>().ToList();
+
+            string[] storyFileLines = System.IO.File.ReadAllLines(storyFile);
+            rowIndex = 0;
+            string oneEvent = "";
+            while (rowIndex < storyFileLines.Length)
+            {
+                string tempLine = storyFileLines[rowIndex];
+                if (tempLine.Length >= 3 && tempLine.Substring(0, 3).Equals(STORY_FLAG))
+                {
+                    if (!oneEvent.Equals(""))
+                    {
+                        story.events.Add(oneEvent);
+                    }
+                    oneEvent = tempLine.Substring(3);
+                }
+                else
+                {
+                    oneEvent += Environment.NewLine + tempLine;
+                }
+                rowIndex++;
+            }
+            if (!oneEvent.Equals(""))
+            {
+                story.events.Add(oneEvent);
+            }
             return story;
 
         }
@@ -79,6 +105,14 @@ namespace RolePlayFileBasedStorage
             path = generatePath();
             String storyFile = path + "\\" + STORY_FILE_NAME;
             File.WriteAllLines(storyFile, story.events, Encoding.UTF8);
+            using (StreamWriter sw = File.CreateText(storyFile))
+            {
+                foreach (string storyEvent in story.events)
+                {
+                    sw.WriteLine(STORY_FLAG + storyEvent);
+                }
+                sw.Close();
+            }
         }
 
         private void checkGameName(string gameName)
@@ -114,9 +148,9 @@ namespace RolePlayFileBasedStorage
         {
             ImageConverter converter = new ImageConverter();
             if (!File.Exists(path + "\\" + DEFAULT_IMAGE))
-                File.WriteAllBytes(path + "\\"+DEFAULT_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.defaultImage, typeof(byte[])));
+                File.WriteAllBytes(path + "\\" + DEFAULT_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.defaultImage, typeof(byte[])));
             if (!File.Exists(path + "\\" + ACTOR_IMAGE))
-                File.WriteAllBytes(path + "\\"+ACTOR_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.actor, typeof(byte[])));
+                File.WriteAllBytes(path + "\\" + ACTOR_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.actor, typeof(byte[])));
         }
 
         private string generatePath()
@@ -160,7 +194,7 @@ namespace RolePlayFileBasedStorage
             String storyFile = path + "\\" + STORY_FILE_NAME;
             if (!File.Exists(storyFile))
             {
-               File.CreateText(storyFile).Close();
+                File.CreateText(storyFile).Close();
             }
         }
 
