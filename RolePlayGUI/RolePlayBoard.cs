@@ -31,10 +31,13 @@ namespace RolePlayGUI
         {
             actualCultureInfo = huCultureInfo;
             loadLanguageTexts();
+            loadAndFillEventTasks();
+
             if (!rolePlayGamers.getDefaultImage().Equals(""))
             {
                 playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
             }
+            ladderRadioButton.Checked = true;
         }
 
         private void generateGame_Click(object sender, EventArgs e)
@@ -67,10 +70,27 @@ namespace RolePlayGUI
                     {
                         actualName = playersComboBox.Text.ToString();
                     }
-                    rolePlayGamers.AddTurn(eventDescription.Text, actualName, 
-                        Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text), 
-                        Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), 
-                        Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
+                    if (opponentRadioButton.Checked)
+                    {
+                        if (isConverttableToInt(opponentPoint.Text))
+                        {
+                            rolePlayGamers.AddTurnOpponent(eventDescription.Text, actualName,
+                                Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
+                                Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(),
+                                Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
+                        }
+                    }
+                    else
+                    {
+                        EventTask et = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
+                        if (et != null)
+                        {
+                            rolePlayGamers.AddTurnTask(eventDescription.Text, actualName,
+                                    Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
+                                    Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), et);
+                        }
+
+                    }
                     eventDescription.Text = "";
                 }
                 catch (Exception)
@@ -203,6 +223,21 @@ namespace RolePlayGUI
         private void createNotificationFormFauilt(string message)
         {
             MessageBox.Show(message, rm.GetString("errorTag", actualCultureInfo), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
+
+        private void ladderRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            opponenetThrowDiceToo.Visible = false;
+            opponentPoint.Visible = false;
+            ladderComboBox.Visible = true;
+        }
+
+        private void opponentRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ladderComboBox.Visible = false;
+            ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
+            opponenetThrowDiceToo.Visible = true;
+            opponentPoint.Visible = true;
         }
     }
 }

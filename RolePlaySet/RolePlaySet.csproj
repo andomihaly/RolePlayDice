@@ -34,6 +34,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\EventTaskGenerator.cs" />
     <Compile Include="core\GameNameIsNotValid.cs" />
     <Compile Include="TextBuilder\NewTurnHuTextBuilder.cs" />
     <Compile Include="NewTurnTextBuilder.cs" />

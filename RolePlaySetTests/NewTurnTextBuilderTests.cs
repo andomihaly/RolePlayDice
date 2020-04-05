@@ -16,16 +16,16 @@ namespace RolePlaySet.Tests
         [TestMethod()]
         public void minimumTextTest()
         {
-            Assert.AreEqual("Döntetlent játszott (0-0)!" + Environment.NewLine.ToString() + "Részletek: 0 AP ellenfél: 0 AP", 
-                newTurnTextBuilder.GeneratePlayerText("", new RealPlayerStep(), new PlayerStep(), TurnResult.draw));
+            Assert.AreEqual("Döntetlent játszott (0 vs. 0)!" + Environment.NewLine.ToString() + "Részletek: 0 AP ellenfél: 0 AP", 
+                newTurnTextBuilder.GeneratePlayerVSOpponentText("", new RealPlayerStep(), new PlayerStep(), TurnResult.draw));
         }
 
         [TestMethod()]
         public void withActualActionTest()
         {
-            Assert.AreEqual("Döntetlent játszott (0-0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
+            Assert.AreEqual("Döntetlent játszott (0 vs. 0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
                 "Részletek: 0 AP ellenfél: 0 AP",
-                newTurnTextBuilder.GeneratePlayerText(actionText, new RealPlayerStep(), new PlayerStep(), TurnResult.draw));
+                newTurnTextBuilder.GeneratePlayerVSOpponentText(actionText, new RealPlayerStep(), new PlayerStep(), TurnResult.draw));
         }
 
 
@@ -34,9 +34,9 @@ namespace RolePlaySet.Tests
         {
             bob.playerName = playerName;
             bob.basePoint = 3;
-            Assert.AreEqual(playerName + " nyert (3-0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
+            Assert.AreEqual(playerName + " nyert (3 vs. 0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
                 "Részletek: " + playerName + ": 3 AP ellenfél: 0 AP",
-                newTurnTextBuilder.GeneratePlayerText(actionText, bob, new PlayerStep(), TurnResult.win));
+                newTurnTextBuilder.GeneratePlayerVSOpponentText(actionText, bob, new PlayerStep(), TurnResult.win));
         }
 
         [TestMethod()]
@@ -44,18 +44,18 @@ namespace RolePlaySet.Tests
         {
             bob.playerName = playerName;
             opponent.basePoint = 3;
-            Assert.AreEqual(playerName + " vesztett (0-3)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
+            Assert.AreEqual(playerName + " vesztett (0 vs. 3)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
                 "Részletek: " + playerName + ": 0 AP ellenfél: 3 AP",
-                newTurnTextBuilder.GeneratePlayerText(actionText, bob, opponent, TurnResult.lose));
+                newTurnTextBuilder.GeneratePlayerVSOpponentText(actionText, bob, opponent, TurnResult.lose));
         }
 
         [TestMethod()]
         public void drawTurnTest()
         {
             bob.playerName = playerName;
-            Assert.AreEqual(playerName + " döntetlent játszott (0-0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
+            Assert.AreEqual(playerName + " döntetlent játszott (0 vs. 0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
                 "Részletek: " + playerName + ": 0 AP ellenfél: 0 AP",
-                newTurnTextBuilder.GeneratePlayerText(actionText, bob, opponent, TurnResult.draw));
+                newTurnTextBuilder.GeneratePlayerVSOpponentText(actionText, bob, opponent, TurnResult.draw));
         }
 
         [TestMethod()]
@@ -64,9 +64,9 @@ namespace RolePlaySet.Tests
             bob.playerName = playerName;
             bob.basePoint = 3;
             bob.extraPoint = 2;
-            Assert.AreEqual(playerName + " nyert (5-0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
+            Assert.AreEqual(playerName + " nyert (5 vs. 0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
                 "Részletek: " + playerName + ": 3 AP + 2 EP ellenfél: 0 AP",
-                newTurnTextBuilder.GeneratePlayerText(actionText, bob, opponent, TurnResult.win));
+                newTurnTextBuilder.GeneratePlayerVSOpponentText(actionText, bob, opponent, TurnResult.win));
         }
 
         [TestMethod()]
@@ -78,9 +78,9 @@ namespace RolePlaySet.Tests
             opponent.basePoint = 2;
             opponent.throwDice = true;
             opponent.dicePoint = -1;
-            Assert.AreEqual(playerName + " nyert (5-1)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
+            Assert.AreEqual(playerName + " nyert (5 vs. 1)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
                 "Részletek: " + playerName + ": 3 AP + 2 EP ellenfél: 2 AP + -1 DP",
-                newTurnTextBuilder.GeneratePlayerText(actionText, bob, opponent, TurnResult.win));
+                newTurnTextBuilder.GeneratePlayerVSOpponentText(actionText, bob, opponent, TurnResult.win));
         }
 
         [TestMethod()]
@@ -91,9 +91,9 @@ namespace RolePlaySet.Tests
             bob.extraPoint = 2;
             bob.throwDice = true;
             bob.dicePoint = -1;
-            Assert.AreEqual(playerName + " nyert (4-0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
+            Assert.AreEqual(playerName + " nyert (4 vs. 0)!" + Environment.NewLine.ToString() + actionText + Environment.NewLine.ToString() + 
                 "Részletek: " + playerName + ": 3 AP + 2 EP + -1 DP ellenfél: 0 AP",
-                newTurnTextBuilder.GeneratePlayerText(actionText, bob, opponent, TurnResult.win));
+                newTurnTextBuilder.GeneratePlayerVSOpponentText(actionText, bob, opponent, TurnResult.win));
         }
 
         private void AssertBasedOnCharacter(string expected, string actual)

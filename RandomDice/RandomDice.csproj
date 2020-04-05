@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dices\Dice0.cs" />
+    <Compile Include="Dices\DiceMinus1.cs" />
     <Compile Include="Dices\Dice1.cs" />
     <Compile Include="Dices\Dice6.cs" />
     <Compile Include="Dices\Dice3.cs" />

@@ -147,6 +147,9 @@
   <data name="errorTag" xml:space="preserve">
     <value>Hiba</value>
   </data>
+  <data name="eventType" xml:space="preserve">
+    <value>Esemény típusa</value>
+  </data>
   <data name="extraPoint" xml:space="preserve">
     <value>Extra pont:</value>
   </data>
@@ -159,11 +162,17 @@
   <data name="hu" xml:space="preserve">
     <value>hu</value>
   </data>
+  <data name="ladderTask" xml:space="preserve">
+    <value>Feladat nagysága:</value>
+  </data>
   <data name="languageTag" xml:space="preserve">
     <value>Nyelv</value>
   </data>
   <data name="loadGame" xml:space="preserve">
     <value>Játék betöltése</value>
+  </data>
+  <data name="opponent" xml:space="preserve">
+    <value>ellenfél</value>
   </data>
   <data name="opponentPoint" xml:space="preserve">
     <value>Ellenfél pont:</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="sumPoint" xml:space="preserve">
     <value>Összpont:</value>
+  </data>
+  <data name="task" xml:space="preserve">
+    <value>feladat</value>
   </data>
   <data name="throwDice" xml:space="preserve">
     <value>Dobás</value>

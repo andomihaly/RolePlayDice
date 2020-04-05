@@ -151,6 +151,15 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event type.
+        /// </summary>
+        internal static string eventType {
+            get {
+                return ResourceManager.GetString("eventType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extra point:.
         /// </summary>
         internal static string extraPoint {
@@ -187,6 +196,15 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task type:.
+        /// </summary>
+        internal static string ladderTask {
+            get {
+                return ResourceManager.GetString("ladderTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string languageTag {
@@ -201,6 +219,15 @@ namespace RolePlayGUI.Resources.Language {
         internal static string loadGame {
             get {
                 return ResourceManager.GetString("loadGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to opponent.
+        /// </summary>
+        internal static string opponent {
+            get {
+                return ResourceManager.GetString("opponent", resourceCulture);
             }
         }
         
@@ -264,6 +291,15 @@ namespace RolePlayGUI.Resources.Language {
         internal static string sumPoint {
             get {
                 return ResourceManager.GetString("sumPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task.
+        /// </summary>
+        internal static string task {
+            get {
+                return ResourceManager.GetString("task", resourceCulture);
             }
         }
         

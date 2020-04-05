@@ -147,6 +147,9 @@
   <data name="errorTag" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="eventType" xml:space="preserve">
+    <value>Event type</value>
+  </data>
   <data name="extraPoint" xml:space="preserve">
     <value>Extra point:</value>
   </data>
@@ -159,11 +162,17 @@
   <data name="hu" xml:space="preserve">
     <value>hu</value>
   </data>
+  <data name="ladderTask" xml:space="preserve">
+    <value>Task type:</value>
+  </data>
   <data name="languageTag" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="loadGame" xml:space="preserve">
     <value>Load game</value>
+  </data>
+  <data name="opponent" xml:space="preserve">
+    <value>opponent</value>
   </data>
   <data name="opponentPoint" xml:space="preserve">
     <value>Opponent point:</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="sumPoint" xml:space="preserve">
     <value>Sum point:</value>
+  </data>
+  <data name="task" xml:space="preserve">
+    <value>task</value>
   </data>
   <data name="throwDice" xml:space="preserve">
     <value>Throw dice</value>

@@ -31,8 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventTask.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="playerStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

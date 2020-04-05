@@ -4,6 +4,7 @@ namespace RolePlaySet
 {
     interface NewTurnTextBuilder
     {
-        string GeneratePlayerText(string actionDescription, RealPlayerStep player, PlayerStep opponent, TurnResult turnResult);
+        string GeneratePlayerVSOpponentText(string actionDescription, RealPlayerStep player, PlayerStep opponent, TurnResult turnResult);
+        string GeneratePlayerVSTaskText(string actionDescription, RealPlayerStep player, EventTask eventTask);
     }
 }

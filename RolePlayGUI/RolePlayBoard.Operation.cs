@@ -6,10 +6,33 @@ namespace RolePlayGUI
 {
     public partial class RolePlayBoard
     {
+        private void loadAndFillEventTasks()
+        {
+            ladderComboBox.Items.Clear();
+            EventTask[] eventTasks = rolePlayGamers.getEventTasks();
+            foreach(EventTask et in eventTasks)
+            {
+                ladderComboBox.Items.Add(et.name);
+            }
+            ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
+        }
+
+        private EventTask findEventTaskBasedOnEventTaskName(string eventTaskName)
+        {
+            EventTask[] eventTasks = rolePlayGamers.getEventTasks();
+            foreach (EventTask et in eventTasks)
+            {
+                if (et.name.Equals(eventTaskName))
+                    return et;
+            }
+            return null;
+        }
+
+
         private bool isPointsAndNumbersConvertable()
         {
             return (isConverttableToInt(playerBasedPoint.Text) && isConverttableToInt(playerExtraPoint.Text) &&
-                    isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text));
+                    isConverttableToInt(numberOfDice.Text));
         }
 
 
@@ -120,6 +143,11 @@ namespace RolePlayGUI
             playersComboBox.Text = rm.GetString("playerName", actualCultureInfo);
             playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
             notSavedGameLabel.Text = rm.GetString("gameIsNotSaved", actualCultureInfo);
+
+            ladderRadioButton.Text = rm.GetString("task", actualCultureInfo);
+            opponentRadioButton.Text = rm.GetString("opponent", actualCultureInfo);
+            ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
+            opponentGroupBox.Text = rm.GetString("eventType", actualCultureInfo);
 
             diceType.Items.Clear();
             foreach (string actualDiceType in diceTypes)

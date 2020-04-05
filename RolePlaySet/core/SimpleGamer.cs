@@ -1,6 +1,7 @@
 ﻿using RandomDice;
 using RandomDice.Dices;
 using RolePlayEntity;
+using RolePlaySet.core;
 using System;
 
 namespace RolePlaySet
@@ -104,7 +105,38 @@ namespace RolePlaySet
             return story.events.ToArray();
         }
 
-        public void AddTurn(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
+        public void AddTurnTask(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, EventTask evenetPoint)
+        {
+            RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
+            story.events.Add(new NewTurnHuTextBuilder().GeneratePlayerVSTaskText(actualEventDescription, playerStep, evenetPoint));
+            storeGateway.saveGame(story, gameName);
+        }
+
+        public void AddTurnOpponent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
+        {
+            RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
+            PlayerStep opponentStep = CreateOpponentPlayer(numberOfDice, diceType, opponentPoint, isOpponentThrowToo);
+            TurnResult tr = calculateTurnResult(opponentStep, playerStep);
+
+            story.events.Add(new NewTurnHuTextBuilder().GeneratePlayerVSOpponentText(actualEventDescription, playerStep, opponentStep, tr));
+            storeGateway.saveGame(story, gameName);
+        }
+
+        private static TurnResult calculateTurnResult(PlayerStep opponentStep, RealPlayerStep playerStep)
+        {
+            TurnResult turnResult = TurnResult.win;
+            int playerScore = playerStep.basePoint + playerStep.extraPoint + playerStep.dicePoint;
+            int opponentScore = opponentStep.basePoint + opponentStep.dicePoint;
+            if (playerScore == opponentScore)
+                turnResult = TurnResult.draw;
+            if (playerScore < opponentScore)
+                turnResult = TurnResult.lose;
+            if (playerScore > opponentScore)
+                turnResult = TurnResult.win;
+            return turnResult;
+        }
+
+        private PlayerStep CreateOpponentPlayer(int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
         {
             PlayerStep opponentStep = new PlayerStep();
             opponentStep.basePoint = opponentPoint;
@@ -114,38 +146,34 @@ namespace RolePlaySet
                 opponentStep.dicePoint = genereateSumOfThrowDice(diceType, numberOfDice);
             }
 
+            return opponentStep;
+        }
+
+        private RealPlayerStep CreateRealPlayer(string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType)
+        {
             RealPlayerStep playerStep = new RealPlayerStep();
-            playerStep.playerName = playerName.Equals("")?"Játékos":playerName;
+            playerStep.playerName = playerName.Equals("") ? "Játékos" : playerName;
             playerStep.basePoint = basePoint;
             playerStep.extraPoint = extraPoint;
-            if (numberOfDice>0)
+            
+            if (numberOfDice > 0)
             {
                 playerStep.throwDice = true;
                 playerStep.dicePoint = genereateSumOfThrowDice(diceType, numberOfDice);
             }
-
-            TurnResult tr = TurnResult.win;
-            int playerScore = playerStep.basePoint + playerStep.extraPoint + playerStep.dicePoint;
-            int opponentScore = opponentStep.basePoint + opponentStep.dicePoint;
-            if (playerScore == opponentPoint)
-                tr = TurnResult.draw;
-            if (playerScore < opponentPoint)
-                tr = TurnResult.lose;
-            if (playerScore > opponentPoint)
-                tr = TurnResult.win;
-
-
-            story.events.Add(new NewTurnHuTextBuilder().GeneratePlayerText(actualEventDescription, playerStep,opponentStep,tr));
-            storeGateway.saveGame(story, gameName);
+            return playerStep;
         }
 
         private int genereateSumOfThrowDice(string diceType, int numberOfDice)
         {
-
             Dice dice = new Dice0();
             if (diceType.Equals("d1"))
             {
                 dice = new Dice1();
+            }
+            if (diceType.Equals("d-1"))
+            {
+                dice = new DiceMinus1();
             }
             if (diceType.Equals("dF3"))
             {
@@ -173,6 +201,11 @@ namespace RolePlaySet
         public string getDefaultImage()
         {
             return defaultImage;
+        }
+
+        public EventTask[] getEventTasks()
+        {
+            return EventTaskGenerator.generateEventTasksList().ToArray();
         }
     }
 }
