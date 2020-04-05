@@ -6,6 +6,14 @@ namespace RolePlayGUI
 {
     public partial class RolePlayBoard
     {
+        private bool isPointsAndNumbersConvertable()
+        {
+            return (isConverttableToInt(playerBasedPoint.Text) && isConverttableToInt(playerExtraPoint.Text) &&
+                    isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text));
+        }
+
+
+
         private void fillGUIWithGame()
         {
             notSavedGameLabel.Visible = false;
@@ -15,6 +23,7 @@ namespace RolePlayGUI
                 {
                     playersComboBox.Items.Add(OnePlayerName.name);
                 }
+                playersComboBox.Items.Add("-");
             }
             else
             {

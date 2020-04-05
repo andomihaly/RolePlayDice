@@ -54,11 +54,23 @@ namespace RolePlayGUI
         private void throwDice_Click(object sender, EventArgs e)
         {
             notSavedGameLabel.Visible = false;
-            if (isConverttableToInt(playerBasedPoint.Text) && isConverttableToInt(playerExtraPoint.Text) && isConverttableToInt(numberOfDice.Text) && isConverttableToInt(opponentPoint.Text))
+            if (isPointsAndNumbersConvertable())
             {
                 try
                 {
-                    rolePlayGamers.AddTurn(eventDescription.Text, playersComboBox.SelectedItem.ToString(), Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text), Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
+                    string actualName = "";
+                    if (playersComboBox.SelectedItem!= null)
+                    {
+                        actualName = playersComboBox.SelectedItem.ToString();
+                    }
+                    else if (playersComboBox.Text != null)
+                    {
+                        actualName = playersComboBox.Text.ToString();
+                    }
+                    rolePlayGamers.AddTurn(eventDescription.Text, actualName, 
+                        Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text), 
+                        Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), 
+                        Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
                     eventDescription.Text = "";
                 }
                 catch (Exception)
@@ -98,13 +110,18 @@ namespace RolePlayGUI
 
         private void playersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!playersComboBox.SelectedItem.ToString().Equals(""))
+            if (playersComboBox.SelectedItem.ToString().Equals("-"))
+            {
+                playersComboBox.SelectedText = "";
+                playersComboBox.Text = "";
+            }
+            else if (!playersComboBox.SelectedItem.ToString().Equals(""))
             {
                 Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
                 if (selectedPlayer == null)
                 {
-                    createNotificationFormFauilt(rm.GetString("errorNotFound", actualCultureInfo) + 
-                                                    playersComboBox.SelectedItem + 
+                    createNotificationFormFauilt(rm.GetString("errorNotFound", actualCultureInfo) +
+                                                    playersComboBox.SelectedItem +
                                                     rm.GetString("errorNotFoundPlayer", actualCultureInfo));
                 }
                 else
