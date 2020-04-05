@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RolePlaySet.Entity
+namespace RolePlayEntity
 {
     public class Player
     {

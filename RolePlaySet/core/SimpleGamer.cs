@@ -1,6 +1,6 @@
 ﻿using RandomDice;
 using RandomDice.Dices;
-using RolePlaySet.Entity;
+using RolePlayEntity;
 using System;
 
 namespace RolePlaySet

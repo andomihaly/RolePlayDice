@@ -1,5 +1,5 @@
 ﻿using RolePlaySet;
-using RolePlaySet.Entity;
+using RolePlayEntity;
 using System;
 using System.Collections.Generic;
 using System.IO;

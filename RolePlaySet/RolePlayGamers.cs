@@ -1,4 +1,4 @@
-﻿using RolePlaySet.Entity;
+﻿using RolePlayEntity;
 
 namespace RolePlaySet
 {

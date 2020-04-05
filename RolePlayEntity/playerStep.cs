@@ -1,4 +1,4 @@
-﻿namespace RolePlaySet.Entity
+﻿namespace RolePlayEntity
 {
     public class PlayerStep
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using RolePlaySet.Entity;
+using RolePlayEntity;
 
 namespace RolePlaySet
 {

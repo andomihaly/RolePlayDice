@@ -1,6 +1,6 @@
 ﻿using System;
 using RolePlaySet;
-using RolePlaySet.Entity;
+using RolePlayEntity;
 
 namespace RolePlaySetTests
 {

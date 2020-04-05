@@ -41,16 +41,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Language\language.Designer.cs">
@@ -106,6 +99,10 @@
     <None Include="Resources\open.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RolePlayEntity\RolePlayEntity.csproj">
+      <Project>{72d2e8dd-85fc-4325-8bfa-37a70e3abd1c}</Project>
+      <Name>RolePlayEntity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RolePlaySet\RolePlaySet.csproj">
       <Project>{f7bd3a2a-b241-479a-8b45-e1720c96b561}</Project>
       <Name>RolePlaySet</Name>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RolePlaySet.Entity
+namespace RolePlayEntity
 {
     public class Story
     {

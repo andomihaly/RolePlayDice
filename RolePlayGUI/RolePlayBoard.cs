@@ -1,5 +1,5 @@
 ﻿using RolePlaySet;
-using RolePlaySet.Entity;
+using RolePlayEntity;
 using System;
 using System.Windows.Forms;
 using System.Resources;
