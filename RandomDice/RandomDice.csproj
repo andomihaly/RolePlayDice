@@ -45,10 +45,10 @@
     <Compile Include="Dices\Dice6.cs" />
     <Compile Include="Dices\Dice3.cs" />
     <Compile Include="Dices\DiceFudge3.cs" />
-    <Compile Include="Interfaces\InvalidDiceValueException.cs" />
-    <Compile Include="Interfaces\Dice.cs" />
-    <Compile Include="Interfaces\DiceValue.cs" />
-    <Compile Include="Interfaces\IntervalRandomGenerator.cs" />
+    <Compile Include="Dices\InvalidDiceValueException.cs" />
+    <Compile Include="Dice.cs" />
+    <Compile Include="DiceValue.cs" />
+    <Compile Include="IntervalRandomGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator\VisualStudioRandomGenerator.cs" />
   </ItemGroup>

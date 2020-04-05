@@ -135,17 +135,17 @@ namespace RolePlaySet
                 tr = TurnResult.win;
 
 
-            story.events.Add(NewTurnTextBuilder.GeneratePlayerText(actualEventDescription, playerStep,opponentStep,tr));
+            story.events.Add(new NewTurnHuTextBuilder().GeneratePlayerText(actualEventDescription, playerStep,opponentStep,tr));
             storeGateway.saveGame(story, gameName);
         }
 
         private int genereateSumOfThrowDice(string diceType, int numberOfDice)
         {
 
-            Dice dice = new Dice0(intervalRandomGenerator);
+            Dice dice = new Dice0();
             if (diceType.Equals("d1"))
             {
-                dice = new Dice1(intervalRandomGenerator);
+                dice = new Dice1();
             }
             if (diceType.Equals("dF3"))
             {

@@ -10,7 +10,7 @@ namespace RandomDice.Tests
         [TestMethod()]
         public void throwAd0Test()
         {
-            Dice dice = new Dice0(new VisualStudioRandomGenerator());
+            Dice dice = new Dice0();
             int dvalue = (int)dice.throwADice();
             for (int i=0; i<100; i++)
             { 
