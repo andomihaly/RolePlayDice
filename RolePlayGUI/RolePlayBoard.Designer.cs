@@ -346,6 +346,7 @@ namespace RolePlayGUI
             this.playerPicture.Location = new System.Drawing.Point(704, 23);
             this.playerPicture.Name = "playerPicture";
             this.playerPicture.Size = new System.Drawing.Size(275, 400);
+            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.playerPicture.TabIndex = 602;
             this.playerPicture.TabStop = false;
             // 
