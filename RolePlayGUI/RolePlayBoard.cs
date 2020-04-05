@@ -66,7 +66,7 @@ namespace RolePlayGUI
                     {
                         actualName = playersComboBox.SelectedItem.ToString();
                     }
-                    else if (playersComboBox.Text != null)
+                    else if (playersComboBox.Text != null && !playersComboBox.Text.ToString().Equals(rm.GetString("playerName", actualCultureInfo)))
                     {
                         actualName = playersComboBox.Text.ToString();
                     }

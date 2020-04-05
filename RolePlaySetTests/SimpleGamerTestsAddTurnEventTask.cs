@@ -18,8 +18,8 @@ namespace RolePlaySet.Tests
             Assert.AreEqual(0, sg.getStory().Length);
             sg.AddTurnTask("", "", 0, 0, 0, "d3", new EventTask("Szuper",+1));
             Assert.AreEqual(1, sg.getStory().Length);
-            AssertBasedOnCharacter("Játékosnak nem sikerült a szuper feladat (0 vs. 1)!" + Environment.NewLine.ToString() +
-                "Részletek: Játékos: 0 AP, szuper feladat: 1",
+            Assert.AreEqual("Játékosnak nem sikerült a szuper feladat (0 vs. 1)!" + Environment.NewLine.ToString() +
+                "Részletek: Játékos: 0 AP, szuper feladat: 1 P",
                 sg.getStory()[0].ToString());
         }
         
@@ -31,7 +31,7 @@ namespace RolePlaySet.Tests
             sg.AddTurnTask(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d3", new EventTask("Szuper", +5));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Dr. Hosszú Név Nevek sikeresen elvégezte a szuper feladatot (7 vs. 5)!" + Environment.NewLine.ToString() + "Micsoda Csata" + Environment.NewLine.ToString() + " Volt" + Environment.NewLine.ToString() +
-                "Részletek: Dr. Hosszú Név Nevek: 3 AP + 4 EP, szuper feladat: 5",
+                "Részletek: Dr. Hosszú Név Nevek: 3 AP + 4 EP, szuper feladat: 5 P",
                 sg.getStory()[0].ToString());
         }
         
@@ -42,8 +42,8 @@ namespace RolePlaySet.Tests
             Assert.AreEqual(0, sg.getStory().Length);
             sg.AddTurnTask("A", "B", 0, 0, 1, "d1", new EventTask("Átlagos", +1));
             Assert.AreEqual(1, sg.getStory().Length);
-            Assert.AreEqual("B sikeresen elvégezte a átlagos feladatot (1 vs. 1)!" + Environment.NewLine.ToString() + "A" + Environment.NewLine.ToString() +
-                "Részletek: B: 0 AP + 1 DP, átlagos feladat: 1",
+            Assert.AreEqual("B sikeresen elvégezte az átlagos feladatot (1 vs. 1)!" + Environment.NewLine.ToString() + "A" + Environment.NewLine.ToString() +
+                "Részletek: B: 0 AP + 1 DP, átlagos feladat: 1 P",
                 sg.getStory()[0].ToString());
         }
 
@@ -55,10 +55,22 @@ namespace RolePlaySet.Tests
             sg.AddTurnTask("A", "B", 1, 0, 1, "d1", new EventTask("Gagyi", -2));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("B sikeresen elvégezte a gagyi feladatot (2 vs. -2)!" + Environment.NewLine.ToString() + "A" + Environment.NewLine.ToString() +
-                "Részletek: B: 1 AP + 1 DP, gagyi feladat: -2",
+                "Részletek: B: 1 AP + 1 DP, gagyi feladat: -2 P",
                 sg.getStory()[0].ToString());
         }
-                
+
+        [TestMethod()]
+        public void simpleGameWithNakNekBothThrowDiceTest()
+        {
+            sg.loadGame("ValidName");
+            Assert.AreEqual(0, sg.getStory().Length);
+            sg.AddTurnTask("A", "Misi", 1, 0, 1, "d1", new EventTask("Erős", +3));
+            Assert.AreEqual(1, sg.getStory().Length);
+            Assert.AreEqual("Misinek nem sikerült az erős feladat (2 vs. 3)!" + Environment.NewLine.ToString() + "A" + Environment.NewLine.ToString() +
+                "Részletek: Misi: 1 AP + 1 DP, erős feladat: 3 P",
+                sg.getStory()[0].ToString());
+        }
+
         private void AssertBasedOnCharacter(string expected, string actual)
         {
             for (int i = 0; i < expected.Length; i++)

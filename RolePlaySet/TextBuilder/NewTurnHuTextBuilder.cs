@@ -1,15 +1,20 @@
 ﻿using System;
 using RolePlayEntity;
+using System.Linq;
 
 namespace RolePlaySet
 {
     public class NewTurnHuTextBuilder : NewTurnTextBuilder
     {
 
+        private static string[] vowelsHigh = { "a", "á", "o", "ó", "u", "ú" };
+        private static string[] vowelsLow = { "e", "é", "i", "í", "ö", "ő", "ü", "ű" };
+        private static string[] vowels = { "a", "á", "o", "ó", "u", "ú", "e", "é", "i", "í", "ö", "ő", "ü", "ű" };
+
         public string GeneratePlayerVSTaskText(string actionDescription, RealPlayerStep player, EventTask eventTask)
         {
             string generatedText = player.playerName +
-                GenerateTaskText(player, eventTask)+
+                GenerateTaskText(player, eventTask) +
                 genereteOverallScores(player, eventTask.point) +
                 generateDescription(actionDescription) +
                 Environment.NewLine.ToString() +
@@ -21,13 +26,13 @@ namespace RolePlaySet
 
         private string GenerateTaskText(RealPlayerStep player, EventTask eventTask)
         {
-            if (calculatePlayerScore(player)>=eventTask.point)
+            if (calculatePlayerScore(player) >= eventTask.point)
             {
-                return " sikeresen elvégezte a " + eventTask.name.ToLower() + " feladatot "; 
+                return " sikeresen elvégezte " + generateThe(eventTask.name) + " " + eventTask.name.ToLower() + " feladatot ";
             }
             else
             {
-                return "nak nem sikerült a " + eventTask.name.ToLower() + " feladat ";
+                return generateNakNek(player.playerName) + " nem sikerült " + generateThe(eventTask.name) + " " + eventTask.name.ToLower() + " feladat ";
             }
         }
 
@@ -44,7 +49,7 @@ namespace RolePlaySet
         {
             string details = "Részletek: ";
             details += player.playerName.Equals("") ? "" : player.playerName + ": ";
-            details += getPoints(player) + ", "+ eventTask.name.ToLower() + " feladat: " + eventTask.point.ToString();
+            details += getPoints(player) + ", " + eventTask.name.ToLower() + " feladat: " + eventTask.point.ToString() + " P";
             return details;
         }
 
@@ -98,7 +103,7 @@ namespace RolePlaySet
             }
             return details;
         }
-        
+
         private string getPoints(RealPlayerStep player)
         {
             string score = getBasePointText(player.basePoint) + getExtraPointText(player.extraPoint);
@@ -127,6 +132,39 @@ namespace RolePlaySet
         {
             return " + " + dicePoint.ToString() + " DP";
         }
+
+        private string generateThe(string nextWord)
+        {
+            string firstLetter = nextWord[0].ToString().ToLower();
+            //if (Array.Exists(vowels, element => element.StartsWith(firstLetter)))
+            if (vowels.Contains(firstLetter))
+            {
+                return "az";
+            }
+            return "a";
+        }
+
+        private string generateNakNek(string baseWord)
+        {
+            string nextLetter;
+            bool notFindVawel = true;
+            int i = baseWord.Length;
+            while (notFindVawel && i > 0)
+            {
+                i--;
+                nextLetter = baseWord[i].ToString().ToLower();
+                if (vowelsLow.Contains(nextLetter))
+                {
+                    return "nek";
+                }
+                if (vowelsHigh.Contains(nextLetter))
+                {
+                    return "nak";
+                }
+            }
+            return "nak";
+        }
+
 
         private string changeFirstCharacterToUpperIfNeeded(RealPlayerStep player, string generatedText)
         {
