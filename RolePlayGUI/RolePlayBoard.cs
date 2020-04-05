@@ -162,6 +162,7 @@ namespace RolePlayGUI
             if (newGameName.Text != "")
             {
                 rolePlayGamers.generateNewGame(newGameName.Text);
+                rolePlayGameName.Text = newGameName.Text;
             }
             else
             {

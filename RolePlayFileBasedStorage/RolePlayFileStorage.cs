@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Drawing;
+using System.Text;
 
 namespace RolePlayFileBasedStorage
 {
@@ -66,7 +67,7 @@ namespace RolePlayFileBasedStorage
             path = generatePath();
             String storyFile = path + "\\" + STORY_FILE_NAME;
             Story story = new Story();
-            story.events = System.IO.File.ReadAllLines(storyFile).OfType<string>().ToList();
+            story.events = File.ReadAllLines(storyFile).OfType<string>().ToList();
             return story;
 
         }
@@ -77,7 +78,7 @@ namespace RolePlayFileBasedStorage
             this.gameName = gameName;
             path = generatePath();
             String storyFile = path + "\\" + STORY_FILE_NAME;
-            System.IO.File.WriteAllLines(storyFile, story.events);
+            File.WriteAllLines(storyFile, story.events, Encoding.UTF8);
         }
 
         private void checkGameName(string gameName)
@@ -148,7 +149,8 @@ namespace RolePlayFileBasedStorage
                     sw.WriteLine(IMAGE_FLAG + ACTOR_IMAGE);
                     sw.WriteLine(PLAYER_NAME_FLAG + "Name3");
                     sw.WriteLine(IMAGE_FLAG + "image.png");
-                    sw.WriteLine(PLAYER_NAME_FLAG + "Name4");                    
+                    sw.WriteLine(PLAYER_NAME_FLAG + "Name4");
+                    sw.Close();
                 }
             }
         }
@@ -158,8 +160,7 @@ namespace RolePlayFileBasedStorage
             String storyFile = path + "\\" + STORY_FILE_NAME;
             if (!File.Exists(storyFile))
             {
-                File.CreateText(storyFile);
-
+               File.CreateText(storyFile).Close();
             }
         }
 
