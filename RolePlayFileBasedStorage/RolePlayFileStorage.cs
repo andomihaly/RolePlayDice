@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Drawing;
 
 namespace RolePlayFileBasedStorage
 {
@@ -11,6 +12,8 @@ namespace RolePlayFileBasedStorage
     {
         private static string PLAYER_FILE_NAME = "players.txt";
         private static string STORY_FILE_NAME = "story.txt";
+        private static string ACTOR_IMAGE = "actorW275xH400px.jpg";
+        private static string DEFAULT_IMAGE = "default.png";
         private static string PLAYER_NAME_FLAG = "+";
         private static string SKILL_FLAG = "-";
         private static string SKILL_SEPARATOR = "|";
@@ -21,8 +24,7 @@ namespace RolePlayFileBasedStorage
         private int rowIndex;
         private List<Player> players;
         string[] playerFileLines;
-
-
+        
 
         public void createNewGame(string gameName)
         {
@@ -99,11 +101,21 @@ namespace RolePlayFileBasedStorage
                 createGameFolder();
                 createPlayerExample();
                 createStoryFile();
+                storeImages();
             }
             catch (Exception)
             {
                 throw new CouldNotCreateNewGameFileStructure("\"" + gameName + "\" structure creation is faild.");
             }
+        }
+
+        private void storeImages()
+        {
+            ImageConverter converter = new ImageConverter();
+            if (!File.Exists(path + "\\" + DEFAULT_IMAGE))
+                File.WriteAllBytes(path + "\\"+DEFAULT_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.defaultImage, typeof(byte[])));
+            if (!File.Exists(path + "\\" + ACTOR_IMAGE))
+                File.WriteAllBytes(path + "\\"+ACTOR_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.actor, typeof(byte[])));
         }
 
         private string generatePath()
@@ -133,7 +145,7 @@ namespace RolePlayFileBasedStorage
                     sw.WriteLine(SKILL_FLAG + "Skill2Name" + SKILL_SEPARATOR + "+3");
                     sw.WriteLine(SKILL_FLAG + "Skill3Name" + SKILL_SEPARATOR + "0");
                     sw.WriteLine(SKILL_FLAG + "Skill4Name" + SKILL_SEPARATOR + "-1");
-                    sw.WriteLine(IMAGE_FLAG + "actor400pxHeigh.jpg");
+                    sw.WriteLine(IMAGE_FLAG + ACTOR_IMAGE);
                     sw.WriteLine(PLAYER_NAME_FLAG + "Name3");
                     sw.WriteLine(IMAGE_FLAG + "image.png");
                     sw.WriteLine(PLAYER_NAME_FLAG + "Name4");                    
