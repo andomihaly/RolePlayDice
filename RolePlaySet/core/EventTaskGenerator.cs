@@ -1,7 +1,7 @@
 ﻿using RolePlayEntity;
 using System.Collections.Generic;
 
-namespace RolePlaySet.core
+namespace RolePlaySet.Core
 {
     public static class EventTaskGenerator
     {

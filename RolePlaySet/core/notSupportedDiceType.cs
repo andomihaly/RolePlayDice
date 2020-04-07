@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace RolePlaySet
+namespace RolePlaySet.Core
 {
     [Serializable]
     internal class NotSupportedDiceType : Exception

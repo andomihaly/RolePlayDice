@@ -1,5 +1,4 @@
 ﻿using RolePlayEntity;
-
 namespace RolePlaySet
 {
     interface NewTurnTextBuilder

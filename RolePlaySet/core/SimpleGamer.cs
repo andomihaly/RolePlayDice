@@ -1,10 +1,10 @@
 ﻿using RandomDice;
 using RolePlayEntity;
-using RolePlaySet.core;
 using System;
+using RolePlaySet.Core;
 using System.Collections.Generic;
 
-namespace RolePlaySet
+namespace RolePlaySet.Core
 {
     public class SimpleGamer : RolePlayGame
     {

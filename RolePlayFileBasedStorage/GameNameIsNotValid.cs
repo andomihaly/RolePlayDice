@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace RolePlaySet.Core
+namespace RolePlayFileBasedStorage
 {
     [Serializable]
     public class GameNameIsNotValid : Exception

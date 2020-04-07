@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RandomDice;
 using RolePlayEntity;
-using RolePlaySet.Core;
 using RolePlaySetTests;
 using System;
 
