@@ -19,7 +19,7 @@ namespace ERolePlay
 
             StoreGateway storeGateway = new RolePlayFileStorage();
             IntervalRandomGenerator intervalRandomGenerator = new VisualStudioRandomGenerator();
-            Dice[] dices = { new DiceFudge3(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
+            Dice[] dices = { new DiceFudge(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
         
             RolePlayGame rolePlayGame = new SimpleGamer(storeGateway, dices);
 

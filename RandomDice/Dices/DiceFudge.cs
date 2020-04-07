@@ -2,11 +2,11 @@
 
 namespace RandomDice.Dices
 {
-    public class DiceFudge3 : Dice
+    public class DiceFudge : Dice
     {
         public string getName()
         {
-            return "dF3";
+            return "dF";
         }
 
         enum DiceFudge3Value
@@ -17,7 +17,7 @@ namespace RandomDice.Dices
         }
         private IntervalRandomGenerator randomGenerator;
 
-        public DiceFudge3(IntervalRandomGenerator randomGenerator)
+        public DiceFudge(IntervalRandomGenerator randomGenerator)
         {
             this.randomGenerator = randomGenerator;
         }
@@ -32,7 +32,7 @@ namespace RandomDice.Dices
                 value = (DiceFudge3Value)generatedNumber;
             }
             else
-                throw new InvalidDiceValueException("df3-value: " + generatedNumber);
+                throw new InvalidDiceValueException("dF-value: " + generatedNumber);
             return (DiceValue)value;
         }
     }
