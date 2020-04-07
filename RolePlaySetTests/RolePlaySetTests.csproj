@@ -51,7 +51,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Dice0.cs" />
     <Compile Include="Dice1.cs" />
     <Compile Include="DiceMinus1.cs" />
     <Compile Include="FakeDice.cs" />

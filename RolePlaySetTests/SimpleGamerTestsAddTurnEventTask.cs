@@ -14,7 +14,7 @@ namespace RolePlaySet.Tests
         [TestInitialize()]
         public void setup()
         {
-            Dice[] dices = { new FakeDice() };
+            Dice[] dices = { new Dice1() };
             sg = new SimpleGamer(new StubStoreGateway(), dices);
         }
 
@@ -36,7 +36,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnTask(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d3", new EventTask("Szuper", +5));
+            sg.AddTurnTask(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d1", new EventTask("Szuper", +5));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Dr. Hosszú Név Nevek sikeresen elvégezte a szuper feladatot (7 vs. 5)!" + Environment.NewLine.ToString() + "Micsoda Csata" + Environment.NewLine.ToString() + " Volt" + Environment.NewLine.ToString() +
                 "Részletek: Dr. Hosszú Név Nevek: 3 AP + 4 EP, szuper feladat: 5 P",
