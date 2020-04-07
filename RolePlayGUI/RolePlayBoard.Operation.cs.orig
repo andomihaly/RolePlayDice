@@ -9,18 +9,30 @@ namespace RolePlayGUI
         private void loadAndFillEventTasks()
         {
             ladderComboBox.Items.Clear();
-            TaskType[] eventTasks = rolePlayGamers.getTaskTypeList();
+<<<<<<< HEAD
+            TaskEvent[] eventTasks = rolePlayGamers.getEventTasks();
+            foreach(TaskEvent et in eventTasks)
+=======
+            TaskType[] eventTasks = rolePlayGamers.getEventTasks();
             foreach(TaskType et in eventTasks)
+>>>>>>> refactore: create a test levels (system, package, unit) and necessary subfolders
             {
                 ladderComboBox.Items.Add(et.name);
             }
             ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
         }
 
+<<<<<<< HEAD
+        private TaskEvent findEventTaskBasedOnEventTaskName(string eventTaskName)
+        {
+            TaskEvent[] eventTasks = rolePlayGamers.getEventTasks();
+            foreach (TaskEvent et in eventTasks)
+=======
         private TaskType findEventTaskBasedOnEventTaskName(string eventTaskName)
         {
-            TaskType[] eventTasks = rolePlayGamers.getTaskTypeList();
+            TaskType[] eventTasks = rolePlayGamers.getEventTasks();
             foreach (TaskType et in eventTasks)
+>>>>>>> refactore: create a test levels (system, package, unit) and necessary subfolders
             {
                 if (et.name.Equals(eventTaskName))
                     return et;
