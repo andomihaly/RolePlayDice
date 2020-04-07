@@ -1,8 +1,7 @@
-﻿using System;
-using RolePlaySet;
+﻿using RolePlaySet;
 using RolePlayEntity;
 
-namespace RolePlaySetTests
+namespace RolePlaySetTests.Common
 {
     class StubStoreGateway : StoreGateway
     {

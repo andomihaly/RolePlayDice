@@ -1,6 +1,6 @@
 ﻿using RandomDice;
 
-namespace RolePlaySet.Tests
+namespace RolePlaySetTests.UnitTest
 {
     internal class FakeDice : Dice
     {

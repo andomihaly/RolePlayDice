@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using RolePlayEntity;
+using RolePlaySet;
 
-namespace RolePlaySet.Tests
+namespace RolePlaySetTests.UnitTest
 {
     [TestClass()]
     public class NewTurnTextBuilderTests

@@ -2,13 +2,13 @@
 using RandomDice;
 using RolePlayEntity;
 using RolePlaySet.Core;
-using RolePlaySetTests;
+using RolePlaySetTests.Common;
 using System;
 
-namespace RolePlaySet.Tests
+namespace RolePlaySetTests
 {
     [TestClass()]
-    public class SimpleGamerTestsAddTurnEventTask
+    public class AddTurnEventToStory
     {
         private SimpleGamer sg;
 
@@ -25,7 +25,7 @@ namespace RolePlaySet.Tests
 
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnTask("", "", 0, 0, 0, "d3", new EventTask("Szuper",+1));
+            sg.AddTurnTaskEvent("", "", 0, 0, 0, "d3", new TaskEvent("Szuper",+1));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Játékosnak nem sikerült a szuper feladat (0 vs. 1)!" + Environment.NewLine.ToString() +
                 "Részletek: Játékos: 0 AP, szuper feladat: 1 P",
@@ -37,7 +37,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnTask(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d1", new EventTask("Szuper", +5));
+            sg.AddTurnTaskEvent(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d1", new TaskEvent("Szuper", +5));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Dr. Hosszú Név Nevek sikeresen elvégezte a szuper feladatot (7 vs. 5)!" + Environment.NewLine.ToString() + "Micsoda Csata" + Environment.NewLine.ToString() + " Volt" + Environment.NewLine.ToString() +
                 "Részletek: Dr. Hosszú Név Nevek: 3 AP + 4 EP, szuper feladat: 5 P",
@@ -49,7 +49,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnTask("A", "B", 0, 0, 1, "d1", new EventTask("Átlagos", +1));
+            sg.AddTurnTaskEvent("A", "B", 0, 0, 1, "d1", new TaskEvent("Átlagos", +1));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("B sikeresen elvégezte az átlagos feladatot (1 vs. 1)!" + Environment.NewLine.ToString() + "A" + Environment.NewLine.ToString() +
                 "Részletek: B: 0 AP + 1 DP, átlagos feladat: 1 P",
@@ -61,7 +61,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnTask("A", "B", 1, 0, 1, "d1", new EventTask("Gagyi", -2));
+            sg.AddTurnTaskEvent("A", "B", 1, 0, 1, "d1", new TaskEvent("Gagyi", -2));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("B sikeresen elvégezte a gagyi feladatot (2 vs. -2)!" + Environment.NewLine.ToString() + "A" + Environment.NewLine.ToString() +
                 "Részletek: B: 1 AP + 1 DP, gagyi feladat: -2 P",
@@ -73,7 +73,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnTask("A", "Misi", 1, 0, 1, "d1", new EventTask("Erős", +3));
+            sg.AddTurnTaskEvent("A", "Misi", 1, 0, 1, "d1", new TaskEvent("Erős", +3));
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Misinek nem sikerült az erős feladat (2 vs. 3)!" + Environment.NewLine.ToString() + "A" + Environment.NewLine.ToString() +
                 "Részletek: Misi: 1 AP + 1 DP, erős feladat: 3 P",

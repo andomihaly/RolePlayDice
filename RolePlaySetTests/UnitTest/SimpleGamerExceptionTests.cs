@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RandomDice;
 using RolePlaySet.Core;
-using RolePlaySetTests;
+using RolePlaySetTests.Common;
 
-namespace RolePlaySet.Tests
+namespace RolePlaySetTests.UnitTest
 {
     [TestClass()]
-    public class SimpleGamerTestsExceptions
+    public class SimpleGamerExceptionTests
     {
         private SimpleGamer sg;
 

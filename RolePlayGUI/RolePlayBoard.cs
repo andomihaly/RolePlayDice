@@ -73,7 +73,7 @@ namespace RolePlayGUI
                     {
                         if (isConverttableToInt(opponentPoint.Text))
                         {
-                            rolePlayGamers.AddTurnOpponent(eventDescription.Text, actualName,
+                            rolePlayGamers.AddTurnOpponentEvent(eventDescription.Text, actualName,
                                 Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
                                 Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(),
                                 Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
@@ -81,10 +81,10 @@ namespace RolePlayGUI
                     }
                     else
                     {
-                        EventTask et = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
+                        TaskEvent et = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
                         if (et != null)
                         {
-                            rolePlayGamers.AddTurnTask(eventDescription.Text, actualName,
+                            rolePlayGamers.AddTurnTaskEvent(eventDescription.Text, actualName,
                                     Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
                                     Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), et);
                         }

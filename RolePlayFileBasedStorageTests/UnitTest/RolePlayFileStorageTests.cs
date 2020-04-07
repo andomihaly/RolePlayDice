@@ -2,7 +2,7 @@
 using System.IO;
 using RolePlayEntity;
 
-namespace RolePlayFileBasedStorage.Tests
+namespace RolePlayFileBasedStorageTests.UnitTest
 {
     [TestClass()]
     public class RolePlayFileStorageTests

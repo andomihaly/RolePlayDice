@@ -51,16 +51,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Dice1.cs" />
-    <Compile Include="DiceMinus1.cs" />
-    <Compile Include="FakeDice.cs" />
-    <Compile Include="NewTurnTextBuilderTests.cs" />
+    <Compile Include="PackageTest\Dice1.cs" />
+    <Compile Include="PackageTest\DiceMinus1.cs" />
+    <Compile Include="UnitTest\FakeDice.cs" />
+    <Compile Include="UnitTest\NewTurnTextBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleGamerTestsAddTurnEventTask.cs" />
-    <Compile Include="SimpleGamerTestsAddTurnOpponent.cs" />
-    <Compile Include="SimpleGamerTestsException.cs" />
-    <Compile Include="SimpleGamerTests.cs" />
-    <Compile Include="StubStoreGateway.cs" />
+    <Compile Include="PackageTest\AddTaskEventToStory.cs" />
+    <Compile Include="PackageTest\AddOpponentEventToStory.cs" />
+    <Compile Include="UnitTest\SimpleGamerExceptionTests.cs" />
+    <Compile Include="UnitTest\SimpleGamerTests.cs" />
+    <Compile Include="Common\StubStoreGateway.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RandomDice\RandomDice.csproj">
@@ -75,6 +75,9 @@
       <Project>{f7bd3a2a-b241-479a-8b45-e1720c96b561}</Project>
       <Name>RolePlaySet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SystemTest\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

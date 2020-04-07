@@ -120,14 +120,14 @@ namespace RolePlaySet.Core
             return story.events.ToArray();
         }
 
-        public void AddTurnTask(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, EventTask evenetPoint)
+        public void AddTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskEvent evenetPoint)
         {
             RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
             story.events.Add(new NewTurnHuTextBuilder().GeneratePlayerVSTaskText(actualEventDescription, playerStep, evenetPoint));
             storeGateway.saveGame(story, gameName);
         }
 
-        public void AddTurnOpponent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
+        public void AddTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
         {
             RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
             PlayerStep opponentStep = CreateOpponentPlayer(numberOfDice, diceType, opponentPoint, isOpponentThrowToo);
@@ -216,7 +216,7 @@ namespace RolePlaySet.Core
             return defaultImage;
         }
 
-        public EventTask[] getEventTasks()
+        public TaskEvent[] getEventTasks()
         {
             return EventTaskGenerator.generateEventTasksList().ToArray();
         }
