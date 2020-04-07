@@ -2,10 +2,11 @@
 
 namespace RolePlaySet
 {
-    public interface RolePlayGamers
+    public interface RolePlayGame
     {
         void generateNewGame(string gameName);
         void loadGame(string gameName);
+        string[] getAvailableDiceName();
         EventTask[] getEventTasks();
 
         Player[] getPlayers();

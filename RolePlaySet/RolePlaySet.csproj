@@ -36,10 +36,11 @@
   <ItemGroup>
     <Compile Include="core\EventTaskGenerator.cs" />
     <Compile Include="core\GameNameIsNotValid.cs" />
+    <Compile Include="core\notSupportedDiceType.cs" />
     <Compile Include="TextBuilder\NewTurnHuTextBuilder.cs" />
     <Compile Include="NewTurnTextBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolePlayGamers.cs" />
+    <Compile Include="RolePlayGame.cs" />
     <Compile Include="core\SimpleGamer.cs" />
     <Compile Include="StoreGateway.cs" />
   </ItemGroup>

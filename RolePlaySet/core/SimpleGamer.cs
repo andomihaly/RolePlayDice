@@ -1,29 +1,44 @@
 ﻿using RandomDice;
-using RandomDice.Dices;
 using RolePlayEntity;
 using RolePlaySet.core;
 using System;
+using System.Collections.Generic;
 
 namespace RolePlaySet
 {
-    public class SimpleGamer : RolePlayGamers
+    public class SimpleGamer : RolePlayGame
     {
+        private StoreGateway storeGateway;
+        private Dice[] dices;
+
         private Story story = new Story();
         private Player[] players;
         private string gameName;
         private string defaultImage ="";
-        private StoreGateway storeGateway;
-        private IntervalRandomGenerator intervalRandomGenerator;
+        
 
-        public SimpleGamer(StoreGateway storeGateway, IntervalRandomGenerator intervalRandomGenerator)
+
+        public SimpleGamer(StoreGateway storeGateway, Dice[] dices)
         {
             this.storeGateway = storeGateway;
-            this.intervalRandomGenerator = intervalRandomGenerator;
+            this.dices = dices;
         }
+
         public Player[] getPlayers()
         {
             return players;
         }
+
+        public string[] getAvailableDiceName()
+        {
+            List<string> diceName = new List<string>();
+            foreach(Dice dice in dices)
+            {
+                diceName.Add(dice.getName());
+            }
+            return diceName.ToArray();
+        }
+
 
         public void loadGame(string gameName)
         {
@@ -166,36 +181,34 @@ namespace RolePlaySet
 
         private int genereateSumOfThrowDice(string diceType, int numberOfDice)
         {
-            Dice dice = new Dice0();
-            if (diceType.Equals("d1"))
-            {
-                dice = new Dice1();
-            }
-            if (diceType.Equals("d-1"))
-            {
-                dice = new DiceMinus1();
-            }
-            if (diceType.Equals("dF3"))
-            {
-                dice = new DiceFudge3(intervalRandomGenerator);
-            }
-            if (diceType.Equals("d3"))
-            {
-                dice = new Dice3(intervalRandomGenerator);
-            }
-            if (diceType.Equals("d6"))
-            {
-                dice = new Dice6(intervalRandomGenerator);
-            }
+            Dice actualDice = getActualDice(diceType);
             int sumPoint = 0;
-            int throwDice= 0;
-            while (throwDice<numberOfDice)
+            int throwDice = 0;
+            while (throwDice < numberOfDice)
             {
-                DiceValue dv = dice.throwADice();
+                DiceValue dv = actualDice.throwADice();
                 sumPoint += (int)dv;
                 throwDice++;
             }
             return sumPoint;
+        }
+
+        private Dice getActualDice(string diceType)
+        {
+            Dice actualDice = null;
+            for (int i=0; i < dices.Length; i++)
+            {
+                if (dices[i].getName().Equals(diceType))
+                {
+                    actualDice = dices[i];
+                }
+            }
+            if (actualDice == null)
+            {
+                throw new NotSupportedDiceType(diceType);
+            }
+
+            return actualDice;
         }
 
         public string getDefaultImage()

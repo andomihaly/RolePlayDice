@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RandomDice.RandomGenerator;
+using RandomDice;
 using RolePlaySetTests;
 
 namespace RolePlaySet.Tests
@@ -7,7 +7,14 @@ namespace RolePlaySet.Tests
     [TestClass()]
     public class SimpleGamerTests
     {
-        private SimpleGamer sg = new SimpleGamer(new StubStoreGateway(), new VisualStudioRandomGenerator());
+        private SimpleGamer sg;
+
+        [TestInitialize()]
+        public void setup()
+        {
+            Dice[] dices = { new FakeDice() };
+            sg = new SimpleGamer(new StubStoreGateway(), dices);
+        }
 
         [TestMethod()]
         public void chechValidGameNameTest()

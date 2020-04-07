@@ -1,6 +1,7 @@
 ﻿using RolePlaySet;
 using RolePlayFileBasedStorage;
 using RolePlayGUI;
+using RandomDice.Dices;
 using System;
 using System.Windows.Forms;
 using RandomDice.RandomGenerator;
@@ -15,10 +16,14 @@ namespace ERolePlay
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             StoreGateway storeGateway = new RolePlayFileStorage();
             IntervalRandomGenerator intervalRandomGenerator = new VisualStudioRandomGenerator();
-            RolePlayGamers rolePlayGamers = new SimpleGamer(storeGateway, intervalRandomGenerator);
-            Application.Run(new RolePlayBoard(rolePlayGamers));
+            Dice[] dices = { new DiceFudge3(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
+        
+            RolePlayGame rolePlayGame = new SimpleGamer(storeGateway, dices);
+
+            Application.Run(new RolePlayBoard(rolePlayGame));
         }
     }
 }

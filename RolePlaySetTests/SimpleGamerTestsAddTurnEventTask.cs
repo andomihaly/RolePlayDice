@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RandomDice.RandomGenerator;
+using RandomDice;
 using RolePlayEntity;
 using RolePlaySetTests;
 using System;
@@ -9,7 +9,15 @@ namespace RolePlaySet.Tests
     [TestClass()]
     public class SimpleGamerTestsAddTurnEventTask
     {
-        private SimpleGamer sg = new SimpleGamer(new StubStoreGateway(), new VisualStudioRandomGenerator());
+        private SimpleGamer sg;
+
+        [TestInitialize()]
+        public void setup()
+        {
+            Dice[] dices = { new FakeDice() };
+            sg = new SimpleGamer(new StubStoreGateway(), dices);
+        }
+
         [TestMethod()]
         public void drawGameWithoutThrowTest()
         {

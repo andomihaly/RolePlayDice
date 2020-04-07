@@ -10,10 +10,9 @@ namespace RolePlayGUI
 {
     public partial class RolePlayBoard : Form
     {
-        private RolePlayGamers rolePlayGamers;
+        private RolePlayGame rolePlayGamers;
         private static int ZERO = 0;
         private static int DEFAULT_NUMBER_OF_DICE = 4;
-        private static string[] diceTypes = { "dF3", "d3", "d6" };
         private static string NEW_LINE = Environment.NewLine;
 
         private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
@@ -21,7 +20,7 @@ namespace RolePlayGUI
         private CultureInfo actualCultureInfo;
         private ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
 
-        public RolePlayBoard(RolePlayGamers rolePlayGamers)
+        public RolePlayBoard(RolePlayGame rolePlayGamers)
         {
             InitializeComponent();
             this.rolePlayGamers = rolePlayGamers;

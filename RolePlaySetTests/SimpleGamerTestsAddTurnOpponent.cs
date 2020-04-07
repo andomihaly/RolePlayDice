@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RandomDice.RandomGenerator;
+using RandomDice;
 using RolePlaySetTests;
 using System;
 
@@ -8,7 +8,15 @@ namespace RolePlaySet.Tests
     [TestClass()]
     public class SimpleGamerTestsAddTurnOpponent
     {
-        private SimpleGamer sg = new SimpleGamer(new StubStoreGateway(), new VisualStudioRandomGenerator());
+        private SimpleGamer sg;
+
+        [TestInitialize()]
+        public void setup()
+        {
+            Dice[] dices = { new DiceMinus1(), new Dice1() };
+            sg = new SimpleGamer(new StubStoreGateway(), dices);
+        }
+
         [TestMethod()]
         public void drawGameWithoutThrowTest()
         {
@@ -27,7 +35,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnOpponent(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d3", 5, false);
+            sg.AddTurnOpponent(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Dr. Hosszú Név Nevek", 3, 4, 0, "d1", 5, false);
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Dr. Hosszú Név Nevek nyert (7 vs. 5)!" + Environment.NewLine.ToString() + "Micsoda Csata" + Environment.NewLine.ToString() + " Volt" + Environment.NewLine.ToString() + 
                 "Részletek: Dr. Hosszú Név Nevek: 3 AP + 4 EP ellenfél: 5 AP", 
@@ -63,7 +71,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnOpponent("Macsak mentés", "Béla", -1, 0, 1, "d-1", -2, true);
+            sg.AddTurnOpponent("Macsak mentés", "Béla", -1, 0, 1, "dM1", -2, true);
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Béla nyert (-2 vs. -3)!" + Environment.NewLine.ToString() + "Macsak mentés" + Environment.NewLine.ToString() +
                 "Részletek: Béla: -1 AP + -1 DP ellenfél: -2 AP + -1 DP",
@@ -75,7 +83,7 @@ namespace RolePlaySet.Tests
         {
             sg.loadGame("ValidName");
             Assert.AreEqual(0, sg.getStory().Length);
-            sg.AddTurnOpponent("Macsak mentés", "Béla", -1, -2, 4, "d-1", -2, true);
+            sg.AddTurnOpponent("Macsak mentés", "Béla", -1, -2, 4, "dM1", -2, true);
             Assert.AreEqual(1, sg.getStory().Length);
             Assert.AreEqual("Béla vesztett (-7 vs. -6)!" + Environment.NewLine.ToString() + "Macsak mentés" + Environment.NewLine.ToString() +
                 "Részletek: Béla: -1 AP + -2 EP + -4 DP ellenfél: -2 AP + -4 DP",

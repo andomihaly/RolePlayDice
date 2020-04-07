@@ -4,6 +4,11 @@ namespace RandomDice.Dices
 {
     public class Dice3 : Dice
     {
+        public string getName()
+        {
+            return "d3";
+        }
+
         enum Dice3Value
         {
             PlusOne = DiceValue.PlusOne,
