@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using RolePlayEntity;
+using RolePlayFileBasedStorage;
 
 namespace RolePlayFileBasedStorageTests.UnitTest
 {

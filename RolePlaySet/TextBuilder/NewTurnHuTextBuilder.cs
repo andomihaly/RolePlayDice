@@ -11,7 +11,7 @@ namespace RolePlaySet
         private static string[] vowelsLow = { "e", "é", "i", "í", "ö", "ő", "ü", "ű" };
         private static string[] vowels = { "a", "á", "o", "ó", "u", "ú", "e", "é", "i", "í", "ö", "ő", "ü", "ű" };
 
-        public string GeneratePlayerVSTaskText(string actionDescription, RealPlayerStep player, TaskEvent eventTask)
+        public string GeneratePlayerVSTaskText(string actionDescription, RealPlayerStep player, TaskType eventTask)
         {
             string generatedText = player.playerName +
                 GenerateTaskText(player, eventTask) +
@@ -24,7 +24,7 @@ namespace RolePlaySet
             return generatedText.Trim();
         }
 
-        private string GenerateTaskText(RealPlayerStep player, TaskEvent eventTask)
+        private string GenerateTaskText(RealPlayerStep player, TaskType eventTask)
         {
             if (calculatePlayerScore(player) >= eventTask.point)
             {
@@ -45,7 +45,7 @@ namespace RolePlaySet
         {
             return player.basePoint + player.extraPoint + player.dicePoint;
         }
-        private string generateDetail(RealPlayerStep player, TaskEvent eventTask)
+        private string generateDetail(RealPlayerStep player, TaskType eventTask)
         {
             string details = "Részletek: ";
             details += player.playerName.Equals("") ? "" : player.playerName + ": ";

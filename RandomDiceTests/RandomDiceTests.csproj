@@ -51,11 +51,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Dices\Dice6Tests.cs" />
-    <Compile Include="Dices\Dice3Tests.cs" />
-    <Compile Include="Dices\DiceFudgeTests.cs" />
+    <Compile Include="DicesPackageTest\Dice6Tests.cs" />
+    <Compile Include="DicesPackageTest\Dice3Tests.cs" />
+    <Compile Include="DicesPackageTest\DiceFudgeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomGenerator\VisualStudioRandomGeneratorTests.cs" />
+    <Compile Include="RandomGeneratorUnitTest\VisualStudioRandomGeneratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RandomDice\RandomDice.csproj">

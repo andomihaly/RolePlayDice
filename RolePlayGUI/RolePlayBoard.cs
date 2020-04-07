@@ -81,7 +81,7 @@ namespace RolePlayGUI
                     }
                     else
                     {
-                        TaskEvent et = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
+                        TaskType et = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
                         if (et != null)
                         {
                             rolePlayGamers.AddTurnTaskEvent(eventDescription.Text, actualName,
