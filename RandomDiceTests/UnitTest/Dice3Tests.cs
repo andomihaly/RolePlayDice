@@ -11,7 +11,7 @@ namespace RandomDiceTests.UnitTest
         public void throw1d3Test()
         {
             Dice dice = new Dice3(new FakeRandomGenerator());
-            Assert.AreEqual(DiceValue.PlusOne, dice.throwADice());
+            Assert.AreEqual(DiceValue.PlusOne, dice.rollADice());
         }
     }
 }

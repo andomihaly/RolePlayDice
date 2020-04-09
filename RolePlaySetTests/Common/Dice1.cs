@@ -9,7 +9,7 @@ namespace RolePlaySetTests.Common
             return "d1";
         }
 
-        public DiceValue throwADice()
+        public DiceValue rollADice()
         {
             return DiceValue.PlusOne;
         }

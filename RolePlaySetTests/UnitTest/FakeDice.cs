@@ -9,7 +9,7 @@ namespace RolePlaySetTests.UnitTest
             return "fakeDice";
         }
 
-        public DiceValue throwADice()
+        public DiceValue rollADice()
         {
             return DiceValue.Zero;
         }

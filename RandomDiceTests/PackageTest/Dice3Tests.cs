@@ -14,7 +14,7 @@ namespace RandomDiceTests.PackageTest
             Dice dice = new Dice3(new VisualStudioRandomGenerator());
             for (int i=0; i<100; i++)
             { 
-                int dvalue = (int)dice.throwADice();
+                int dvalue = (int)dice.rollADice();
                 Assert.IsTrue(1 <= dvalue && dvalue <= 3, "value not fit for d3:" + dvalue);
             }
         }

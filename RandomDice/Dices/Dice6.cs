@@ -25,7 +25,7 @@ namespace RandomDice.Dices
             this.randomGenerator = randomGenerator;
         }
 
-        public DiceValue throwADice()
+        public DiceValue rollADice()
         {
             Dice6Value value;
 

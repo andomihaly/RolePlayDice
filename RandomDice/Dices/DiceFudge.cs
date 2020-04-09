@@ -22,7 +22,7 @@ namespace RandomDice.Dices
             this.randomGenerator = randomGenerator;
         }
 
-        public DiceValue throwADice()
+        public DiceValue rollADice()
         {
             DiceFudge3Value value;
 

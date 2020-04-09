@@ -81,7 +81,7 @@ namespace RolePlaySet.Core
             int throwDice = 0;
             while (throwDice < numberOfDice)
             {
-                DiceValue dv = actualDice.throwADice();
+                DiceValue dv = actualDice.rollADice();
                 sumPoint += (int)dv;
                 throwDice++;
             }
