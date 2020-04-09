@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RolePlaySet.Core
 {
-    public class SimpleGamer : RolePlayGame
+    public class RolePlayGameCoordinator : RolePlayGame
     {
         private StoreGateway storeGateway;
         private TurnEventHandler turnHandle;
@@ -17,7 +17,7 @@ namespace RolePlaySet.Core
         private string defaultImage = "";
 
 
-        public SimpleGamer(StoreGateway storeGateway, Dice[] dices)
+        public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices)
         {
             this.storeGateway = storeGateway;
             this.dices = dices;

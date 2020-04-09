@@ -20,7 +20,7 @@ namespace RolePlaySet.Core
         public string generateTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskType evenetPoint)
         {
             RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
-            return new NewTurnHuTextBuilder().GeneratePlayerVSTaskText(actualEventDescription, playerStep, evenetPoint);
+            return turnTextBuilder.GeneratePlayerVSTaskText(actualEventDescription, playerStep, evenetPoint);
         }
 
         public string generateTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
@@ -29,7 +29,7 @@ namespace RolePlaySet.Core
             PlayerStep opponentStep = CreateOpponentPlayer(numberOfDice, diceType, opponentPoint, isOpponentThrowToo);
             TurnResult tr = calculateTurnResult(opponentStep, playerStep);
 
-            return (new NewTurnHuTextBuilder().GeneratePlayerVSOpponentText(actualEventDescription, playerStep, opponentStep, tr));
+            return turnTextBuilder.GeneratePlayerVSOpponentText(actualEventDescription, playerStep, opponentStep, tr);
         }
 
         private static TurnResult calculateTurnResult(PlayerStep opponentStep, RealPlayerStep playerStep)

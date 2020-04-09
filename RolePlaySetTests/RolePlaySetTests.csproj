@@ -51,13 +51,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="PackageTest\Dice1.cs" />
-    <Compile Include="PackageTest\DiceMinus1.cs" />
+    <Compile Include="UnitTest\TurnEventHandlerTests.cs" />
+    <Compile Include="Common\Dice1.cs" />
+    <Compile Include="SystemTest\DiceMinus1.cs" />
     <Compile Include="UnitTest\FakeDice.cs" />
+    <Compile Include="UnitTest\FakeTextBuilder.cs" />
     <Compile Include="UnitTest\NewTurnTextBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PackageTest\TurnEventHandlerTaskEvent.cs" />
-    <Compile Include="PackageTest\TurnEventHandlerOpponentEvent.cs" />
+    <Compile Include="SystemTest\GameCoordinatorTaskEvent.cs" />
+    <Compile Include="SystemTest\TurnEventHandlerOpponentEvent.cs" />
     <Compile Include="UnitTest\SimpleGamerExceptionTests.cs" />
     <Compile Include="UnitTest\SimpleGamerTests.cs" />
     <Compile Include="UnitTest\StubStoreGateway.cs" />
@@ -71,14 +73,16 @@
       <Project>{72d2e8dd-85fc-4325-8bfa-37a70e3abd1c}</Project>
       <Name>RolePlayEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RolePlayFileBasedStorage\RolePlayFileBasedStorage.csproj">
+      <Project>{9D5F2804-64B4-40AE-B565-0796B1463307}</Project>
+      <Name>RolePlayFileBasedStorage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RolePlaySet\RolePlaySet.csproj">
       <Project>{f7bd3a2a-b241-479a-8b45-e1720c96b561}</Project>
       <Name>RolePlaySet</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SystemTest\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

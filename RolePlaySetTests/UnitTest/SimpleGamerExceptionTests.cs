@@ -7,13 +7,13 @@ namespace RolePlaySetTests.UnitTest
     [TestClass()]
     public class SimpleGamerExceptionTests
     {
-        private SimpleGamer sg;
+        private RolePlayGameCoordinator sg;
 
         [TestInitialize()]
         public void setup()
         {
             Dice[] dices = { new FakeDice() };
-            sg = new SimpleGamer(new StubStoreGateway(), dices);
+            sg = new RolePlayGameCoordinator(new StubStoreGateway(), dices);
         }
 
         [ExpectedException(typeof(GameNameIsNotValid))]

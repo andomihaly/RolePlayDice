@@ -22,7 +22,7 @@ namespace ERolePlay
             IntervalRandomGenerator intervalRandomGenerator = new VisualStudioRandomGenerator();
             Dice[] dices = { new DiceFudge(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
         
-            RolePlayGame rolePlayGame = new SimpleGamer(storeGateway, dices);
+            RolePlayGame rolePlayGame = new RolePlayGameCoordinator(storeGateway, dices);
 
             Application.Run(new RolePlayBoard(rolePlayGame));
         }

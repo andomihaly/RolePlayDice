@@ -2,10 +2,10 @@
 using RandomDice;
 using RolePlaySet;
 using RolePlaySet.Core;
-using RolePlaySetTests.UnitTest;
+using RolePlaySetTests.Common;
 using System;
 
-namespace RolePlaySetTests
+namespace RolePlaySetTests.SystemTest
 {
     [TestClass()]
     public class TurnEventHandlerOpponentEvent

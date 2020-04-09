@@ -1,17 +1,17 @@
 ﻿using RandomDice;
 
-namespace RolePlaySetTests
+namespace RolePlaySetTests.SystemTest
 {
-    public class Dice1 : Dice
+    public class DiceMinus1 : Dice
     {
         public string getName()
         {
-            return "d1";
+            return "dM1";
         }
 
         public DiceValue throwADice()
         {
-            return DiceValue.PlusOne;
+            return DiceValue.MinusOne;
         }
     }
 }
