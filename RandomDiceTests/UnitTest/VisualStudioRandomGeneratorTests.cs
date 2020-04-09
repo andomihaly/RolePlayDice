@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RandomDice;
+using RandomDice.RandomGenerator;
 
-namespace RandomDice.RandomGenerator.Tests
+namespace RandomDiceTests.UnitTest
 {
     [TestClass()]
     public class VisualStudioRandomGeneratorTests
