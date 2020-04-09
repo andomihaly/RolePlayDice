@@ -3,7 +3,6 @@ using RolePlayEntity;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Drawing;
 using System.Text;
 
@@ -30,7 +29,7 @@ namespace RolePlayFileBasedStorage
 
         public void createNewGame(string gameName)
         {
-            checkGameName(gameName);
+            checkNewGameName(gameName);
             this.gameName = gameName;
             generateGameStructure();
         }
@@ -115,7 +114,17 @@ namespace RolePlayFileBasedStorage
             }
         }
 
+
         private void checkGameName(string gameName)
+        {
+            checkNewGameName(gameName);
+            if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\" + gameName))
+            {
+                throw new GameNameIsNotValid(gameName);
+            }
+        }
+
+        private void checkNewGameName(string gameName)
         {
             if (gameName == null)
             {
@@ -144,15 +153,6 @@ namespace RolePlayFileBasedStorage
             }
         }
 
-        private void storeImages()
-        {
-            ImageConverter converter = new ImageConverter();
-            if (!File.Exists(path + "\\" + DEFAULT_IMAGE))
-                File.WriteAllBytes(path + "\\" + DEFAULT_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.defaultImage, typeof(byte[])));
-            if (!File.Exists(path + "\\" + ACTOR_IMAGE))
-                File.WriteAllBytes(path + "\\" + ACTOR_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.actor, typeof(byte[])));
-        }
-
         private string generatePath()
         {
             return Directory.GetCurrentDirectory() + "\\" + gameName;
@@ -165,6 +165,7 @@ namespace RolePlayFileBasedStorage
                 Directory.CreateDirectory(path);
             }
         }
+
         private void createPlayerExample()
         {
             String playerFile = path + "\\" + PLAYER_FILE_NAME;
@@ -196,6 +197,15 @@ namespace RolePlayFileBasedStorage
             {
                 File.CreateText(storyFile).Close();
             }
+        }
+
+        private void storeImages()
+        {
+            ImageConverter converter = new ImageConverter();
+            if (!File.Exists(path + "\\" + DEFAULT_IMAGE))
+                File.WriteAllBytes(path + "\\" + DEFAULT_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.defaultImage, typeof(byte[])));
+            if (!File.Exists(path + "\\" + ACTOR_IMAGE))
+                File.WriteAllBytes(path + "\\" + ACTOR_IMAGE, (byte[])converter.ConvertTo(RolePlayFileBasedStorage.Properties.Resources.actor, typeof(byte[])));
         }
 
         private Player[] loadPlayersFromFile()
