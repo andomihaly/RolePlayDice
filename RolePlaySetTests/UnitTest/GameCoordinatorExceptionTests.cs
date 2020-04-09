@@ -5,7 +5,7 @@ using RolePlaySet.Core;
 namespace RolePlaySetTests.UnitTest
 {
     [TestClass()]
-    public class SimpleGamerExceptionTests
+    public class GameCoordinatorExceptionTests
     {
         private RolePlayGameCoordinator sg;
 

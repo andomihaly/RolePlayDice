@@ -5,7 +5,7 @@ using RolePlaySet.Core;
 namespace RolePlaySetTests.UnitTest
 {
     [TestClass()]
-    public class SimpleGamerTests
+    public class GameCoordinatorTests
     {
         private RolePlayGameCoordinator sg;
 
@@ -68,10 +68,11 @@ namespace RolePlaySetTests.UnitTest
         }
 
         [TestMethod()]
-        public void generateNewValidGameNameTest()
+        public void diceNameListTest()
         {
-            sg.generateNewGame("ValidName");
-            sg.generateNewGame("*");
+            Assert.AreEqual(1, sg.getAvailableDiceName().Length);
+            Assert.AreEqual("fakeDice", sg.getAvailableDiceName()[0]);
+            
         }
     }
 }
