@@ -78,26 +78,33 @@ namespace RolePlayGUI
 
 
 
-        private void reloadSkillList(Player selectedPlayer)
+        private void reloadSkillList(string[,] skills)
         {
             playerSkillComboBox.SelectedItem = null;
             playerSkillComboBox.Items.Clear();
-            foreach (Skill skill in selectedPlayer.skills)
+            for (int i=0; i< skills.Length/2; i++)
             {
-                playerSkillComboBox.Items.Add(skill.name);
+                playerSkillComboBox.Items.Add(skills[i,0]);
             }
             playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
         }
 
-        private void reloadImage(Player selectedPlayer)
+        private void reloadImage(string playerName)
         {
-            if (!selectedPlayer.image.Equals(""))
+            string[,] players = rolePlayGamers.getPlayers();
+            for (int i = 0; i < players.Length / 2; i++)
             {
-                playerPicture.Image = Image.FromFile(selectedPlayer.image);
-            }
-            else
-            {
-                reloadDefaultImage();
+                if (players[i, 0].Equals(playerName))
+                {
+                    if (!players[i, 1].Equals(""))
+                    {
+                        playerPicture.Image = Image.FromFile(players[i, 1]);
+                    }
+                    else
+                    {
+                        reloadDefaultImage();
+                    }
+                }
             }
         }
         private void reloadDefaultImage()

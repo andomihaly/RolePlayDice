@@ -93,19 +93,27 @@ namespace RolePlaySet.Core
         }
 
 
-        public Player getPlayerByName(string playerName)
+        public string [,] getPlayerSkillsByPlayerName(string playerName)
         {
-            if (!(players == null))
+            if (players != null)
             {
                 foreach (Player onePlayer in players)
                 {
                     if (onePlayer.name.Equals(playerName))
                     {
-                        return onePlayer;
+                        string[,] skillBoundery = new string[onePlayer.skills.Count, 2];
+                        int i = 0;
+                        foreach(Skill skill in onePlayer.skills)
+                        {
+                            skillBoundery[i, 0] = skill.name;
+                            skillBoundery[i, 1] = skill.score.ToString();
+                            i++;
+                        }
+                        return skillBoundery;
                     }
                 }
             }
-            return null;
+            return new string[0,0];
         }
 
         public void addTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, string taskName)

@@ -15,7 +15,7 @@ namespace RolePlaySet
         string[] getStory();
         string getDefaultImage();
 
-        Player getPlayerByName(string playerName);
+        string[,] getPlayerSkillsByPlayerName(string playerName);
         void addTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo);
         void addTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, string taskName);
     }

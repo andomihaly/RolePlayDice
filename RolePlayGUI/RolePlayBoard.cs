@@ -138,19 +138,13 @@ namespace RolePlayGUI
             }
             else if (!playersComboBox.SelectedItem.ToString().Equals(""))
             {
-                Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
-                if (selectedPlayer == null)
-                {
-                    createNotificationFormFauilt(rm.GetString("errorNotFound", actualCultureInfo) +
-                                                    playersComboBox.SelectedItem +
-                                                    rm.GetString("errorNotFoundPlayer", actualCultureInfo));
-                }
-                else
-                {
-                    reloadSkillList(selectedPlayer);
-                    reloadImage(selectedPlayer);
+                string[,] playersSkills = rolePlayGamers.getPlayerSkillsByPlayerName(playersComboBox.SelectedItem.ToString());
+                if (playersSkills.Length != 0)
+                { 
+                    reloadSkillList(playersSkills);
                     playerBasedPoint.Text = ZERO.ToString();
                 }
+                reloadImage(playersComboBox.SelectedItem.ToString());
             }
         }
 
@@ -162,14 +156,14 @@ namespace RolePlayGUI
         private void setThePlayerBasedPoint()
         {
             playerBasedPoint.Text = ZERO.ToString();
-            Player selectedPlayer = rolePlayGamers.getPlayerByName(playersComboBox.SelectedItem.ToString());
-            if (selectedPlayer != null && playerSkillComboBox.SelectedItem != null)
+            string [,] playersSkills = rolePlayGamers.getPlayerSkillsByPlayerName(playersComboBox.SelectedItem.ToString());
+            if (playersSkills.Length != 0 && playerSkillComboBox.SelectedItem != null)
             {
-                for (int i = 0; i < selectedPlayer.skills.Count; i++)
+                for (int i = 0; i < playersSkills.Length/2; i++)
                 {
-                    if (playerSkillComboBox.SelectedItem.ToString().Equals(selectedPlayer.skills[i].name))
+                    if (playerSkillComboBox.SelectedItem.ToString().Equals(playersSkills[i,0]))
                     {
-                        playerBasedPoint.Text = selectedPlayer.skills[i].score.ToString();
+                        playerBasedPoint.Text = playersSkills[i,1];
                     }
                 }
             }
