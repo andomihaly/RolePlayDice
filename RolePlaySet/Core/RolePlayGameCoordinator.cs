@@ -42,9 +42,17 @@ namespace RolePlaySet.Core
             return diceName.ToArray();
         }
 
-        public TaskType[] getTaskTypeList()
+        public string [,] getTaskTypeList()
         {
-            return EventTaskGenerator.generateEventTasksList().ToArray();
+            string [,] taskTypeBoundery = new string[EventTaskGenerator.generateEventTasksList().Count,2];
+            int i = 0;
+            foreach(TaskType tt in EventTaskGenerator.generateEventTasksList())
+            {
+                taskTypeBoundery[i,0] = tt.name;
+                taskTypeBoundery[i,1] = tt.point.ToString();
+                i++;
+            }
+            return taskTypeBoundery;
         }
 
 
@@ -88,10 +96,27 @@ namespace RolePlaySet.Core
             return null;
         }
 
-        public void addTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskType evenetPoint)
+        public void addTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, string taskName)
         {
-            story.events.Add(turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, evenetPoint));
+            TaskType taskType = findTaskTypeByName(taskName);
+            if (taskType == null)
+            {
+                throw new InvalidTaskTypeException(taskName);
+            }
+            story.events.Add(turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, taskType));
             storeGateway.saveGame(story, gameName);
+        }
+
+        private TaskType findTaskTypeByName(string taskName)
+        {
+            foreach(TaskType tt in EventTaskGenerator.generateEventTasksList())
+            {
+                if (tt.name.Equals(taskName))
+                {
+                    return tt;
+                }
+            }
+            return null;
         }
 
         public void addTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)

@@ -33,11 +33,11 @@ namespace RolePlaySetTests.SystemTest
         public void drawGameWithoutThrowTest()
         {
             Assert.AreEqual(0, rolePlayGameCoordinator.getStory().Length);
-            rolePlayGameCoordinator.addTurnTaskEvent("", "", 0, 0, 0, "d3", new TaskType("Szuper",+1));
+            rolePlayGameCoordinator.addTurnTaskEvent("", "", 0, 0, 0, "d3", "Szuper");
 
             Assert.AreEqual(1, rolePlayGameCoordinator.getStory().Length);
-            Assert.AreEqual("Játékosnak nem sikerült a szuper feladat (0 vs. 1)!" + Environment.NewLine.ToString() +
-                "Részletek: Játékos: 0 AP, szuper feladat: 1 P",
+            Assert.AreEqual("Játékosnak nem sikerült a szuper feladat (0 vs. 5)!" + Environment.NewLine.ToString() +
+                "Részletek: Játékos: 0 AP, szuper feladat: 5 P",
                 rolePlayGameCoordinator.getStory()[0]);
         }
         
@@ -45,7 +45,7 @@ namespace RolePlaySetTests.SystemTest
         public void complexGameWithoutThrowTest()
         {
             Assert.AreEqual(0, rolePlayGameCoordinator.getStory().Length);
-            rolePlayGameCoordinator.addTurnTaskEvent(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Doki", 3, 4, 0, "d1", new TaskType("Szuper", +5));
+            rolePlayGameCoordinator.addTurnTaskEvent(("Micsoda Csata" + Environment.NewLine.ToString() + " Volt"), "Doki", 3, 4, 0, "d1", "Szuper");
             Assert.AreEqual(1, rolePlayGameCoordinator.getStory().Length);
             Assert.AreEqual("Doki sikeresen elvégezte a szuper feladatot (7 vs. 5)!" + Environment.NewLine.ToString() + 
                 "Micsoda Csata" + Environment.NewLine.ToString() + " Volt" + Environment.NewLine.ToString() +
@@ -57,7 +57,7 @@ namespace RolePlaySetTests.SystemTest
         public void simpleGameWithOneThrowTest()
         {
             Assert.AreEqual(0, rolePlayGameCoordinator.getStory().Length);
-            rolePlayGameCoordinator.addTurnTaskEvent("Ásás", "Béla", 0, 0, 1, "d1", new TaskType("Átlagos", +1));
+            rolePlayGameCoordinator.addTurnTaskEvent("Ásás", "Béla", 0, 0, 1, "d1", "Átlagos");
             Assert.AreEqual(1, rolePlayGameCoordinator.getStory().Length);
             Assert.AreEqual("Béla sikeresen elvégezte az átlagos feladatot (1 vs. 1)!" + Environment.NewLine.ToString() + 
                 "Ásás" + Environment.NewLine.ToString() +
@@ -69,7 +69,7 @@ namespace RolePlaySetTests.SystemTest
         public void simpleGameWithMinusDiceThrowTest()
         {
             Assert.AreEqual(0, rolePlayGameCoordinator.getStory().Length);
-            rolePlayGameCoordinator.addTurnTaskEvent("Ásás", "Béla", 0, 0, 4, "dM1", new TaskType("Átlagos", +1));
+            rolePlayGameCoordinator.addTurnTaskEvent("Ásás", "Béla", 0, 0, 4, "dM1", "Átlagos");
             Assert.AreEqual(1, rolePlayGameCoordinator.getStory().Length);
             Assert.AreEqual("Bélanak nem sikerült az átlagos feladat (-4 vs. 1)!" + Environment.NewLine.ToString() +
                 "Ásás" + Environment.NewLine.ToString() +

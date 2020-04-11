@@ -17,10 +17,10 @@ namespace RolePlaySet.Core
 
         }
 
-        public string generateTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskType evenetPoint)
+        public string generateTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskType taskName)
         {
             RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
-            return turnTextBuilder.GeneratePlayerVSTaskText(actualEventDescription, playerStep, evenetPoint);
+            return turnTextBuilder.GeneratePlayerVSTaskText(actualEventDescription, playerStep, taskName);
         }
 
         public string generateTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)

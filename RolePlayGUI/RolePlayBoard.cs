@@ -81,12 +81,12 @@ namespace RolePlayGUI
                     }
                     else
                     {
-                        TaskType et = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
-                        if (et != null)
+                        String taskName = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
+                        if (taskName != null)
                         {
                             rolePlayGamers.addTurnTaskEvent(eventDescription.Text, actualName,
                                     Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
-                                    Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), et);
+                                    Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), taskName);
                         }
 
                     }

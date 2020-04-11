@@ -9,21 +9,21 @@ namespace RolePlayGUI
         private void loadAndFillEventTasks()
         {
             ladderComboBox.Items.Clear();
-            TaskType[] eventTasks = rolePlayGamers.getTaskTypeList();
-            foreach(TaskType et in eventTasks)
+            String[,] eventTasks = rolePlayGamers.getTaskTypeList();
+            for(int i=0; i<eventTasks.Length; i++)
             {
-                ladderComboBox.Items.Add(et.name);
+                ladderComboBox.Items.Add(eventTasks[i,0]);
             }
             ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
         }
 
-        private TaskType findEventTaskBasedOnEventTaskName(string eventTaskName)
+        private string findEventTaskBasedOnEventTaskName(string eventTaskName)
         {
-            TaskType[] eventTasks = rolePlayGamers.getTaskTypeList();
-            foreach (TaskType et in eventTasks)
+            String[,] eventTasks = rolePlayGamers.getTaskTypeList();
+            for (int i = 0; i < eventTasks.Length; i++)
             {
-                if (et.name.Equals(eventTaskName))
-                    return et;
+                if (eventTasks[i, 0].Equals(eventTaskName))
+                    return eventTasks[i, 0];
             }
             return null;
         }
