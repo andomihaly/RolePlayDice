@@ -20,10 +20,10 @@ namespace RolePlaySetTests.UnitTest
         public void chechValidGameNameTest()
         {
             sg.loadGame("ValidName");
-            Assert.AreEqual(null, sg.getPlayers());
+            Assert.AreEqual(0, sg.getPlayers().Length);
             Assert.AreEqual(0, sg.getStory().Length);
             sg.loadGame("*");
-            Assert.AreEqual(null, sg.getPlayers());
+            Assert.AreEqual(0, sg.getPlayers().Length);
             Assert.AreEqual(0, sg.getStory().Length);
         }
 
@@ -31,7 +31,7 @@ namespace RolePlaySetTests.UnitTest
         public void loadNotExistsGameNameTest()
         {
             sg.loadGame("InvalidGame");
-            Assert.AreEqual(null, sg.getPlayers());
+            Assert.AreEqual(0, sg.getPlayers().Length);
             Assert.AreEqual(0, sg.getStory().Length);
         }
 
@@ -39,7 +39,7 @@ namespace RolePlaySetTests.UnitTest
         public void loadValidGameTest()
         {
             sg.loadGame("ValidGame");
-            Assert.AreEqual(2, sg.getPlayers().Length);
+            Assert.AreEqual(4, sg.getPlayers().Length);
             Assert.AreEqual(3, sg.getStory().Length);
         }
 

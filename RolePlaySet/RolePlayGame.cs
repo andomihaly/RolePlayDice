@@ -11,7 +11,7 @@ namespace RolePlaySet
 
         void loadGame(string gameName);
 
-        Player[] getPlayers();
+        string[,] getPlayers();
         string[] getStory();
         string getDefaultImage();
 

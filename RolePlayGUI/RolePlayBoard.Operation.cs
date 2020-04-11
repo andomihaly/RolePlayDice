@@ -10,7 +10,7 @@ namespace RolePlayGUI
         {
             ladderComboBox.Items.Clear();
             String[,] eventTasks = rolePlayGamers.getTaskTypeList();
-            for(int i=0; i<eventTasks.Length; i++)
+            for(int i=0; i<eventTasks.Length/2; i++)
             {
                 ladderComboBox.Items.Add(eventTasks[i,0]);
             }
@@ -20,7 +20,7 @@ namespace RolePlayGUI
         private string findEventTaskBasedOnEventTaskName(string eventTaskName)
         {
             String[,] eventTasks = rolePlayGamers.getTaskTypeList();
-            for (int i = 0; i < eventTasks.Length; i++)
+            for (int i = 0; i < eventTasks.Length/2; i++)
             {
                 if (eventTasks[i, 0].Equals(eventTaskName))
                     return eventTasks[i, 0];
@@ -42,9 +42,10 @@ namespace RolePlayGUI
             notSavedGameLabel.Visible = false;
             if (rolePlayGamers.getPlayers() != null)
             {
-                foreach (Player OnePlayerName in rolePlayGamers.getPlayers())
+                string[,] players = rolePlayGamers.getPlayers();
+                for(int i=0; i<players.Length/2; i++)
                 {
-                    playersComboBox.Items.Add(OnePlayerName.name);
+                    playersComboBox.Items.Add(players[i,0]);
                 }
                 playersComboBox.Items.Add("-");
             }

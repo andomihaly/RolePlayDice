@@ -65,9 +65,21 @@ namespace RolePlaySet.Core
             loadStory(gameName);
         }
 
-        public Player[] getPlayers()
+        public string [,] getPlayers()
         {
-            return players;
+            if (players != null)
+            {
+                string[,] playersBoundery = new string[players.Length, 2];
+                int i = 0;
+                foreach (Player player in players)
+                {
+                    playersBoundery[i, 0] = player.name;
+                    playersBoundery[i, 1] = player.image;
+                    i++;
+                }
+                return playersBoundery;
+            }
+            return new string[0,0];
         }
 
         public string[] getStory()
