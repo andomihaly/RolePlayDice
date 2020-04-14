@@ -43,17 +43,16 @@ namespace RolePlaySetTests.UnitTest
             Assert.AreEqual(3, gameCoordinator.getStory().Length);
         }
 
-        [Ignore]
         [TestMethod()]
-        public void getPlayerByValidNameTest()
+        public void getPlayerSkillByValidNameTest()
         {
             gameCoordinator.loadGame("ValidGame");
             string playerName = gameCoordinator.getPlayers()[0,0];
-            Assert.AreEqual(1, gameCoordinator.getPlayerSkillsByPlayerName(playerName).Length);
+            Assert.AreEqual(1, gameCoordinator.getPlayerSkillsByPlayerName(playerName).Length/2);
         }
 
         [TestMethod()]
-        public void getPlayerByInValidNameTest()
+        public void getPlayerSkillByValidGameNameAndNoPlayerTest()
         {
             gameCoordinator.loadGame("ValidGame");
             string invalidPlayerName = "Null Player";
@@ -61,12 +60,13 @@ namespace RolePlaySetTests.UnitTest
         }
 
         [TestMethod()]
-        public void getPlayerByInValidNameWithourPlayersTest()
+        public void getPlayerSkillByInvalidNameAndNoPlayersTest()
         {
             gameCoordinator.loadGame("InValidGame");
             string invalidPlayerName = "Null Player";
             Assert.AreEqual(0,gameCoordinator.getPlayerSkillsByPlayerName(invalidPlayerName).Length);
         }
+
 
         [TestMethod()]
         public void diceNameListTest()
@@ -74,6 +74,17 @@ namespace RolePlaySetTests.UnitTest
             Assert.AreEqual(1, gameCoordinator.getAvailableDiceName().Length);
             Assert.AreEqual("fakeDice", gameCoordinator.getAvailableDiceName()[0]);
             
+        }
+
+        [TestMethod()]
+        public void addNarration()
+        {
+            gameCoordinator.loadGame("ValidGame");
+            string narration = "AM";
+            Assert.AreEqual(3, gameCoordinator.getStory().Length);
+            gameCoordinator.addNarration(narration);
+            Assert.AreEqual(4, gameCoordinator.getStory().Length);
+            Assert.AreEqual(narration, gameCoordinator.getStory()[gameCoordinator.getStory().Length-1]);
         }
     }
 }

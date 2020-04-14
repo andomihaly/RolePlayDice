@@ -171,6 +171,9 @@
   <data name="loadGame" xml:space="preserve">
     <value>Load game</value>
   </data>
+  <data name="narration" xml:space="preserve">
+    <value>Add narration</value>
+  </data>
   <data name="opponent" xml:space="preserve">
     <value>opponent</value>
   </data>

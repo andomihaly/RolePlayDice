@@ -137,6 +137,7 @@ namespace RolePlayGUI
         private void loadLanguageTexts()
         {
             this.Text = rm.GetString("rolePlayBoard", actualCultureInfo);
+            narrationButton.Text = rm.GetString("narration", actualCultureInfo);
             actualEvent.Text = rm.GetString("actualEvent", actualCultureInfo);
             diceLabel.Text = rm.GetString("diceInstruction", actualCultureInfo);
             throwDice.Text = rm.GetString("throwDice", actualCultureInfo);

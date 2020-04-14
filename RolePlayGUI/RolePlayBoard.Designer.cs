@@ -62,6 +62,7 @@
             this.opponentRadioButton = new System.Windows.Forms.RadioButton();
             this.ladderRadioButton = new System.Windows.Forms.RadioButton();
             this.ladderComboBox = new System.Windows.Forms.ComboBox();
+            this.narrationButton = new System.Windows.Forms.Button();
             this.languageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.opponentGroupBox.SuspendLayout();
@@ -73,7 +74,7 @@
             this.playersComboBox.DropDownWidth = 120;
             this.playersComboBox.FormattingEnabled = true;
             this.playersComboBox.IntegralHeight = false;
-            this.playersComboBox.Location = new System.Drawing.Point(10, 85);
+            this.playersComboBox.Location = new System.Drawing.Point(10, 130);
             this.playersComboBox.Name = "playersComboBox";
             this.playersComboBox.Size = new System.Drawing.Size(121, 21);
             this.playersComboBox.TabIndex = 15;
@@ -82,7 +83,7 @@
             // 
             // playerBasedPoint
             // 
-            this.playerBasedPoint.Location = new System.Drawing.Point(205, 85);
+            this.playerBasedPoint.Location = new System.Drawing.Point(205, 130);
             this.playerBasedPoint.Name = "playerBasedPoint";
             this.playerBasedPoint.Size = new System.Drawing.Size(100, 20);
             this.playerBasedPoint.TabIndex = 25;
@@ -94,7 +95,7 @@
             this.playerSkillComboBox.DropDownWidth = 120;
             this.playerSkillComboBox.FormattingEnabled = true;
             this.playerSkillComboBox.IntegralHeight = false;
-            this.playerSkillComboBox.Location = new System.Drawing.Point(10, 125);
+            this.playerSkillComboBox.Location = new System.Drawing.Point(10, 170);
             this.playerSkillComboBox.Name = "playerSkillComboBox";
             this.playerSkillComboBox.Size = new System.Drawing.Size(121, 21);
             this.playerSkillComboBox.TabIndex = 20;
@@ -102,7 +103,7 @@
             // 
             // playerExtraPoint
             // 
-            this.playerExtraPoint.Location = new System.Drawing.Point(205, 125);
+            this.playerExtraPoint.Location = new System.Drawing.Point(205, 170);
             this.playerExtraPoint.Name = "playerExtraPoint";
             this.playerExtraPoint.Size = new System.Drawing.Size(100, 20);
             this.playerExtraPoint.TabIndex = 30;
@@ -111,7 +112,7 @@
             // vsLabel
             // 
             this.vsLabel.AutoSize = true;
-            this.vsLabel.Location = new System.Drawing.Point(387, 110);
+            this.vsLabel.Location = new System.Drawing.Point(387, 163);
             this.vsLabel.Name = "vsLabel";
             this.vsLabel.Size = new System.Drawing.Size(13, 13);
             this.vsLabel.TabIndex = 4;
@@ -121,14 +122,14 @@
             // diceType
             // 
             this.diceType.FormattingEnabled = true;
-            this.diceType.Location = new System.Drawing.Point(490, 50);
+            this.diceType.Location = new System.Drawing.Point(480, 100);
             this.diceType.Name = "diceType";
             this.diceType.Size = new System.Drawing.Size(71, 21);
             this.diceType.TabIndex = 40;
             // 
             // opponentPoint
             // 
-            this.opponentPoint.Location = new System.Drawing.Point(430, 109);
+            this.opponentPoint.Location = new System.Drawing.Point(430, 162);
             this.opponentPoint.Name = "opponentPoint";
             this.opponentPoint.Size = new System.Drawing.Size(110, 20);
             this.opponentPoint.TabIndex = 45;
@@ -145,7 +146,7 @@
             // historyLabel
             // 
             this.historyLabel.AutoSize = true;
-            this.historyLabel.Location = new System.Drawing.Point(10, 150);
+            this.historyLabel.Location = new System.Drawing.Point(10, 205);
             this.historyLabel.Name = "historyLabel";
             this.historyLabel.Size = new System.Drawing.Size(10, 13);
             this.historyLabel.TabIndex = 8;
@@ -154,11 +155,11 @@
             // storyBox
             // 
             this.storyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.storyBox.Location = new System.Drawing.Point(10, 170);
+            this.storyBox.Location = new System.Drawing.Point(10, 225);
             this.storyBox.Multiline = true;
             this.storyBox.Name = "storyBox";
             this.storyBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.storyBox.Size = new System.Drawing.Size(670, 218);
+            this.storyBox.Size = new System.Drawing.Size(670, 222);
             this.storyBox.TabIndex = 600;
             this.storyBox.TabStop = false;
             // 
@@ -173,7 +174,7 @@
             // 
             // rolePlayGameName
             // 
-            this.rolePlayGameName.Location = new System.Drawing.Point(10, 411);
+            this.rolePlayGameName.Location = new System.Drawing.Point(10, 469);
             this.rolePlayGameName.Name = "rolePlayGameName";
             this.rolePlayGameName.Size = new System.Drawing.Size(100, 20);
             this.rolePlayGameName.TabIndex = 600;
@@ -181,7 +182,7 @@
             // 
             // newGameName
             // 
-            this.newGameName.Location = new System.Drawing.Point(410, 411);
+            this.newGameName.Location = new System.Drawing.Point(410, 469);
             this.newGameName.Name = "newGameName";
             this.newGameName.Size = new System.Drawing.Size(100, 20);
             this.newGameName.TabIndex = 600;
@@ -190,7 +191,7 @@
             // basePontLabel
             // 
             this.basePontLabel.AutoSize = true;
-            this.basePontLabel.Location = new System.Drawing.Point(140, 88);
+            this.basePontLabel.Location = new System.Drawing.Point(140, 133);
             this.basePontLabel.Name = "basePontLabel";
             this.basePontLabel.Size = new System.Drawing.Size(19, 13);
             this.basePontLabel.TabIndex = 15;
@@ -199,7 +200,7 @@
             // extraPointLabel
             // 
             this.extraPointLabel.AutoSize = true;
-            this.extraPointLabel.Location = new System.Drawing.Point(140, 128);
+            this.extraPointLabel.Location = new System.Drawing.Point(140, 173);
             this.extraPointLabel.Name = "extraPointLabel";
             this.extraPointLabel.Size = new System.Drawing.Size(19, 13);
             this.extraPointLabel.TabIndex = 16;
@@ -208,7 +209,7 @@
             // opponentPointLabel
             // 
             this.opponentPointLabel.AutoSize = true;
-            this.opponentPointLabel.Location = new System.Drawing.Point(430, 88);
+            this.opponentPointLabel.Location = new System.Drawing.Point(430, 141);
             this.opponentPointLabel.Name = "opponentPointLabel";
             this.opponentPointLabel.Size = new System.Drawing.Size(19, 13);
             this.opponentPointLabel.TabIndex = 17;
@@ -217,7 +218,7 @@
             // sumPointLabel
             // 
             this.sumPointLabel.AutoSize = true;
-            this.sumPointLabel.Location = new System.Drawing.Point(330, 88);
+            this.sumPointLabel.Location = new System.Drawing.Point(330, 141);
             this.sumPointLabel.Name = "sumPointLabel";
             this.sumPointLabel.Size = new System.Drawing.Size(18, 13);
             this.sumPointLabel.TabIndex = 18;
@@ -226,7 +227,7 @@
             // sumPlayerPoint
             // 
             this.sumPlayerPoint.AutoSize = true;
-            this.sumPlayerPoint.Location = new System.Drawing.Point(340, 110);
+            this.sumPlayerPoint.Location = new System.Drawing.Point(340, 163);
             this.sumPlayerPoint.Name = "sumPlayerPoint";
             this.sumPlayerPoint.Size = new System.Drawing.Size(13, 13);
             this.sumPlayerPoint.TabIndex = 19;
@@ -234,7 +235,7 @@
             // 
             // numberOfDice
             // 
-            this.numberOfDice.Location = new System.Drawing.Point(430, 50);
+            this.numberOfDice.Location = new System.Drawing.Point(420, 100);
             this.numberOfDice.Name = "numberOfDice";
             this.numberOfDice.Size = new System.Drawing.Size(49, 20);
             this.numberOfDice.TabIndex = 35;
@@ -243,7 +244,7 @@
             // diceLabel
             // 
             this.diceLabel.AutoSize = true;
-            this.diceLabel.Location = new System.Drawing.Point(430, 30);
+            this.diceLabel.Location = new System.Drawing.Point(284, 100);
             this.diceLabel.Name = "diceLabel";
             this.diceLabel.Size = new System.Drawing.Size(29, 13);
             this.diceLabel.TabIndex = 22;
@@ -252,7 +253,7 @@
             // opponenetThrowDiceToo
             // 
             this.opponenetThrowDiceToo.AutoSize = true;
-            this.opponenetThrowDiceToo.Location = new System.Drawing.Point(430, 140);
+            this.opponenetThrowDiceToo.Location = new System.Drawing.Point(430, 193);
             this.opponenetThrowDiceToo.Name = "opponenetThrowDiceToo";
             this.opponenetThrowDiceToo.Size = new System.Drawing.Size(38, 17);
             this.opponenetThrowDiceToo.TabIndex = 50;
@@ -287,7 +288,7 @@
             // 
             this.languageGroupBox.Controls.Add(this.languageRadioButtonHu);
             this.languageGroupBox.Controls.Add(this.languageRadioButtonEn);
-            this.languageGroupBox.Location = new System.Drawing.Point(270, 395);
+            this.languageGroupBox.Location = new System.Drawing.Point(270, 453);
             this.languageGroupBox.Name = "languageGroupBox";
             this.languageGroupBox.Size = new System.Drawing.Size(94, 49);
             this.languageGroupBox.TabIndex = 600;
@@ -310,9 +311,9 @@
             // 
             this.throwDice.Image = ((System.Drawing.Image)(resources.GetObject("throwDice.Image")));
             this.throwDice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.throwDice.Location = new System.Drawing.Point(575, 49);
+            this.throwDice.Location = new System.Drawing.Point(565, 99);
             this.throwDice.Name = "throwDice";
-            this.throwDice.Size = new System.Drawing.Size(105, 23);
+            this.throwDice.Size = new System.Drawing.Size(115, 23);
             this.throwDice.TabIndex = 60;
             this.throwDice.Text = "d";
             this.throwDice.UseVisualStyleBackColor = true;
@@ -322,7 +323,7 @@
             // 
             this.generateGame.Image = global::RolePlayGUI.Properties.Resources.create;
             this.generateGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.generateGame.Location = new System.Drawing.Point(515, 410);
+            this.generateGame.Location = new System.Drawing.Point(515, 468);
             this.generateGame.Name = "generateGame";
             this.generateGame.Size = new System.Drawing.Size(165, 23);
             this.generateGame.TabIndex = 600;
@@ -335,7 +336,7 @@
             // 
             this.loadGame.Image = global::RolePlayGUI.Properties.Resources.open;
             this.loadGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.loadGame.Location = new System.Drawing.Point(120, 410);
+            this.loadGame.Location = new System.Drawing.Point(120, 468);
             this.loadGame.Name = "loadGame";
             this.loadGame.Size = new System.Drawing.Size(130, 23);
             this.loadGame.TabIndex = 600;
@@ -346,7 +347,7 @@
             // 
             // playerPicture
             // 
-            this.playerPicture.Location = new System.Drawing.Point(704, 30);
+            this.playerPicture.Location = new System.Drawing.Point(697, 96);
             this.playerPicture.Name = "playerPicture";
             this.playerPicture.Size = new System.Drawing.Size(275, 403);
             this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -357,7 +358,7 @@
             // 
             this.opponentGroupBox.Controls.Add(this.opponentRadioButton);
             this.opponentGroupBox.Controls.Add(this.ladderRadioButton);
-            this.opponentGroupBox.Location = new System.Drawing.Point(550, 85);
+            this.opponentGroupBox.Location = new System.Drawing.Point(550, 140);
             this.opponentGroupBox.Name = "opponentGroupBox";
             this.opponentGroupBox.Size = new System.Drawing.Size(130, 74);
             this.opponentGroupBox.TabIndex = 603;
@@ -391,16 +392,27 @@
             // ladderComboBox
             // 
             this.ladderComboBox.FormattingEnabled = true;
-            this.ladderComboBox.Location = new System.Drawing.Point(430, 107);
+            this.ladderComboBox.Location = new System.Drawing.Point(430, 160);
             this.ladderComboBox.Name = "ladderComboBox";
             this.ladderComboBox.Size = new System.Drawing.Size(110, 21);
             this.ladderComboBox.TabIndex = 604;
+            // 
+            // narrationButton
+            // 
+            this.narrationButton.Location = new System.Drawing.Point(549, 30);
+            this.narrationButton.Name = "narrationButton";
+            this.narrationButton.Size = new System.Drawing.Size(131, 23);
+            this.narrationButton.TabIndex = 605;
+            this.narrationButton.Text = "n";
+            this.narrationButton.UseVisualStyleBackColor = true;
+            this.narrationButton.Click += new System.EventHandler(this.narrationButton_Click);
             // 
             // RolePlayBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 451);
+            this.ClientSize = new System.Drawing.Size(984, 511);
+            this.Controls.Add(this.narrationButton);
             this.Controls.Add(this.ladderComboBox);
             this.Controls.Add(this.opponentGroupBox);
             this.Controls.Add(this.playerPicture);
@@ -480,6 +492,7 @@
         private System.Windows.Forms.RadioButton opponentRadioButton;
         private System.Windows.Forms.RadioButton ladderRadioButton;
         private System.Windows.Forms.ComboBox ladderComboBox;
+        private System.Windows.Forms.Button narrationButton;
     }
 }
 

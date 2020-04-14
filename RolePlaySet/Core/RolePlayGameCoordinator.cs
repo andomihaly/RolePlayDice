@@ -116,6 +116,12 @@ namespace RolePlaySet.Core
             return new string[0,0];
         }
 
+        public void addNarration(string narration)
+        {
+            story.events.Add(narration);
+            storeGateway.saveGame(story, gameName);
+        }
+
         public void addTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, string taskName)
         {
             TaskType taskType = findTaskTypeByName(taskName);

@@ -234,5 +234,24 @@ namespace RolePlayGUI
             opponenetThrowDiceToo.Visible = true;
             opponentPoint.Visible = true;
         }
+
+        private void narrationButton_Click(object sender, EventArgs e)
+        {
+            notSavedGameLabel.Visible = false;
+            try
+            {
+                if (!eventDescription.Text.Equals(""))
+                {
+                    rolePlayGamers.addNarration(eventDescription.Text);
+                }
+            }
+            catch (Exception)
+            {
+                notSavedGameLabel.Visible = true;
+            }
+
+            eventDescription.Text = "";
+            refillStoryBox();
+        }
     }
 }

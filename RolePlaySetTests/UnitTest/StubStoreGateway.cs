@@ -21,6 +21,10 @@ namespace RolePlaySetTests
             {
                 Player aPlayer = new Player();
                 aPlayer.name = "A Player";
+                Skill skill = new Skill();
+                skill.name = "b";
+                skill.score = 0;
+                aPlayer.skills.Add(skill);
                 Player[] players = { aPlayer, aPlayer };
                 return players;
             }

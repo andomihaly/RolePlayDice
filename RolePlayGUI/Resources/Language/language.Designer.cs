@@ -223,6 +223,15 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add narration.
+        /// </summary>
+        internal static string narration {
+            get {
+                return ResourceManager.GetString("narration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to opponent.
         /// </summary>
         internal static string opponent {

@@ -171,6 +171,9 @@
   <data name="loadGame" xml:space="preserve">
     <value>Játék betöltése</value>
   </data>
+  <data name="narration" xml:space="preserve">
+    <value>Narráció hozzáadása</value>
+  </data>
   <data name="opponent" xml:space="preserve">
     <value>ellenfél</value>
   </data>
