@@ -1,11 +1,43 @@
-﻿using RolePlayEntity;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace RolePlayGUI
 {
     public partial class RolePlayBoard
     {
+        private DateTime lastPlayerRoll = DateTime.Now;
+        private DateTime lastRoll;
+
+        public void VisualizeLastDiceRolls(string [,] dicesRolls)
+        {
+            if (lastRoll.CompareTo(lastPlayerRoll) == 0)
+            {
+                opponentDiceLabel.Visible = true;
+                rolledDiceOpponent.Visible = true;
+                rolledDiceOpponent.Text = "";
+                for (int i = 0; i < dicesRolls.Length / 2; i++)
+                {
+                    rolledDiceOpponent.Text += " [" + dicesRolls[i, 0] + "]";
+                }
+            }
+            else
+            {
+                rolledDicePlayer.Text = "";
+                rolledDiceOpponent.Text = "";
+                playerDiceLabel.Visible = true;
+                opponentDiceLabel.Visible = false;
+
+                rolledDicePlayer.Visible = true;
+                rolledDiceOpponent.Visible = false;
+                for (int i = 0; i < dicesRolls.Length / 2; i++)
+                {
+                    rolledDicePlayer.Text += " [" + dicesRolls[i, 0] + "]";
+                }
+                lastPlayerRoll = lastRoll;
+            }
+        }
+
+        
         private void loadAndFillEventTasks()
         {
             ladderComboBox.Items.Clear();
@@ -157,6 +189,9 @@ namespace RolePlayGUI
             playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
             notSavedGameLabel.Text = rm.GetString("gameIsNotSaved", actualCultureInfo);
 
+            playerDiceLabel.Text = rm.GetString("playerDiceRoll", actualCultureInfo);
+            opponentDiceLabel.Text = rm.GetString("opponentDiceRoll", actualCultureInfo);
+
             ladderRadioButton.Text = rm.GetString("task", actualCultureInfo);
             opponentRadioButton.Text = rm.GetString("opponent", actualCultureInfo);
             ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
@@ -190,5 +225,8 @@ namespace RolePlayGUI
             }
             return true;
         }
+
+
+
     }
 }

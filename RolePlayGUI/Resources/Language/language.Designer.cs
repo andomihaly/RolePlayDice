@@ -241,6 +241,15 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opponent roll:.
+        /// </summary>
+        internal static string opponentDiceRoll {
+            get {
+                return ResourceManager.GetString("opponentDiceRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opponent point:.
         /// </summary>
         internal static string opponentPoint {
@@ -255,6 +264,15 @@ namespace RolePlayGUI.Resources.Language {
         internal static string opponentThrowToo {
             get {
                 return ResourceManager.GetString("opponentThrowToo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player roll:.
+        /// </summary>
+        internal static string playerDiceRoll {
+            get {
+                return ResourceManager.GetString("playerDiceRoll", resourceCulture);
             }
         }
         

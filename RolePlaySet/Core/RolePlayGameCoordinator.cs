@@ -15,13 +15,21 @@ namespace RolePlaySet.Core
         private Player[] players;
         private string gameName;
         private string defaultImage = "";
-
+        private DiceRollNotification diceRollNotification;
 
         public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices)
         {
             this.storeGateway = storeGateway;
             this.dices = dices;
             turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder());
+        }
+
+        public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices, DiceRollNotification diceRollNotification)
+        {
+            this.storeGateway = storeGateway;
+            this.dices = dices;
+            turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder(), diceRollNotification);
+            this.diceRollNotification = diceRollNotification;
         }
 
         public void generateNewGame(string gameName)

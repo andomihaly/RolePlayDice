@@ -21,10 +21,16 @@ namespace ERolePlay
             StoreGateway storeGateway = new RolePlayFileStorage();
             IntervalRandomGenerator intervalRandomGenerator = new VisualStudioRandomGenerator();
             Dice[] dices = { new DiceFudge(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
-        
-            RolePlayGame rolePlayGame = new RolePlayGameCoordinator(storeGateway, dices);
 
-            Application.Run(new RolePlayBoard(rolePlayGame));
+
+            VisualizeLastDiceRolls visualizeLastDiceRolls = new VisualizeLastDiceRolls();
+
+            RolePlayGame rolePlayGame = new RolePlayGameCoordinator(storeGateway, dices, visualizeLastDiceRolls);
+            RolePlayBoard rolePlayBoard = new RolePlayBoard(rolePlayGame);
+            visualizeLastDiceRolls.connectToBoard(rolePlayBoard);
+
+
+            Application.Run(rolePlayBoard);
         }
     }
 }

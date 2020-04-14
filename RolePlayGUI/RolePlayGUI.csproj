@@ -61,6 +61,7 @@
     <Compile Include="RolePlayBoard.Operation.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VisualizeLastDiceRolls.cs" />
     <EmbeddedResource Include="Resources\Language\language.hu.resx" />
     <EmbeddedResource Include="Resources\Language\language.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -177,11 +177,17 @@
   <data name="opponent" xml:space="preserve">
     <value>ellenfél</value>
   </data>
+  <data name="opponentDiceRoll" xml:space="preserve">
+    <value>Ellenfél dobása:</value>
+  </data>
   <data name="opponentPoint" xml:space="preserve">
     <value>Ellenfél pont:</value>
   </data>
   <data name="opponentThrowToo" xml:space="preserve">
     <value>Ellenfél is dob</value>
+  </data>
+  <data name="playerDiceRoll" xml:space="preserve">
+    <value>Játékos dobása:</value>
   </data>
   <data name="playerName" xml:space="preserve">
     <value>Szereplő:</value>

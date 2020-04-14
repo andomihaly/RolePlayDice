@@ -177,11 +177,17 @@
   <data name="opponent" xml:space="preserve">
     <value>opponent</value>
   </data>
+  <data name="opponentDiceRoll" xml:space="preserve">
+    <value>Opponent roll:</value>
+  </data>
   <data name="opponentPoint" xml:space="preserve">
     <value>Opponent point:</value>
   </data>
   <data name="opponentThrowToo" xml:space="preserve">
     <value>Opponet throw too</value>
+  </data>
+  <data name="playerDiceRoll" xml:space="preserve">
+    <value>Player roll:</value>
   </data>
   <data name="playerName" xml:space="preserve">
     <value>Player name:</value>

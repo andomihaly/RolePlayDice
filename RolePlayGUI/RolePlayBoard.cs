@@ -37,6 +37,12 @@ namespace RolePlayGUI
                 playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
             }
             ladderRadioButton.Checked = true;
+
+
+            playerDiceLabel.Visible = false;
+            opponentDiceLabel.Visible = false;
+            rolledDicePlayer.Visible = false;
+            rolledDiceOpponent.Visible = false;
         }
 
         private void generateGame_Click(object sender, EventArgs e)
@@ -55,6 +61,7 @@ namespace RolePlayGUI
 
         private void throwDice_Click(object sender, EventArgs e)
         {
+            lastRoll = DateTime.Now;
             notSavedGameLabel.Visible = false;
             if (isPointsAndNumbersConvertable())
             {
@@ -238,6 +245,8 @@ namespace RolePlayGUI
         private void narrationButton_Click(object sender, EventArgs e)
         {
             notSavedGameLabel.Visible = false;
+            rolledDicePlayer.Text = "";
+            rolledDiceOpponent.Text = "";
             try
             {
                 if (!eventDescription.Text.Equals(""))

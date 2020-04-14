@@ -63,6 +63,10 @@
             this.ladderRadioButton = new System.Windows.Forms.RadioButton();
             this.ladderComboBox = new System.Windows.Forms.ComboBox();
             this.narrationButton = new System.Windows.Forms.Button();
+            this.rolledDicePlayer = new System.Windows.Forms.TextBox();
+            this.rolledDiceOpponent = new System.Windows.Forms.TextBox();
+            this.playerDiceLabel = new System.Windows.Forms.Label();
+            this.opponentDiceLabel = new System.Windows.Forms.Label();
             this.languageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.opponentGroupBox.SuspendLayout();
@@ -407,11 +411,48 @@
             this.narrationButton.UseVisualStyleBackColor = true;
             this.narrationButton.Click += new System.EventHandler(this.narrationButton_Click);
             // 
+            // rolledDicePlayer
+            // 
+            this.rolledDicePlayer.Location = new System.Drawing.Point(824, 28);
+            this.rolledDicePlayer.Multiline = true;
+            this.rolledDicePlayer.Name = "rolledDicePlayer";
+            this.rolledDicePlayer.Size = new System.Drawing.Size(148, 24);
+            this.rolledDicePlayer.TabIndex = 606;
+            // 
+            // rolledDiceOpponent
+            // 
+            this.rolledDiceOpponent.Location = new System.Drawing.Point(824, 58);
+            this.rolledDiceOpponent.Name = "rolledDiceOpponent";
+            this.rolledDiceOpponent.Size = new System.Drawing.Size(148, 20);
+            this.rolledDiceOpponent.TabIndex = 607;
+            // 
+            // playerDiceLabel
+            // 
+            this.playerDiceLabel.AutoSize = true;
+            this.playerDiceLabel.Location = new System.Drawing.Point(694, 28);
+            this.playerDiceLabel.Name = "playerDiceLabel";
+            this.playerDiceLabel.Size = new System.Drawing.Size(19, 13);
+            this.playerDiceLabel.TabIndex = 608;
+            this.playerDiceLabel.Text = "pd";
+            // 
+            // opponentDiceLabel
+            // 
+            this.opponentDiceLabel.AutoSize = true;
+            this.opponentDiceLabel.Location = new System.Drawing.Point(694, 58);
+            this.opponentDiceLabel.Name = "opponentDiceLabel";
+            this.opponentDiceLabel.Size = new System.Drawing.Size(19, 13);
+            this.opponentDiceLabel.TabIndex = 609;
+            this.opponentDiceLabel.Text = "od";
+            // 
             // RolePlayBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 511);
+            this.Controls.Add(this.opponentDiceLabel);
+            this.Controls.Add(this.playerDiceLabel);
+            this.Controls.Add(this.rolledDiceOpponent);
+            this.Controls.Add(this.rolledDicePlayer);
             this.Controls.Add(this.narrationButton);
             this.Controls.Add(this.ladderComboBox);
             this.Controls.Add(this.opponentGroupBox);
@@ -493,6 +534,10 @@
         private System.Windows.Forms.RadioButton ladderRadioButton;
         private System.Windows.Forms.ComboBox ladderComboBox;
         private System.Windows.Forms.Button narrationButton;
+        private System.Windows.Forms.TextBox rolledDicePlayer;
+        private System.Windows.Forms.TextBox rolledDiceOpponent;
+        private System.Windows.Forms.Label playerDiceLabel;
+        private System.Windows.Forms.Label opponentDiceLabel;
     }
 }
 
