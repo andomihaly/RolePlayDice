@@ -41,8 +41,6 @@ namespace RolePlayGUI
 
             playerDiceLabel.Visible = false;
             opponentDiceLabel.Visible = false;
-            rolledDicePlayer.Visible = false;
-            rolledDiceOpponent.Visible = false;
         }
 
         private void generateGame_Click(object sender, EventArgs e)
@@ -108,6 +106,7 @@ namespace RolePlayGUI
             opponenetThrowDiceToo.Checked = false;
             playerExtraPoint.Text = ZERO.ToString();
             actualEvent.Text = "";
+
             refillStoryBox();
         }
 
@@ -245,8 +244,6 @@ namespace RolePlayGUI
         private void narrationButton_Click(object sender, EventArgs e)
         {
             notSavedGameLabel.Visible = false;
-            rolledDicePlayer.Text = "";
-            rolledDiceOpponent.Text = "";
             try
             {
                 if (!eventDescription.Text.Equals(""))
@@ -260,6 +257,10 @@ namespace RolePlayGUI
             }
 
             eventDescription.Text = "";
+            pictureBox1.Visible = false;
+            pictureBox2.Visible = false;
+            playerDiceLabel.Visible = false;
+            opponentDiceLabel.Visible = false;
             refillStoryBox();
         }
     }

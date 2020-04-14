@@ -115,6 +115,33 @@
   <ItemGroup>
     <None Include="Resources\warning.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dv1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dv2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dv3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dv4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dv5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dv6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dvm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dvp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

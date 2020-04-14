@@ -53,23 +53,25 @@
             this.languageRadioButtonHu = new System.Windows.Forms.RadioButton();
             this.languageRadioButtonEn = new System.Windows.Forms.RadioButton();
             this.languageGroupBox = new System.Windows.Forms.GroupBox();
-            this.notSavedGameLabel = new System.Windows.Forms.Label();
-            this.throwDice = new System.Windows.Forms.Button();
-            this.generateGame = new System.Windows.Forms.Button();
-            this.loadGame = new System.Windows.Forms.Button();
-            this.playerPicture = new System.Windows.Forms.PictureBox();
             this.opponentGroupBox = new System.Windows.Forms.GroupBox();
             this.opponentRadioButton = new System.Windows.Forms.RadioButton();
             this.ladderRadioButton = new System.Windows.Forms.RadioButton();
             this.ladderComboBox = new System.Windows.Forms.ComboBox();
             this.narrationButton = new System.Windows.Forms.Button();
-            this.rolledDicePlayer = new System.Windows.Forms.TextBox();
-            this.rolledDiceOpponent = new System.Windows.Forms.TextBox();
             this.playerDiceLabel = new System.Windows.Forms.Label();
             this.opponentDiceLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.playerPicture = new System.Windows.Forms.PictureBox();
+            this.notSavedGameLabel = new System.Windows.Forms.Label();
+            this.throwDice = new System.Windows.Forms.Button();
+            this.generateGame = new System.Windows.Forms.Button();
+            this.loadGame = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.languageGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
             this.opponentGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // playersComboBox
@@ -163,7 +165,7 @@
             this.storyBox.Multiline = true;
             this.storyBox.Name = "storyBox";
             this.storyBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.storyBox.Size = new System.Drawing.Size(670, 222);
+            this.storyBox.Size = new System.Drawing.Size(670, 277);
             this.storyBox.TabIndex = 600;
             this.storyBox.TabStop = false;
             // 
@@ -178,7 +180,7 @@
             // 
             // rolePlayGameName
             // 
-            this.rolePlayGameName.Location = new System.Drawing.Point(10, 469);
+            this.rolePlayGameName.Location = new System.Drawing.Point(10, 524);
             this.rolePlayGameName.Name = "rolePlayGameName";
             this.rolePlayGameName.Size = new System.Drawing.Size(100, 20);
             this.rolePlayGameName.TabIndex = 600;
@@ -186,7 +188,7 @@
             // 
             // newGameName
             // 
-            this.newGameName.Location = new System.Drawing.Point(410, 469);
+            this.newGameName.Location = new System.Drawing.Point(410, 524);
             this.newGameName.Name = "newGameName";
             this.newGameName.Size = new System.Drawing.Size(100, 20);
             this.newGameName.TabIndex = 600;
@@ -292,71 +294,12 @@
             // 
             this.languageGroupBox.Controls.Add(this.languageRadioButtonHu);
             this.languageGroupBox.Controls.Add(this.languageRadioButtonEn);
-            this.languageGroupBox.Location = new System.Drawing.Point(270, 453);
+            this.languageGroupBox.Location = new System.Drawing.Point(270, 508);
             this.languageGroupBox.Name = "languageGroupBox";
             this.languageGroupBox.Size = new System.Drawing.Size(94, 49);
             this.languageGroupBox.TabIndex = 600;
             this.languageGroupBox.TabStop = false;
             this.languageGroupBox.Text = "ln";
-            // 
-            // notSavedGameLabel
-            // 
-            this.notSavedGameLabel.Image = global::RolePlayGUI.Properties.Resources.warning;
-            this.notSavedGameLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.notSavedGameLabel.Location = new System.Drawing.Point(170, 10);
-            this.notSavedGameLabel.Name = "notSavedGameLabel";
-            this.notSavedGameLabel.Size = new System.Drawing.Size(240, 13);
-            this.notSavedGameLabel.TabIndex = 601;
-            this.notSavedGameLabel.Text = "ns";
-            this.notSavedGameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.notSavedGameLabel.Visible = false;
-            // 
-            // throwDice
-            // 
-            this.throwDice.Image = ((System.Drawing.Image)(resources.GetObject("throwDice.Image")));
-            this.throwDice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.throwDice.Location = new System.Drawing.Point(565, 99);
-            this.throwDice.Name = "throwDice";
-            this.throwDice.Size = new System.Drawing.Size(115, 23);
-            this.throwDice.TabIndex = 60;
-            this.throwDice.Text = "d";
-            this.throwDice.UseVisualStyleBackColor = true;
-            this.throwDice.Click += new System.EventHandler(this.throwDice_Click);
-            // 
-            // generateGame
-            // 
-            this.generateGame.Image = global::RolePlayGUI.Properties.Resources.create;
-            this.generateGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.generateGame.Location = new System.Drawing.Point(515, 468);
-            this.generateGame.Name = "generateGame";
-            this.generateGame.Size = new System.Drawing.Size(165, 23);
-            this.generateGame.TabIndex = 600;
-            this.generateGame.TabStop = false;
-            this.generateGame.Text = "ujl";
-            this.generateGame.UseVisualStyleBackColor = true;
-            this.generateGame.Click += new System.EventHandler(this.generateGame_Click);
-            // 
-            // loadGame
-            // 
-            this.loadGame.Image = global::RolePlayGUI.Properties.Resources.open;
-            this.loadGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.loadGame.Location = new System.Drawing.Point(120, 468);
-            this.loadGame.Name = "loadGame";
-            this.loadGame.Size = new System.Drawing.Size(130, 23);
-            this.loadGame.TabIndex = 600;
-            this.loadGame.TabStop = false;
-            this.loadGame.Text = "jb";
-            this.loadGame.UseVisualStyleBackColor = true;
-            this.loadGame.Click += new System.EventHandler(this.loadGame_Click);
-            // 
-            // playerPicture
-            // 
-            this.playerPicture.Location = new System.Drawing.Point(697, 96);
-            this.playerPicture.Name = "playerPicture";
-            this.playerPicture.Size = new System.Drawing.Size(275, 403);
-            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.playerPicture.TabIndex = 602;
-            this.playerPicture.TabStop = false;
             // 
             // opponentGroupBox
             // 
@@ -411,25 +354,10 @@
             this.narrationButton.UseVisualStyleBackColor = true;
             this.narrationButton.Click += new System.EventHandler(this.narrationButton_Click);
             // 
-            // rolledDicePlayer
-            // 
-            this.rolledDicePlayer.Location = new System.Drawing.Point(824, 28);
-            this.rolledDicePlayer.Multiline = true;
-            this.rolledDicePlayer.Name = "rolledDicePlayer";
-            this.rolledDicePlayer.Size = new System.Drawing.Size(148, 24);
-            this.rolledDicePlayer.TabIndex = 606;
-            // 
-            // rolledDiceOpponent
-            // 
-            this.rolledDiceOpponent.Location = new System.Drawing.Point(824, 58);
-            this.rolledDiceOpponent.Name = "rolledDiceOpponent";
-            this.rolledDiceOpponent.Size = new System.Drawing.Size(148, 20);
-            this.rolledDiceOpponent.TabIndex = 607;
-            // 
             // playerDiceLabel
             // 
             this.playerDiceLabel.AutoSize = true;
-            this.playerDiceLabel.Location = new System.Drawing.Point(694, 28);
+            this.playerDiceLabel.Location = new System.Drawing.Point(700, 10);
             this.playerDiceLabel.Name = "playerDiceLabel";
             this.playerDiceLabel.Size = new System.Drawing.Size(19, 13);
             this.playerDiceLabel.TabIndex = 608;
@@ -438,21 +366,96 @@
             // opponentDiceLabel
             // 
             this.opponentDiceLabel.AutoSize = true;
-            this.opponentDiceLabel.Location = new System.Drawing.Point(694, 58);
+            this.opponentDiceLabel.Location = new System.Drawing.Point(700, 84);
             this.opponentDiceLabel.Name = "opponentDiceLabel";
             this.opponentDiceLabel.Size = new System.Drawing.Size(19, 13);
             this.opponentDiceLabel.TabIndex = 609;
             this.opponentDiceLabel.Text = "od";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(700, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(275, 55);
+            this.pictureBox1.TabIndex = 610;
+            this.pictureBox1.TabStop = false;
+            // 
+            // playerPicture
+            // 
+            this.playerPicture.Location = new System.Drawing.Point(697, 160);
+            this.playerPicture.Name = "playerPicture";
+            this.playerPicture.Size = new System.Drawing.Size(275, 400);
+            this.playerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.playerPicture.TabIndex = 602;
+            this.playerPicture.TabStop = false;
+            // 
+            // notSavedGameLabel
+            // 
+            this.notSavedGameLabel.Image = global::RolePlayGUI.Properties.Resources.warning;
+            this.notSavedGameLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.notSavedGameLabel.Location = new System.Drawing.Point(170, 10);
+            this.notSavedGameLabel.Name = "notSavedGameLabel";
+            this.notSavedGameLabel.Size = new System.Drawing.Size(240, 13);
+            this.notSavedGameLabel.TabIndex = 601;
+            this.notSavedGameLabel.Text = "ns";
+            this.notSavedGameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.notSavedGameLabel.Visible = false;
+            // 
+            // throwDice
+            // 
+            this.throwDice.Image = ((System.Drawing.Image)(resources.GetObject("throwDice.Image")));
+            this.throwDice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.throwDice.Location = new System.Drawing.Point(565, 99);
+            this.throwDice.Name = "throwDice";
+            this.throwDice.Size = new System.Drawing.Size(115, 23);
+            this.throwDice.TabIndex = 60;
+            this.throwDice.Text = "d";
+            this.throwDice.UseVisualStyleBackColor = true;
+            this.throwDice.Click += new System.EventHandler(this.throwDice_Click);
+            // 
+            // generateGame
+            // 
+            this.generateGame.Image = global::RolePlayGUI.Properties.Resources.create;
+            this.generateGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.generateGame.Location = new System.Drawing.Point(515, 523);
+            this.generateGame.Name = "generateGame";
+            this.generateGame.Size = new System.Drawing.Size(165, 23);
+            this.generateGame.TabIndex = 600;
+            this.generateGame.TabStop = false;
+            this.generateGame.Text = "ujl";
+            this.generateGame.UseVisualStyleBackColor = true;
+            this.generateGame.Click += new System.EventHandler(this.generateGame_Click);
+            // 
+            // loadGame
+            // 
+            this.loadGame.Image = global::RolePlayGUI.Properties.Resources.open;
+            this.loadGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.loadGame.Location = new System.Drawing.Point(120, 523);
+            this.loadGame.Name = "loadGame";
+            this.loadGame.Size = new System.Drawing.Size(130, 23);
+            this.loadGame.TabIndex = 600;
+            this.loadGame.TabStop = false;
+            this.loadGame.Text = "jb";
+            this.loadGame.UseVisualStyleBackColor = true;
+            this.loadGame.Click += new System.EventHandler(this.loadGame_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(700, 100);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(275, 55);
+            this.pictureBox2.TabIndex = 611;
+            this.pictureBox2.TabStop = false;
+            // 
             // RolePlayBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 511);
+            this.ClientSize = new System.Drawing.Size(984, 570);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.opponentDiceLabel);
             this.Controls.Add(this.playerDiceLabel);
-            this.Controls.Add(this.rolledDiceOpponent);
-            this.Controls.Add(this.rolledDicePlayer);
             this.Controls.Add(this.narrationButton);
             this.Controls.Add(this.ladderComboBox);
             this.Controls.Add(this.opponentGroupBox);
@@ -490,9 +493,11 @@
             this.Load += new System.EventHandler(this.RolePlay_Load);
             this.languageGroupBox.ResumeLayout(false);
             this.languageGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).EndInit();
             this.opponentGroupBox.ResumeLayout(false);
             this.opponentGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,10 +539,10 @@
         private System.Windows.Forms.RadioButton ladderRadioButton;
         private System.Windows.Forms.ComboBox ladderComboBox;
         private System.Windows.Forms.Button narrationButton;
-        private System.Windows.Forms.TextBox rolledDicePlayer;
-        private System.Windows.Forms.TextBox rolledDiceOpponent;
         private System.Windows.Forms.Label playerDiceLabel;
         private System.Windows.Forms.Label opponentDiceLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
