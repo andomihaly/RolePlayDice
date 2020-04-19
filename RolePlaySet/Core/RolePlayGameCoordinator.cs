@@ -15,7 +15,7 @@ namespace RolePlaySet.Core
         private Player[] players;
         private string gameName;
         private string defaultImage = "";
-        private DiceRollNotification diceRollNotification;
+        private RolePlayPresenter rolePlayPresenter;
 
         public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices)
         {
@@ -24,12 +24,12 @@ namespace RolePlaySet.Core
             turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder());
         }
 
-        public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices, DiceRollNotification diceRollNotification)
+        public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices, RolePlayPresenter rolePlayPresenter)
         {
             this.storeGateway = storeGateway;
             this.dices = dices;
-            turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder(), diceRollNotification);
-            this.diceRollNotification = diceRollNotification;
+            turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder(), rolePlayPresenter);
+            this.rolePlayPresenter = rolePlayPresenter;
         }
 
         public void generateNewGame(string gameName)
@@ -127,6 +127,7 @@ namespace RolePlaySet.Core
         public void addNarration(string narration)
         {
             story.events.Add(narration);
+            sendNewStoryLine();
             storeGateway.saveGame(story, gameName);
         }
 
@@ -138,6 +139,7 @@ namespace RolePlaySet.Core
                 throw new InvalidTaskTypeException(taskName);
             }
             story.events.Add(turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, taskType));
+            sendNewStoryLine();
             storeGateway.saveGame(story, gameName);
         }
 
@@ -156,7 +158,13 @@ namespace RolePlaySet.Core
         public void addTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
         {
             story.events.Add(turnHandle.generateTurnOpponentEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, opponentPoint, isOpponentThrowToo));
+            sendNewStoryLine();
             storeGateway.saveGame(story, gameName);
+        }
+
+        private void sendNewStoryLine()
+        {
+            rolePlayPresenter.changeStory(story.events.ToArray());
         }
 
         private void checkGameName(string gameName)

@@ -37,9 +37,9 @@
     <Compile Include="Core\EventTaskGenerator.cs" />
     <Compile Include="Core\GameNameIsNotValid.cs" />
     <Compile Include="Core\InvalidTaskTypeException.cs" />
-    <Compile Include="Core\NotSupportedDiceType.cs" />
+    <Compile Include="Core\NotSupportedDiceTypeException.cs" />
     <Compile Include="Core\TurnEventHandler.cs" />
-    <Compile Include="DiceRollNotification.cs" />
+    <Compile Include="RolePlayPresenter.cs" />
     <Compile Include="PlayerStep.cs" />
     <Compile Include="RealPlayerStep.cs" />
     <Compile Include="TextBuilder\NewTurnHuTextBuilder.cs" />

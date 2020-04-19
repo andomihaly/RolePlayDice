@@ -23,7 +23,7 @@ namespace ERolePlay
             Dice[] dices = { new DiceFudge(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
 
 
-            VisualizeLastDiceRolls visualizeLastDiceRolls = new VisualizeLastDiceRolls();
+            RolePlayGameGUIPresenter visualizeLastDiceRolls = new RolePlayGameGUIPresenter();
 
             RolePlayGame rolePlayGame = new RolePlayGameCoordinator(storeGateway, dices, visualizeLastDiceRolls);
             RolePlayBoard rolePlayBoard = new RolePlayBoard(rolePlayGame);

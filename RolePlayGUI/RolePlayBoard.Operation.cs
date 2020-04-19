@@ -145,17 +145,16 @@ namespace RolePlayGUI
             {
                 playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
             }
-            refillStoryBox();
+            //refillStoryBox();
         }
 
-        private void refillStoryBox()
+        public void refillStoryBox(String [] story)
         {
             storyBox.Clear();
-            string[] tempStory = rolePlayGamers.getStory();
-            for (int i = tempStory.Length; i > 0; i--)
+            for (int i = story.Length; i > 0; i--)
             {
-                storyBox.Text += i.ToString() + ". lépés:" + (tempStory[i - 1] + NEW_LINE);
-                if (i == tempStory.Length)
+                storyBox.Text += i.ToString() + ". lépés:" + (story[i - 1] + NEW_LINE);
+                if (i == story.Length)
                 {
                     storyBox.Text += (NEW_LINE);
                 }

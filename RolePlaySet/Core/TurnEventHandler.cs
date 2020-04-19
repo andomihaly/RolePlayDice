@@ -9,7 +9,7 @@ namespace RolePlaySet.Core
         private NewTurnTextBuilder turnTextBuilder;
 
         private static string DEFAULT_PLAYER_NAME = "Játékos";
-        private DiceRollNotification diceRollNotification;
+        private RolePlayPresenter rolePlayPresenter;
 
         public TurnEventHandler(Dice[] dices, NewTurnTextBuilder newTurnTextBuilder)
         {
@@ -17,11 +17,11 @@ namespace RolePlaySet.Core
             this.turnTextBuilder = newTurnTextBuilder;
         }
 
-        public TurnEventHandler(Dice[] dices, NewTurnTextBuilder newTurnTextBuilder, DiceRollNotification diceRollNotification)
+        public TurnEventHandler(Dice[] dices, NewTurnTextBuilder newTurnTextBuilder, RolePlayPresenter diceRollNotification)
         {
             this.dices = dices;
             this.turnTextBuilder = newTurnTextBuilder;
-            this.diceRollNotification = diceRollNotification;
+            this.rolePlayPresenter = diceRollNotification;
         }
 
         public string generateTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskType taskName)
@@ -95,9 +95,9 @@ namespace RolePlaySet.Core
                 rolledDices[throwDice, 1] = diceType;
                 throwDice++;
             }
-            if (diceRollNotification != null)
+            if (rolePlayPresenter != null)
             {
-                diceRollNotification.rolledDice(rolledDices);
+                rolePlayPresenter.rolledDicesInTurn(rolledDices);
             }
             return sumPoint;
         }
@@ -114,7 +114,7 @@ namespace RolePlaySet.Core
             }
             if (actualDice == null)
             {
-                throw new NotSupportedDiceType(diceType);
+                throw new NotSupportedDiceTypeException(diceType);
             }
 
             return actualDice;

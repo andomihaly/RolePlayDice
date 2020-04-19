@@ -1,13 +1,14 @@
-﻿using RolePlaySet;
+﻿using System;
+using RolePlaySet;
 
 namespace RolePlaySetTests.Common
 {
-    class SpyRolledDice : DiceRollNotification
+    class SpyRolledDice : RolePlayPresenter
     {
         
         public string[,] lastRolledDices;
         public string[,] lastMinusOneRolledDices;
-        public void rolledDice(string[,] rolledDice)
+        public void rolledDicesInTurn(string[,] rolledDice)
         {
             if (lastRolledDices != null)
             {
@@ -15,6 +16,21 @@ namespace RolePlaySetTests.Common
             }
             lastRolledDices = rolledDice;
             
+        }
+
+        public void changeStory(string[] story)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void loadedGameContext(string[] gameContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void displayError(string[] error)
+        {
+            throw new NotImplementedException();
         }
     }
 }

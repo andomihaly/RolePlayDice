@@ -107,7 +107,7 @@ namespace RolePlayGUI
             playerExtraPoint.Text = ZERO.ToString();
             actualEvent.Text = "";
 
-            refillStoryBox();
+            //refillStoryBox();
         }
 
         private void loadGame_Click(object sender, EventArgs e)
@@ -261,7 +261,7 @@ namespace RolePlayGUI
             pictureBox2.Visible = false;
             playerDiceLabel.Visible = false;
             opponentDiceLabel.Visible = false;
-            refillStoryBox();
+            //refillStoryBox();
         }
     }
 }
