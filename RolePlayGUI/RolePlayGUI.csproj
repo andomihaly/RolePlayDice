@@ -62,6 +62,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RolePlayGameGUIPresenter.cs" />
+    <Compile Include="ViewModel\GamePlayer.cs" />
     <EmbeddedResource Include="Resources\Language\language.hu.resx" />
     <EmbeddedResource Include="Resources\Language\language.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -142,9 +143,7 @@
   <ItemGroup>
     <None Include="Resources\dvp.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

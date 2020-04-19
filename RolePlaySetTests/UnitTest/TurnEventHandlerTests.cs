@@ -28,7 +28,7 @@ namespace RolePlaySetTests.UnitTest
         [TestMethod()]
         public void getBackTheLastRoll()
         {
-            SpyRolledDice spyRolledDice = new SpyRolledDice();
+            SpyUIPresenter spyRolledDice = new SpyUIPresenter();
             Dice[] dices = { new Dice1() };
             TurnEventHandler teh = new TurnEventHandler(dices, new FakeTextBuilder(), spyRolledDice);
             teh.generateTurnTaskEvent("a", "a", 0, 0, 1, "d1", new RolePlayEntity.TaskType("c", 7));
@@ -41,7 +41,7 @@ namespace RolePlaySetTests.UnitTest
         [TestMethod()]
         public void getBackTheLastRolls()
         {
-            SpyRolledDice spyRolledDice = new SpyRolledDice();
+            SpyUIPresenter spyRolledDice = new SpyUIPresenter();
             Dice[] dices = { new Dice1() };
             TurnEventHandler teh = new TurnEventHandler(dices, new FakeTextBuilder(), spyRolledDice);
             teh.generateTurnTaskEvent("a", "a", 0, 0, 4, "d1", new RolePlayEntity.TaskType("c", 7));
@@ -57,7 +57,7 @@ namespace RolePlaySetTests.UnitTest
         [TestMethod()]
         public void getBackTheLastRollsWithOpponent()
         {
-            SpyRolledDice spyRolledDice = new SpyRolledDice();
+            SpyUIPresenter spyRolledDice = new SpyUIPresenter();
             Dice[] dices = { new Dice1() };
             TurnEventHandler teh = new TurnEventHandler(dices, new FakeTextBuilder(), spyRolledDice);
             teh.generateTurnOpponentEvent("a", "a", 0, 0, 4, "d1",0,true);

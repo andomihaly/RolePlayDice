@@ -11,7 +11,7 @@ namespace RolePlaySetTests.PackageTest
         [TestMethod()]
         public void rolledDice()
         {
-            SpyRolledDice spyRolledDice = new SpyRolledDice();
+            SpyUIPresenter spyRolledDice = new SpyUIPresenter();
             Dice[] dices = { new Dice1() };
             RolePlayGameCoordinator gameCoordinator = new RolePlayGameCoordinator(new StubStoreGateway(), dices, spyRolledDice);
             gameCoordinator.addTurnTaskEvent("a", "a", 0, 0, 1, "d1", "Átlagos");

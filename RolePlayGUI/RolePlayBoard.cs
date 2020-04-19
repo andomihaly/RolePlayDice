@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using System.Resources;
 using System.Globalization;
 using System.Drawing;
+using RolePlayGUI.ViewModel;
+using System.Collections.Generic;
 
 namespace RolePlayGUI
 {
@@ -19,6 +21,12 @@ namespace RolePlayGUI
         private CultureInfo enCultureInfo = new CultureInfo("en-US");
         private CultureInfo actualCultureInfo;
         private ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
+
+
+        //actualGame contect
+        private string defaultImagePath = "";
+        private List<GamePlayer> gamePlayers = new List<GamePlayer>();
+        
 
         public RolePlayBoard(RolePlayGame rolePlayGamers)
         {

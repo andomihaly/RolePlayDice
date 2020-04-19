@@ -52,7 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="PackageTest\GameCoordinatorPackageTest.cs" />
-    <Compile Include="Common\SpyRolledDice.cs" />
+    <Compile Include="Common\SpyUIPresenter.cs" />
     <Compile Include="UnitTest\TurnEventHandlerTests.cs" />
     <Compile Include="Common\Dice1.cs" />
     <Compile Include="SystemTest\DiceMinus1.cs" />

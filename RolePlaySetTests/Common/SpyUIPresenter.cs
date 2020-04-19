@@ -3,11 +3,13 @@ using RolePlaySet;
 
 namespace RolePlaySetTests.Common
 {
-    class SpyRolledDice : RolePlayPresenter
+    class SpyUIPresenter : RolePlayPresenter
     {
         
         public string[,] lastRolledDices;
         public string[,] lastMinusOneRolledDices;
+        public string[] lastStory = new string[] { };
+
         public void rolledDicesInTurn(string[,] rolledDice)
         {
             if (lastRolledDices != null)
@@ -20,7 +22,7 @@ namespace RolePlaySetTests.Common
 
         public void changeStory(string[] story)
         {
-            throw new NotImplementedException();
+            lastStory = story;
         }
 
         public void loadedGameContext(string[] gameContext)

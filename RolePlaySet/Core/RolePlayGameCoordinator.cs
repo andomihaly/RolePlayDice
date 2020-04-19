@@ -90,11 +90,6 @@ namespace RolePlaySet.Core
             return new string[0,0];
         }
 
-        public string[] getStory()
-        {
-            return story.events.ToArray();
-        }
-
         public string getDefaultImage()
         {
             return defaultImage;
@@ -127,7 +122,7 @@ namespace RolePlaySet.Core
         public void addNarration(string narration)
         {
             story.events.Add(narration);
-            sendNewStoryLine();
+            sendStoryToPresenter();
             storeGateway.saveGame(story, gameName);
         }
 
@@ -139,7 +134,7 @@ namespace RolePlaySet.Core
                 throw new InvalidTaskTypeException(taskName);
             }
             story.events.Add(turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, taskType));
-            sendNewStoryLine();
+            sendStoryToPresenter();
             storeGateway.saveGame(story, gameName);
         }
 
@@ -158,13 +153,16 @@ namespace RolePlaySet.Core
         public void addTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
         {
             story.events.Add(turnHandle.generateTurnOpponentEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, opponentPoint, isOpponentThrowToo));
-            sendNewStoryLine();
+            sendStoryToPresenter();
             storeGateway.saveGame(story, gameName);
         }
 
-        private void sendNewStoryLine()
+        private void sendStoryToPresenter()
         {
-            rolePlayPresenter.changeStory(story.events.ToArray());
+            if (rolePlayPresenter != null)
+            {
+                rolePlayPresenter.changeStory(story.events.ToArray());
+            }
         }
 
         private void checkGameName(string gameName)
@@ -208,6 +206,7 @@ namespace RolePlaySet.Core
             {
                 story = teamStory;
             }
+            sendStoryToPresenter();
         }
     }
 }

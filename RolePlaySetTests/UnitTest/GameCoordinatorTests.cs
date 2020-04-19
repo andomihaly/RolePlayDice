@@ -9,12 +9,14 @@ namespace RolePlaySetTests.UnitTest
     public class GameCoordinatorTests
     {
         private RolePlayGameCoordinator gameCoordinator;
+        private SpyUIPresenter spyUIPresenter;
 
         [TestInitialize()]
         public void setup()
         {
+            spyUIPresenter = new SpyUIPresenter();
             Dice[] dices = { new FakeDice() };
-            gameCoordinator = new RolePlayGameCoordinator(new StubStoreGateway(), dices);
+            gameCoordinator = new RolePlayGameCoordinator(new StubStoreGateway(), dices, spyUIPresenter);
         }
 
         [TestMethod()]
@@ -22,10 +24,10 @@ namespace RolePlaySetTests.UnitTest
         {
             gameCoordinator.loadGame("ValidName");
             Assert.AreEqual(0, gameCoordinator.getPlayers().Length);
-            Assert.AreEqual(0, gameCoordinator.getStory().Length);
+            Assert.AreEqual(0, spyUIPresenter.lastStory.Length);
             gameCoordinator.loadGame("*");
             Assert.AreEqual(0, gameCoordinator.getPlayers().Length);
-            Assert.AreEqual(0, gameCoordinator.getStory().Length);
+            Assert.AreEqual(0, spyUIPresenter.lastStory.Length);
         }
 
         [TestMethod()]
@@ -33,7 +35,7 @@ namespace RolePlaySetTests.UnitTest
         {
             gameCoordinator.loadGame("InvalidGame");
             Assert.AreEqual(0, gameCoordinator.getPlayers().Length);
-            Assert.AreEqual(0, gameCoordinator.getStory().Length);
+            Assert.AreEqual(0, spyUIPresenter.lastStory.Length);
         }
 
         [TestMethod()]
@@ -41,7 +43,7 @@ namespace RolePlaySetTests.UnitTest
         {
             gameCoordinator.loadGame("ValidGame");
             Assert.AreEqual(4, gameCoordinator.getPlayers().Length);
-            Assert.AreEqual(3, gameCoordinator.getStory().Length);
+            Assert.AreEqual(3, spyUIPresenter.lastStory.Length);
         }
 
         [TestMethod()]
@@ -82,10 +84,11 @@ namespace RolePlaySetTests.UnitTest
         {
             gameCoordinator.loadGame("ValidGame");
             string narration = "AM";
-            Assert.AreEqual(3, gameCoordinator.getStory().Length);
+            //Assert.AreEqual(3, spyUIPresenter.lastStory.Length);
             gameCoordinator.addNarration(narration);
-            Assert.AreEqual(4, gameCoordinator.getStory().Length);
-            Assert.AreEqual(narration, gameCoordinator.getStory()[gameCoordinator.getStory().Length-1]);
+            int numberOfStory = spyUIPresenter.lastStory.Length;
+            Assert.AreEqual(4, numberOfStory);
+            Assert.AreEqual(narration, spyUIPresenter.lastStory[numberOfStory - 1]);
         }
     }
 }

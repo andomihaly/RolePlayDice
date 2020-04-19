@@ -16,7 +16,5 @@ namespace RolePlaySet
         string[,] getPlayers();
         string[,] getPlayerSkillsByPlayerName(string playerName);
         string getDefaultImage();
-
-        string[] getStory();
     }
 }
