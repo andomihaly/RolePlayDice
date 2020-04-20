@@ -29,6 +29,12 @@ namespace RolePlayGUI
             }
         }
 
+        public void storeRolePlayInitContext(List<string> diceList, List<Task> taskList)
+        {
+            this.dicesList = diceList;
+            this.taskList = taskList;
+        }
+
         public void storeGameContext(string defaultImage, List<GamePlayer> players)
         {
             defaultImagePath = defaultImage;
@@ -102,21 +108,19 @@ namespace RolePlayGUI
         private void loadAndFillEventTasks()
         {
             ladderComboBox.Items.Clear();
-            String[,] eventTasks = rolePlayGamers.getTaskTypeList();
-            for (int i = 0; i < eventTasks.Length / 2; i++)
+            foreach (Task task in taskList)
             {
-                ladderComboBox.Items.Add(eventTasks[i, 0]);
+                ladderComboBox.Items.Add(task.name);
             }
             ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
         }
 
         private string findEventTaskBasedOnEventTaskName(string eventTaskName)
         {
-            String[,] eventTasks = rolePlayGamers.getTaskTypeList();
-            for (int i = 0; i < eventTasks.Length / 2; i++)
-            {
-                if (eventTasks[i, 0].Equals(eventTaskName))
-                    return eventTasks[i, 0];
+            foreach (Task task in taskList)
+            { 
+                if (task.name.Equals(eventTaskName))
+                    return task.name;
             }
             return null;
         }
@@ -147,7 +151,6 @@ namespace RolePlayGUI
                                                 rm.GetString("errorFromGame", actualCultureInfo));
             }*/
             reloadDefaultImage();
-            //refillStoryBox();
         }
 
 

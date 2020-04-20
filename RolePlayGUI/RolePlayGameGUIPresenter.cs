@@ -56,5 +56,34 @@ namespace RolePlayGUI
                 rolePlayBoard.VisualizeLastDiceRolls(rolledDice);
             }
         }
+
+        public void initRolePlayContext(string[] initContext)
+        {
+            rolePlayBoard.storeRolePlayInitContext(convertTextToDiceList(initContext[0]), convertTextToTaskList(initContext[1]));
+        }
+
+        private List<string> convertTextToDiceList(string dicesText)
+        {
+            string[] splittedDices = dicesText.Remove(dicesText.Length - 1, 1).Split('|');
+            List<String> dicesList = new List<string>();
+            foreach (String dice in splittedDices)
+            {
+                dicesList.Add(dice);
+            }
+            return dicesList;
+        }
+
+        private List<Task> convertTextToTaskList(string tasksText)
+        {
+            string[] splittedTasks = tasksText.Remove(tasksText.Length - 1, 1).Split('|');
+            List<Task> tasksList = new List<Task>();
+            int index = 0;
+            while (index < splittedTasks.Length)
+            {
+                tasksList.Add(new Task(splittedTasks[index]));
+                index += 2;
+            }
+            return tasksList;
+        }
     }
 }

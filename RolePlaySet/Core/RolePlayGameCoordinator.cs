@@ -34,30 +34,11 @@ namespace RolePlaySet.Core
 
             storeGateway.createNewGame(gameName);
         }
-        /*
-        public string[] getAvailableDiceName()
-        {
-            List<string> diceName = new List<string>();
-            foreach (Dice dice in dices)
-            {
-                diceName.Add(dice.getName());
-            }
-            return diceName.ToArray();
-        }
-        */
-        public string[,] getTaskTypeList()
-        {
-            string[,] taskTypeBoundery = new string[EventTaskGenerator.generateEventTasksList().Count, 2];
-            int i = 0;
-            foreach (TaskType tt in EventTaskGenerator.generateEventTasksList())
-            {
-                taskTypeBoundery[i, 0] = tt.name;
-                taskTypeBoundery[i, 1] = tt.point.ToString();
-                i++;
-            }
-            return taskTypeBoundery;
-        }
 
+        public void initRolePlayBoard()
+        {
+            sendInitContextToPresenter();
+        }
 
         public void loadGame(string gameName)
         {
@@ -65,11 +46,11 @@ namespace RolePlaySet.Core
             checkGameName(gameName);
             this.gameName = reformatGameName(gameName);
             defaultImage = storeGateway.loadDefaultImage(gameName);
-            loadPlayers(gameName);
+            loadPlayers();
             sendGameContextToPresenter();
-            loadStory(gameName);
+            loadStory();
         }
-        
+
         public void addNarration(string narration)
         {
             story.events.Add(narration);
@@ -130,7 +111,7 @@ namespace RolePlaySet.Core
             return gameName;
         }
 
-        private void loadPlayers(string gameName)
+        private void loadPlayers()
         {
             try
             {
@@ -142,7 +123,7 @@ namespace RolePlaySet.Core
             }
         }
 
-        private void loadStory(string gameName)
+        private void loadStory()
         {
             Story teamStory = storeGateway.loadStory(gameName);
             if (teamStory != null)
@@ -160,6 +141,17 @@ namespace RolePlaySet.Core
             }
         }
 
+        private void sendInitContextToPresenter()
+        {
+            if (rolePlayPresenter != null)
+            {
+                List<string> initContext = new List<string>();
+                initContext.Add(generateTextFromDices());
+                initContext.Add(generateTextFromTasks());
+                rolePlayPresenter.initRolePlayContext(initContext.ToArray());
+            }
+        }
+
         private void sendGameContextToPresenter()
         {
             if (rolePlayPresenter != null)
@@ -167,7 +159,6 @@ namespace RolePlaySet.Core
                 List<string> gameContext = new List<string>();
                 gameContext.Add(gameName);
                 gameContext.Add(defaultImage);
-                gameContext.Add(generateTextFromDices());
                 foreach (Player player in players)
                 {
                     gameContext.Add(generateTextFromPlayer(player));
@@ -176,12 +167,22 @@ namespace RolePlaySet.Core
             }
         }
 
+        private string generateTextFromTasks()
+        {
+            string textTask = "";
+            foreach (TaskType tt in EventTaskGenerator.generateEventTasksList())
+            {
+                textTask += tt.name + SEPARATOR + tt.point + SEPARATOR;
+            }
+            return textTask;
+        }
+
         private string generateTextFromDices()
         {
             string textDices = "";
             foreach (Dice dice in dices)
             {
-                textDices+=dice.getName() + SEPARATOR;
+                textDices += dice.getName() + SEPARATOR;
             }
             return textDices;
         }

@@ -27,6 +27,7 @@ namespace RolePlayGUI
         private string defaultImagePath = "";
         private List<GamePlayer> gamePlayers = new List<GamePlayer>();
         private List<string> dicesList = new List<string>();
+        private List<Task> taskList = new List<Task>();
 
 
         public RolePlayBoard(RolePlayGame rolePlayGamers)
@@ -37,6 +38,7 @@ namespace RolePlayGUI
 
         private void RolePlay_Load(object sender, EventArgs e)
         {
+            rolePlayGamers.initRolePlayBoard();
             actualCultureInfo = huCultureInfo;
             loadLanguageTexts();
             loadAndFillEventTasks();

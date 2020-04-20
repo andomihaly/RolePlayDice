@@ -10,6 +10,7 @@ namespace RolePlaySetTests.Common
         public string[,] lastMinusOneRolledDices;
         public string[] lastStory = new string[] { };
         public string[] lastGameContext = new string[] { };
+        public string[] lastInitContext = new string[] { };
 
         public void rolledDicesInTurn(string[,] rolledDice)
         {
@@ -34,6 +35,11 @@ namespace RolePlaySetTests.Common
         public void displayError(string[] error)
         {
             throw new NotImplementedException();
+        }
+
+        public void initRolePlayContext(string[] initContext)
+        {
+            lastInitContext = initContext;
         }
     }
 }

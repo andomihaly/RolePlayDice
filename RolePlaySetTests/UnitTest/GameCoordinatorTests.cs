@@ -20,21 +20,20 @@ namespace RolePlaySetTests.UnitTest
         }
 
         [TestMethod()]
-        public void chechValidGameNameTest()
+        public void initRolePlayBoardTest()
         {
-            gameCoordinator.loadGame("ValidName");
-            Assert.AreEqual(3, spyUIPresenter.lastGameContext.Length);
-            Assert.AreEqual(0, spyUIPresenter.lastStory.Length);
-            gameCoordinator.loadGame("*");
-            Assert.AreEqual(3, spyUIPresenter.lastGameContext.Length);
-            Assert.AreEqual(0, spyUIPresenter.lastStory.Length);
+            gameCoordinator.initRolePlayBoard();
+            Assert.AreEqual("fakeDice|", spyUIPresenter.lastInitContext[0]);
+            Assert.AreEqual("Legendás|8|Epikus|7|Fantasztikus|6|Szuper|5|Nagyszerű|4|Jó|3|Fair|2|Átlagos|1|Középszerű|0|Gyenge|-1|Szörnyű|-2|", 
+                spyUIPresenter.lastInitContext[1]);
         }
 
         [TestMethod()]
-        public void loadNotExistsGameNameTest()
+        public void chechValidGameNameWithInvalidCharacterTest()
         {
-            gameCoordinator.loadGame("InvalidGame");
-            Assert.AreEqual(3, spyUIPresenter.lastGameContext.Length);
+            gameCoordinator.loadGame("*");
+            Assert.AreEqual(2, spyUIPresenter.lastGameContext.Length);
+            Assert.AreEqual("_", spyUIPresenter.lastGameContext[0]);
             Assert.AreEqual(0, spyUIPresenter.lastStory.Length);
         }
 
@@ -43,18 +42,21 @@ namespace RolePlaySetTests.UnitTest
         {
             gameCoordinator.loadGame("ValidGame");
             Assert.AreEqual(3, spyUIPresenter.lastStory.Length);
-            Assert.AreEqual(5, spyUIPresenter.lastGameContext.Length);
+            Assert.AreEqual(4, spyUIPresenter.lastGameContext.Length);
+            Assert.AreEqual("ValidGame", spyUIPresenter.lastGameContext[0]);
+            Assert.AreEqual("", spyUIPresenter.lastGameContext[1]);
+            Assert.AreEqual("A Player||b|0|", spyUIPresenter.lastGameContext[2]);
             Assert.AreEqual("A Player||b|0|", spyUIPresenter.lastGameContext[3]);
-            Assert.AreEqual("A Player||b|0|", spyUIPresenter.lastGameContext[4]);
-            
         }
 
         [TestMethod()]
-        public void diceNameListTest()
+        public void loadGameWithNotExistsGameNameTest()
         {
             gameCoordinator.loadGame("InvalidGame");
-            Assert.AreEqual(3, spyUIPresenter.lastGameContext.Length);
-            Assert.AreEqual("fakeDice|", spyUIPresenter.lastGameContext[2]);
+            Assert.AreEqual(2, spyUIPresenter.lastGameContext.Length);
+            Assert.AreEqual("InvalidGame", spyUIPresenter.lastGameContext[0]);
+            Assert.AreEqual("", spyUIPresenter.lastGameContext[1]);
+            Assert.AreEqual(0, spyUIPresenter.lastStory.Length);
         }
 
         [TestMethod()]
