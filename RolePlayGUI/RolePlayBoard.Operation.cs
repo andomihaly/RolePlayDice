@@ -246,7 +246,7 @@ namespace RolePlayGUI
             opponentGroupBox.Text = rm.GetString("eventType", actualCultureInfo);
 
             diceType.Items.Clear();
-            foreach (string actualDiceType in rolePlayGamers.getAvailableDiceName())
+            foreach (string actualDiceType in dicesList)
             {
                 diceType.Items.Add(actualDiceType);
             }

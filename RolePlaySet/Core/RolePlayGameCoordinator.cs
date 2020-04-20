@@ -34,7 +34,7 @@ namespace RolePlaySet.Core
 
             storeGateway.createNewGame(gameName);
         }
-
+        /*
         public string[] getAvailableDiceName()
         {
             List<string> diceName = new List<string>();
@@ -44,7 +44,7 @@ namespace RolePlaySet.Core
             }
             return diceName.ToArray();
         }
-
+        */
         public string[,] getTaskTypeList()
         {
             string[,] taskTypeBoundery = new string[EventTaskGenerator.generateEventTasksList().Count, 2];
@@ -167,12 +167,23 @@ namespace RolePlaySet.Core
                 List<string> gameContext = new List<string>();
                 gameContext.Add(gameName);
                 gameContext.Add(defaultImage);
+                gameContext.Add(generateTextFromDices());
                 foreach (Player player in players)
                 {
                     gameContext.Add(generateTextFromPlayer(player));
                 }
                 rolePlayPresenter.loadedGameContext(gameContext.ToArray());
             }
+        }
+
+        private string generateTextFromDices()
+        {
+            string textDices = "";
+            foreach (Dice dice in dices)
+            {
+                textDices+=dice.getName() + SEPARATOR;
+            }
+            return textDices;
         }
 
         private string generateTextFromPlayer(Player player)

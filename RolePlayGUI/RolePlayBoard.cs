@@ -26,7 +26,8 @@ namespace RolePlayGUI
         //actualGame contect
         private string defaultImagePath = "";
         private List<GamePlayer> gamePlayers = new List<GamePlayer>();
-        
+        private List<string> dicesList = new List<string>();
+
 
         public RolePlayBoard(RolePlayGame rolePlayGamers)
         {

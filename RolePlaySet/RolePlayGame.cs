@@ -11,7 +11,7 @@ namespace RolePlaySet
         void addTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo);
         void addTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, string taskName);
 
-        string[] getAvailableDiceName();
+        //string[] getAvailableDiceName();
         string[,] getTaskTypeList();
     }
 }
