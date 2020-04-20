@@ -7,7 +7,7 @@ namespace RolePlaySet.Core
 {
     public class RolePlayGameCoordinator : RolePlayGame
     {
-        private static string SEPARATOR = "|";
+        internal static string SEPARATOR = "|";
         private StoreGateway storeGateway;
         private TurnEventHandler turnHandle;
         private Dice[] dices;

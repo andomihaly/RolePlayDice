@@ -62,8 +62,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RolePlayGameGUIPresenter.cs" />
+    <Compile Include="ViewModel\Dice.cs" />
     <Compile Include="ViewModel\GamePlayer.cs" />
     <Compile Include="ViewModel\GamePlayerSkill.cs" />
+    <Compile Include="ViewModel\RolledDiceInTurn.cs" />
     <Compile Include="ViewModel\Task.cs" />
     <EmbeddedResource Include="Resources\Language\language.hu.resx" />
     <EmbeddedResource Include="Resources\Language\language.resx">

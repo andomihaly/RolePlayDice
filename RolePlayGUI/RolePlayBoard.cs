@@ -1,10 +1,8 @@
 ﻿using RolePlaySet;
-using RolePlayEntity;
 using System;
 using System.Windows.Forms;
 using System.Resources;
 using System.Globalization;
-using System.Drawing;
 using RolePlayGUI.ViewModel;
 using System.Collections.Generic;
 
@@ -68,7 +66,6 @@ namespace RolePlayGUI
 
         private void throwDice_Click(object sender, EventArgs e)
         {
-            lastRoll = DateTime.Now;
             notSavedGameLabel.Visible = false;
             if (isPointsAndNumbersConvertable())
             {
@@ -284,8 +281,8 @@ namespace RolePlayGUI
             }
 
             eventDescription.Text = "";
-            pictureBox1.Visible = false;
-            pictureBox2.Visible = false;
+            playerDicesPictureBox.Visible = false;
+            opponenetDicesPictureBox.Visible = false;
             playerDiceLabel.Visible = false;
             opponentDiceLabel.Visible = false;
             //refillStoryBox();

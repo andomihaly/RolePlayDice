@@ -49,12 +49,28 @@ namespace RolePlayGUI
             return gamePlayer;
         }
 
-        public void rolledDicesInTurn(string[,] rolledDice)
+        public void rolledDicesInTurn(string[] rolledDice)
         {
-            if (rolePlayBoard != null)
+            RolledDiceInTurn diceInTurn = new RolledDiceInTurn();
+            diceInTurn.player = convertTextToRolledDiceList(rolledDice[0]);
+            if (rolledDice.Length>1)
             {
-                rolePlayBoard.VisualizeLastDiceRolls(rolledDice);
+                diceInTurn.opponent = convertTextToRolledDiceList(rolledDice[1]);
             }
+            rolePlayBoard.VisualizeLastDiceRolls(diceInTurn);
+        }
+
+        private List<Dice> convertTextToRolledDiceList(string rolledDicesText)
+        {
+            string[] splittedDices = rolledDicesText.Remove(rolledDicesText.Length - 1, 1).Split('|');
+            List<Dice> dicesList = new List<Dice>();
+            int index = 0;
+            while (index < splittedDices.Length)
+            {
+                dicesList.Add(new Dice(splittedDices[index], splittedDices[index + 1]));
+                index += 2;
+            }
+            return dicesList;
         }
 
         public void initRolePlayContext(string[] initContext)

@@ -32,11 +32,8 @@ namespace RolePlaySetTests.UnitTest
             Dice[] dices = { new Dice1() };
             TurnEventHandler teh = new TurnEventHandler(dices, new FakeTextBuilder(), spyRolledDice);
             teh.generateTurnTaskEvent("a", "a", 0, 0, 1, "d1", new RolePlayEntity.TaskType("c", 7));
-
-            Assert.AreEqual(2, spyRolledDice.lastRolledDices.Length);
-            Assert.AreEqual("1", spyRolledDice.lastRolledDices[0,0]);
-            Assert.AreEqual("d1", spyRolledDice.lastRolledDices[0, 1]);
-            Assert.IsNull(spyRolledDice.lastMinusOneRolledDices);
+            Assert.AreEqual(1, spyRolledDice.lastRolledDices.Length);
+            Assert.AreEqual("1|d1|", spyRolledDice.lastRolledDices[0]);
         }
         [TestMethod()]
         public void getBackTheLastRolls()
@@ -44,14 +41,9 @@ namespace RolePlaySetTests.UnitTest
             SpyUIPresenter spyRolledDice = new SpyUIPresenter();
             Dice[] dices = { new Dice1() };
             TurnEventHandler teh = new TurnEventHandler(dices, new FakeTextBuilder(), spyRolledDice);
-            teh.generateTurnTaskEvent("a", "a", 0, 0, 4, "d1", new RolePlayEntity.TaskType("c", 7));
-
-            Assert.AreEqual(8, spyRolledDice.lastRolledDices.Length);
-            Assert.AreEqual("1", spyRolledDice.lastRolledDices[0, 0]);
-            Assert.AreEqual("d1", spyRolledDice.lastRolledDices[0, 1]);
-            Assert.AreEqual("1", spyRolledDice.lastRolledDices[3, 0]);
-            Assert.AreEqual("d1", spyRolledDice.lastRolledDices[3, 1]);
-            Assert.IsNull(spyRolledDice.lastMinusOneRolledDices);
+            teh.generateTurnTaskEvent("a", "a", 0, 0, 2, "d1", new RolePlayEntity.TaskType("c", 7));
+            Assert.AreEqual(1, spyRolledDice.lastRolledDices.Length);
+            Assert.AreEqual("1|d1|1|d1|", spyRolledDice.lastRolledDices[0]);
         }
 
         [TestMethod()]
@@ -60,12 +52,10 @@ namespace RolePlaySetTests.UnitTest
             SpyUIPresenter spyRolledDice = new SpyUIPresenter();
             Dice[] dices = { new Dice1() };
             TurnEventHandler teh = new TurnEventHandler(dices, new FakeTextBuilder(), spyRolledDice);
-            teh.generateTurnOpponentEvent("a", "a", 0, 0, 4, "d1",0,true);
-            Assert.AreEqual(8, spyRolledDice.lastMinusOneRolledDices.Length);
-            Assert.AreEqual("1", spyRolledDice.lastMinusOneRolledDices[0, 0]);
-            Assert.AreEqual("d1", spyRolledDice.lastMinusOneRolledDices[0, 1]);
-            Assert.AreEqual("1", spyRolledDice.lastMinusOneRolledDices[3, 0]);
-            Assert.AreEqual("d1", spyRolledDice.lastMinusOneRolledDices[3, 1]);
+            teh.generateTurnOpponentEvent("a", "a", 0, 0, 2, "d1",0,true);
+            Assert.AreEqual(2, spyRolledDice.lastRolledDices.Length);
+            Assert.AreEqual("1|d1|1|d1|", spyRolledDice.lastRolledDices[0]);
+            Assert.AreEqual("1|d1|1|d1|", spyRolledDice.lastRolledDices[1]);
         }
     }
 }

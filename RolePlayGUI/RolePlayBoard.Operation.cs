@@ -7,26 +7,23 @@ namespace RolePlayGUI
 {
     public partial class RolePlayBoard
     {
-        private DateTime lastPlayerRoll = DateTime.Now;
-        private DateTime lastRoll;
 
-        public void VisualizeLastDiceRolls(string[,] rolledDices)
+        public void VisualizeLastDiceRolls(RolledDiceInTurn rolledDices)
         {
-            if (lastRoll.CompareTo(lastPlayerRoll) == 0)
+            if (rolledDices.opponent.Count != 0)
             {
                 opponentDiceLabel.Visible = true;
-                pictureBox2.Visible = true;
-                pictureBox2.Image = generateDiceImage(rolledDices);
+                opponenetDicesPictureBox.Visible = true;
+                opponenetDicesPictureBox.Image = generateDiceImage(rolledDices.opponent);
             }
             else
             {
-                playerDiceLabel.Visible = true;
                 opponentDiceLabel.Visible = false;
-                pictureBox1.Visible = true;
-                pictureBox2.Visible = false;
-                lastPlayerRoll = lastRoll;
-                pictureBox1.Image = generateDiceImage(rolledDices);
+                opponenetDicesPictureBox.Visible = false;
             }
+            playerDiceLabel.Visible = true;
+            playerDicesPictureBox.Visible = true;
+            playerDicesPictureBox.Image = generateDiceImage(rolledDices.player);
         }
 
         public void storeRolePlayInitContext(List<string> diceList, List<Task> taskList)
@@ -41,15 +38,14 @@ namespace RolePlayGUI
             gamePlayers = players;
         }
 
-        private Image generateDiceImage(string[,] rolledDices)
+        private Image generateDiceImage(List<Dice> rolledDices)
         {
-            Bitmap generatedDiceImage = new Bitmap(55 * rolledDices.Length / 2, 55);
+            Bitmap generatedDiceImage = new Bitmap(55 * rolledDices.Count, 55);
             Graphics g = Graphics.FromImage(generatedDiceImage);
-
             g.Clear(SystemColors.AppWorkspace);
-            for (int i = 0; i < rolledDices.Length / 2; i++)
+            for(int i= 0; i<rolledDices.Count; i++)
             {
-                Image img = getDiceImage(rolledDices[i, 0], rolledDices[i, 1]);
+                Image img = getDiceImage(rolledDices[i].value, rolledDices[i].type);
                 g.DrawImage(img, new Point(55 * i, 0));
                 img.Dispose();
             }

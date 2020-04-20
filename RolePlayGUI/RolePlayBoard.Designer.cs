@@ -60,18 +60,18 @@
             this.narrationButton = new System.Windows.Forms.Button();
             this.playerDiceLabel = new System.Windows.Forms.Label();
             this.opponentDiceLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.playerDicesPictureBox = new System.Windows.Forms.PictureBox();
             this.playerPicture = new System.Windows.Forms.PictureBox();
             this.notSavedGameLabel = new System.Windows.Forms.Label();
             this.throwDice = new System.Windows.Forms.Button();
             this.generateGame = new System.Windows.Forms.Button();
             this.loadGame = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.opponenetDicesPictureBox = new System.Windows.Forms.PictureBox();
             this.languageGroupBox.SuspendLayout();
             this.opponentGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerDicesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.opponenetDicesPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // playersComboBox
@@ -372,13 +372,13 @@
             this.opponentDiceLabel.TabIndex = 609;
             this.opponentDiceLabel.Text = "od";
             // 
-            // pictureBox1
+            // playerDicesPictureBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(700, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(275, 55);
-            this.pictureBox1.TabIndex = 610;
-            this.pictureBox1.TabStop = false;
+            this.playerDicesPictureBox.Location = new System.Drawing.Point(700, 26);
+            this.playerDicesPictureBox.Name = "playerDicesPictureBox";
+            this.playerDicesPictureBox.Size = new System.Drawing.Size(275, 55);
+            this.playerDicesPictureBox.TabIndex = 610;
+            this.playerDicesPictureBox.TabStop = false;
             // 
             // playerPicture
             // 
@@ -439,21 +439,21 @@
             this.loadGame.UseVisualStyleBackColor = true;
             this.loadGame.Click += new System.EventHandler(this.loadGame_Click);
             // 
-            // pictureBox2
+            // opponenetDicesPictureBox
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(700, 100);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(275, 55);
-            this.pictureBox2.TabIndex = 611;
-            this.pictureBox2.TabStop = false;
+            this.opponenetDicesPictureBox.Location = new System.Drawing.Point(700, 100);
+            this.opponenetDicesPictureBox.Name = "opponenetDicesPictureBox";
+            this.opponenetDicesPictureBox.Size = new System.Drawing.Size(275, 55);
+            this.opponenetDicesPictureBox.TabIndex = 611;
+            this.opponenetDicesPictureBox.TabStop = false;
             // 
             // RolePlayBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 570);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.opponenetDicesPictureBox);
+            this.Controls.Add(this.playerDicesPictureBox);
             this.Controls.Add(this.opponentDiceLabel);
             this.Controls.Add(this.playerDiceLabel);
             this.Controls.Add(this.narrationButton);
@@ -495,9 +495,9 @@
             this.languageGroupBox.PerformLayout();
             this.opponentGroupBox.ResumeLayout(false);
             this.opponentGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerDicesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.opponenetDicesPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -541,8 +541,8 @@
         private System.Windows.Forms.Button narrationButton;
         private System.Windows.Forms.Label playerDiceLabel;
         private System.Windows.Forms.Label opponentDiceLabel;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox playerDicesPictureBox;
+        private System.Windows.Forms.PictureBox opponenetDicesPictureBox;
     }
 }
 

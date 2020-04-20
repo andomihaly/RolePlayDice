@@ -1,6 +1,4 @@
-﻿using RolePlayEntity;
-
-namespace RolePlaySet
+﻿namespace RolePlaySet
 {
     public interface RolePlayGame
     {

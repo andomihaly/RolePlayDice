@@ -6,20 +6,14 @@ namespace RolePlaySetTests.Common
     class SpyUIPresenter : RolePlayPresenter
     {
         
-        public string[,] lastRolledDices;
-        public string[,] lastMinusOneRolledDices;
+        public string[] lastRolledDices = new string[] { };
         public string[] lastStory = new string[] { };
         public string[] lastGameContext = new string[] { };
         public string[] lastInitContext = new string[] { };
 
-        public void rolledDicesInTurn(string[,] rolledDice)
+        public void rolledDicesInTurn(string[] rolledDice)
         {
-            if (lastRolledDices != null)
-            {
-                lastMinusOneRolledDices = lastRolledDices;
-            }
             lastRolledDices = rolledDice;
-            
         }
 
         public void changeStory(string[] story)
