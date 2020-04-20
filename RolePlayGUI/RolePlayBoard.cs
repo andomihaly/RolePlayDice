@@ -40,10 +40,8 @@ namespace RolePlayGUI
             loadLanguageTexts();
             loadAndFillEventTasks();
 
-            if (!rolePlayGamers.getDefaultImage().Equals(""))
-            {
-                playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
-            }
+            reloadDefaultImage();
+
             ladderRadioButton.Checked = true;
 
 

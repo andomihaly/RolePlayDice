@@ -133,27 +133,24 @@ namespace RolePlayGUI
         private void fillGUIWithGame()
         {
             notSavedGameLabel.Visible = false;
-            if (rolePlayGamers.getPlayers() != null)
+            foreach (GamePlayer player in gamePlayers)
             {
-                string[,] players = rolePlayGamers.getPlayers();
-                for (int i = 0; i < players.Length / 2; i++)
-                {
-                    playersComboBox.Items.Add(players[i, 0]);
-                }
-                playersComboBox.Items.Add("-");
+                playersComboBox.Items.Add(player.name);
             }
+            playersComboBox.Items.Add("-");
+            /*
             else
             {
-                createNotificationFormFauilt(rm.GetString("errorNotLoad", actualCultureInfo) +
+            TODO: átvinni a helyére   
+            createNotificationFormFauilt(rm.GetString("errorNotLoad", actualCultureInfo) +
                                                 rolePlayGameName.Text +
                                                 rm.GetString("errorFromGame", actualCultureInfo));
-            }
-            if (!rolePlayGamers.getDefaultImage().Equals(""))
-            {
-                playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
-            }
+            }*/
+            reloadDefaultImage();
             //refillStoryBox();
         }
+
+
 
         public void refillStoryBox(String[] story)
         {
@@ -174,7 +171,7 @@ namespace RolePlayGUI
         {
             playerSkillComboBox.SelectedItem = null;
             playerSkillComboBox.Items.Clear();
-            foreach(GamePlayerSkill skill in skills)
+            foreach (GamePlayerSkill skill in skills)
             {
                 playerSkillComboBox.Items.Add(skill.gamePlayerSkillName);
             }
@@ -183,27 +180,18 @@ namespace RolePlayGUI
 
         private void reloadImage(string playerName)
         {
-            string[,] players = rolePlayGamers.getPlayers();
-            for (int i = 0; i < players.Length / 2; i++)
+            GamePlayer player = findGamePlayer(playerName);
+            reloadDefaultImage();
+            if (player != null && !player.imagePath.Equals(""))
             {
-                if (players[i, 0].Equals(playerName))
-                {
-                    if (!players[i, 1].Equals(""))
-                    {
-                        playerPicture.Image = Image.FromFile(players[i, 1]);
-                    }
-                    else
-                    {
-                        reloadDefaultImage();
-                    }
-                }
+                playerPicture.Image = Image.FromFile(player.imagePath);
             }
         }
         private void reloadDefaultImage()
         {
-            if (!rolePlayGamers.getDefaultImage().Equals(""))
+            if (!defaultImagePath.Equals(""))
             {
-                playerPicture.Image = Image.FromFile(rolePlayGamers.getDefaultImage());
+                playerPicture.Image = Image.FromFile(defaultImagePath);
             }
         }
 

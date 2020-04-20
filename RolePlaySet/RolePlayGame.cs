@@ -13,8 +13,5 @@ namespace RolePlaySet
 
         string[] getAvailableDiceName();
         string[,] getTaskTypeList();
-        string[,] getPlayers();
-        //string[,] getPlayerSkillsByPlayerName(string playerName);
-        string getDefaultImage();
     }
 }

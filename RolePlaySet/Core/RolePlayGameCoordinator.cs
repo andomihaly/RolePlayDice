@@ -69,53 +69,7 @@ namespace RolePlaySet.Core
             sendGameContextToPresenter();
             loadStory(gameName);
         }
-
-        public string[,] getPlayers()
-        {
-            if (players != null)
-            {
-                string[,] playersBoundery = new string[players.Length, 2];
-                int i = 0;
-                foreach (Player player in players)
-                {
-                    playersBoundery[i, 0] = player.name;
-                    playersBoundery[i, 1] = player.image;
-                    i++;
-                }
-                return playersBoundery;
-            }
-            return new string[0, 0];
-        }
-
-        public string getDefaultImage()
-        {
-            return defaultImage;
-        }
-
-        /*
-        public string[,] getPlayerSkillsByPlayerName(string playerName)
-        {
-            if (players != null)
-            {
-                foreach (Player onePlayer in players)
-                {
-                    if (onePlayer.name.Equals(playerName))
-                    {
-                        string[,] skillBoundery = new string[onePlayer.skills.Count, 2];
-                        int i = 0;
-                        foreach (Skill skill in onePlayer.skills)
-                        {
-                            skillBoundery[i, 0] = skill.name;
-                            skillBoundery[i, 1] = skill.score.ToString();
-                            i++;
-                        }
-                        return skillBoundery;
-                    }
-                }
-            }
-            return new string[0, 0];
-        }
-        */
+        
         public void addNarration(string narration)
         {
             story.events.Add(narration);
