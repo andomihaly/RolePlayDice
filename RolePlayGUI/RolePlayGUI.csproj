@@ -61,6 +61,9 @@
     <Compile Include="RolePlayBoard.Operation.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RolePlayBoard.Presenter.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RolePlayGameGUIPresenter.cs" />
     <Compile Include="ViewModel\Dice.cs" />
     <Compile Include="ViewModel\GamePlayer.cs" />

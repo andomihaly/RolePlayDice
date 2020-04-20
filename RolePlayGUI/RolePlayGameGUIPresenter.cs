@@ -9,19 +9,38 @@ namespace RolePlayGUI
     {
         private RolePlayBoard rolePlayBoard;
 
-        public void changeStory(string[] story)
-        {
-            rolePlayBoard.refillStoryBox(story);
-        }
-
         public void connectToBoard(RolePlayBoard rolePlayBoard)
         {
             this.rolePlayBoard = rolePlayBoard;
         }
 
-        public void displayError(string[] error)
+        public void initRolePlayContext(string[] initContext)
         {
-            throw new NotImplementedException();
+            rolePlayBoard.storeRolePlayInitContext(convertTextToDiceList(initContext[0]), convertTextToTaskList(initContext[1]));
+        }
+
+        private List<string> convertTextToDiceList(string dicesText)
+        {
+            string[] splittedDices = dicesText.Remove(dicesText.Length - 1, 1).Split('|');
+            List<String> dicesList = new List<string>();
+            foreach (String dice in splittedDices)
+            {
+                dicesList.Add(dice);
+            }
+            return dicesList;
+        }
+
+        private List<Task> convertTextToTaskList(string tasksText)
+        {
+            string[] splittedTasks = tasksText.Remove(tasksText.Length - 1, 1).Split('|');
+            List<Task> tasksList = new List<Task>();
+            int index = 0;
+            while (index < splittedTasks.Length)
+            {
+                tasksList.Add(new Task(splittedTasks[index]));
+                index += 2;
+            }
+            return tasksList;
         }
 
         public void loadedGameContext(string[] gameContext)
@@ -73,33 +92,14 @@ namespace RolePlayGUI
             return dicesList;
         }
 
-        public void initRolePlayContext(string[] initContext)
+        public void changeStory(string[] story)
         {
-            rolePlayBoard.storeRolePlayInitContext(convertTextToDiceList(initContext[0]), convertTextToTaskList(initContext[1]));
+            rolePlayBoard.refillStoryBox(story);
         }
 
-        private List<string> convertTextToDiceList(string dicesText)
+        public void displayError(string[] error)
         {
-            string[] splittedDices = dicesText.Remove(dicesText.Length - 1, 1).Split('|');
-            List<String> dicesList = new List<string>();
-            foreach (String dice in splittedDices)
-            {
-                dicesList.Add(dice);
-            }
-            return dicesList;
-        }
-
-        private List<Task> convertTextToTaskList(string tasksText)
-        {
-            string[] splittedTasks = tasksText.Remove(tasksText.Length - 1, 1).Split('|');
-            List<Task> tasksList = new List<Task>();
-            int index = 0;
-            while (index < splittedTasks.Length)
-            {
-                tasksList.Add(new Task(splittedTasks[index]));
-                index += 2;
-            }
-            return tasksList;
+            throw new NotImplementedException();
         }
     }
 }
