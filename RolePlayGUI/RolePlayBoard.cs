@@ -152,10 +152,10 @@ namespace RolePlayGUI
             }
             else if (!playersComboBox.SelectedItem.ToString().Equals(""))
             {
-                string[,] playersSkills = rolePlayGamers.getPlayerSkillsByPlayerName(playersComboBox.SelectedItem.ToString());
-                if (playersSkills.Length != 0)
+                GamePlayer player = findGamePlayer(playersComboBox.SelectedItem.ToString());
+                if (player != null)
                 { 
-                    reloadSkillList(playersSkills);
+                    reloadSkillList(player.gamePlayerSkills);
                     playerBasedPoint.Text = ZERO.ToString();
                 }
                 reloadImage(playersComboBox.SelectedItem.ToString());
@@ -170,17 +170,35 @@ namespace RolePlayGUI
         private void setThePlayerBasedPoint()
         {
             playerBasedPoint.Text = ZERO.ToString();
-            string [,] playersSkills = rolePlayGamers.getPlayerSkillsByPlayerName(playersComboBox.SelectedItem.ToString());
-            if (playersSkills.Length != 0 && playerSkillComboBox.SelectedItem != null)
+            GamePlayer player = findGamePlayer(playersComboBox.SelectedItem.ToString());
+            if (player != null && playerSkillComboBox.SelectedItem != null)
             {
-                for (int i = 0; i < playersSkills.Length/2; i++)
+                playerBasedPoint.Text = getSkillPoint(player, playerSkillComboBox.SelectedItem.ToString()).ToString();
+            }
+        }
+
+        private GamePlayer findGamePlayer(String gamePlayerName)
+        {
+            foreach(GamePlayer gamePlayer in gamePlayers)
+            {
+                if (gamePlayer.name.Equals(gamePlayerName))
                 {
-                    if (playerSkillComboBox.SelectedItem.ToString().Equals(playersSkills[i,0]))
-                    {
-                        playerBasedPoint.Text = playersSkills[i,1];
-                    }
+                    return gamePlayer;
                 }
             }
+            return null;
+        }
+
+        private int getSkillPoint(GamePlayer player, string skillName)
+        {
+            foreach (GamePlayerSkill skill in player.gamePlayerSkills)
+            {
+                if (skill.gamePlayerSkillName.Equals(skillName))
+                {
+                    return skill.gamePlayerSkillPoint;
+                }
+            }
+            return ZERO;
         }
 
         private void playerBasedPoint_TextChanged(object sender, EventArgs e)

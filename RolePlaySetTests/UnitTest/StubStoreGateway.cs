@@ -28,7 +28,7 @@ namespace RolePlaySetTests
                 Player[] players = { aPlayer, aPlayer };
                 return players;
             }
-            return null;
+            return new Player[] { };
         }
 
         public Story loadStory(string gameName)

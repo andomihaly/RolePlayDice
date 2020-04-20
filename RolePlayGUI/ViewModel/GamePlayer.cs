@@ -1,10 +1,11 @@
-﻿namespace RolePlayGUI.ViewModel
+﻿using System.Collections.Generic;
+
+namespace RolePlayGUI.ViewModel
 {
-    class GamePlayer
+    public class GamePlayer
     {
-        string name;
-        string[] skillName;
-        int[] skillPoint;
-        string imagePath = "";
+        public string name;
+        public List<GamePlayerSkill> gamePlayerSkills = new List<GamePlayerSkill>();
+        public string imagePath = "";
     }
 }

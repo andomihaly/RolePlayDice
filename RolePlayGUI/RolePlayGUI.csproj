@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="RolePlayGameGUIPresenter.cs" />
     <Compile Include="ViewModel\GamePlayer.cs" />
+    <Compile Include="ViewModel\GamePlayerSkill.cs" />
     <EmbeddedResource Include="Resources\Language\language.hu.resx" />
     <EmbeddedResource Include="Resources\Language\language.resx">
       <Generator>ResXFileCodeGenerator</Generator>

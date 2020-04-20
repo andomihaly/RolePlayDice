@@ -1,5 +1,7 @@
 ﻿using System;
 using RolePlaySet;
+using RolePlayGUI.ViewModel;
+using System.Collections.Generic;
 
 namespace RolePlayGUI
 {
@@ -24,7 +26,27 @@ namespace RolePlayGUI
 
         public void loadedGameContext(string[] gameContext)
         {
-            throw new NotImplementedException();
+            List<GamePlayer> gamePlayers = new List<GamePlayer>();
+            for (int i = 2; i < gameContext.Length; i++)
+            {
+                gamePlayers.Add(convertTextToGamePlayer(gameContext[i]));
+            }
+            rolePlayBoard.storeGameContext(gameContext[1], gamePlayers);
+        }
+
+        private GamePlayer convertTextToGamePlayer(string player)
+        {
+            string[] splittedPlayer = player.Remove(player.Length - 1, 1).Split('|');
+            GamePlayer gamePlayer = new GamePlayer();
+            gamePlayer.name = splittedPlayer[0];
+            gamePlayer.imagePath = splittedPlayer[1];
+            int index = 2;
+            while (index < splittedPlayer.Length)
+            {
+                gamePlayer.gamePlayerSkills.Add(new GamePlayerSkill(splittedPlayer[0], splittedPlayer[index], Convert.ToInt32(splittedPlayer[index + 1])));
+                index += 2;
+            }
+            return gamePlayer;
         }
 
         public void rolledDicesInTurn(string[,] rolledDice)

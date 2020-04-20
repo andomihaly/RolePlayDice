@@ -1,6 +1,7 @@
-﻿using System;
+﻿using RolePlayGUI.ViewModel;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace RolePlayGUI
 {
@@ -24,20 +25,26 @@ namespace RolePlayGUI
                 pictureBox1.Visible = true;
                 pictureBox2.Visible = false;
                 lastPlayerRoll = lastRoll;
-                pictureBox1.Image= generateDiceImage(rolledDices);
+                pictureBox1.Image = generateDiceImage(rolledDices);
             }
+        }
+
+        public void storeGameContext(string defaultImage, List<GamePlayer> players)
+        {
+            defaultImagePath = defaultImage;
+            gamePlayers = players;
         }
 
         private Image generateDiceImage(string[,] rolledDices)
         {
-            Bitmap generatedDiceImage = new Bitmap(55* rolledDices.Length / 2, 55);
+            Bitmap generatedDiceImage = new Bitmap(55 * rolledDices.Length / 2, 55);
             Graphics g = Graphics.FromImage(generatedDiceImage);
 
             g.Clear(SystemColors.AppWorkspace);
-            for (int i=0; i< rolledDices.Length/2; i++)
+            for (int i = 0; i < rolledDices.Length / 2; i++)
             {
-                Image img = getDiceImage(rolledDices[i,0], rolledDices[i, 1]);
-                g.DrawImage(img, new Point(55*i, 0));
+                Image img = getDiceImage(rolledDices[i, 0], rolledDices[i, 1]);
+                g.DrawImage(img, new Point(55 * i, 0));
                 img.Dispose();
             }
 
@@ -148,7 +155,7 @@ namespace RolePlayGUI
             //refillStoryBox();
         }
 
-        public void refillStoryBox(String [] story)
+        public void refillStoryBox(String[] story)
         {
             storyBox.Clear();
             for (int i = story.Length; i > 0; i--)
@@ -163,13 +170,13 @@ namespace RolePlayGUI
 
 
 
-        private void reloadSkillList(string[,] skills)
+        private void reloadSkillList(List<GamePlayerSkill> skills)
         {
             playerSkillComboBox.SelectedItem = null;
             playerSkillComboBox.Items.Clear();
-            for (int i = 0; i < skills.Length / 2; i++)
+            foreach(GamePlayerSkill skill in skills)
             {
-                playerSkillComboBox.Items.Add(skills[i, 0]);
+                playerSkillComboBox.Items.Add(skill.gamePlayerSkillName);
             }
             playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
         }

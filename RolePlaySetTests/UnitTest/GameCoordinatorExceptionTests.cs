@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RandomDice;
 using RolePlaySet.Core;
+using RolePlaySetTests.Common;
 
 namespace RolePlaySetTests.UnitTest
 {
@@ -13,7 +14,7 @@ namespace RolePlaySetTests.UnitTest
         public void setup()
         {
             Dice[] dices = { new FakeDice() };
-            sg = new RolePlayGameCoordinator(new StubStoreGateway(), dices);
+            sg = new RolePlayGameCoordinator(new StubStoreGateway(), dices, new SpyUIPresenter());
         }
 
         [ExpectedException(typeof(GameNameIsNotValid))]

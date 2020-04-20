@@ -7,22 +7,17 @@ namespace RolePlaySet.Core
 {
     public class RolePlayGameCoordinator : RolePlayGame
     {
+        private static string SEPARATOR = "|";
         private StoreGateway storeGateway;
         private TurnEventHandler turnHandle;
         private Dice[] dices;
 
         private Story story = new Story();
-        private Player[] players;
+        private Player[] players = new Player[] { };
         private string gameName;
         private string defaultImage = "";
-        private RolePlayPresenter rolePlayPresenter;
 
-        public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices)
-        {
-            this.storeGateway = storeGateway;
-            this.dices = dices;
-            turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder());
-        }
+        private RolePlayPresenter rolePlayPresenter;
 
         public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices, RolePlayPresenter rolePlayPresenter)
         {
@@ -50,14 +45,14 @@ namespace RolePlaySet.Core
             return diceName.ToArray();
         }
 
-        public string [,] getTaskTypeList()
+        public string[,] getTaskTypeList()
         {
-            string [,] taskTypeBoundery = new string[EventTaskGenerator.generateEventTasksList().Count,2];
+            string[,] taskTypeBoundery = new string[EventTaskGenerator.generateEventTasksList().Count, 2];
             int i = 0;
-            foreach(TaskType tt in EventTaskGenerator.generateEventTasksList())
+            foreach (TaskType tt in EventTaskGenerator.generateEventTasksList())
             {
-                taskTypeBoundery[i,0] = tt.name;
-                taskTypeBoundery[i,1] = tt.point.ToString();
+                taskTypeBoundery[i, 0] = tt.name;
+                taskTypeBoundery[i, 1] = tt.point.ToString();
                 i++;
             }
             return taskTypeBoundery;
@@ -66,14 +61,16 @@ namespace RolePlaySet.Core
 
         public void loadGame(string gameName)
         {
+            players = new Player[] { };
             checkGameName(gameName);
             this.gameName = reformatGameName(gameName);
             defaultImage = storeGateway.loadDefaultImage(gameName);
             loadPlayers(gameName);
+            sendGameContextToPresenter();
             loadStory(gameName);
         }
 
-        public string [,] getPlayers()
+        public string[,] getPlayers()
         {
             if (players != null)
             {
@@ -87,7 +84,7 @@ namespace RolePlaySet.Core
                 }
                 return playersBoundery;
             }
-            return new string[0,0];
+            return new string[0, 0];
         }
 
         public string getDefaultImage()
@@ -95,8 +92,8 @@ namespace RolePlaySet.Core
             return defaultImage;
         }
 
-
-        public string [,] getPlayerSkillsByPlayerName(string playerName)
+        /*
+        public string[,] getPlayerSkillsByPlayerName(string playerName)
         {
             if (players != null)
             {
@@ -106,7 +103,7 @@ namespace RolePlaySet.Core
                     {
                         string[,] skillBoundery = new string[onePlayer.skills.Count, 2];
                         int i = 0;
-                        foreach(Skill skill in onePlayer.skills)
+                        foreach (Skill skill in onePlayer.skills)
                         {
                             skillBoundery[i, 0] = skill.name;
                             skillBoundery[i, 1] = skill.score.ToString();
@@ -116,9 +113,9 @@ namespace RolePlaySet.Core
                     }
                 }
             }
-            return new string[0,0];
+            return new string[0, 0];
         }
-
+        */
         public void addNarration(string narration)
         {
             story.events.Add(narration);
@@ -140,7 +137,7 @@ namespace RolePlaySet.Core
 
         private TaskType findTaskTypeByName(string taskName)
         {
-            foreach(TaskType tt in EventTaskGenerator.generateEventTasksList())
+            foreach (TaskType tt in EventTaskGenerator.generateEventTasksList())
             {
                 if (tt.name.Equals(taskName))
                 {
@@ -155,14 +152,6 @@ namespace RolePlaySet.Core
             story.events.Add(turnHandle.generateTurnOpponentEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, opponentPoint, isOpponentThrowToo));
             sendStoryToPresenter();
             storeGateway.saveGame(story, gameName);
-        }
-
-        private void sendStoryToPresenter()
-        {
-            if (rolePlayPresenter != null)
-            {
-                rolePlayPresenter.changeStory(story.events.ToArray());
-            }
         }
 
         private void checkGameName(string gameName)
@@ -195,7 +184,7 @@ namespace RolePlaySet.Core
             }
             catch (Exception)
             {
-                players = null;
+                players = new Player[] { };
             }
         }
 
@@ -207,6 +196,42 @@ namespace RolePlaySet.Core
                 story = teamStory;
             }
             sendStoryToPresenter();
+        }
+
+        private void sendStoryToPresenter()
+        {
+            if (rolePlayPresenter != null)
+            {
+                rolePlayPresenter.changeStory(story.events.ToArray());
+            }
+        }
+
+        private void sendGameContextToPresenter()
+        {
+            if (rolePlayPresenter != null)
+            {
+                List<string> gameContext = new List<string>();
+                gameContext.Add(gameName);
+                gameContext.Add(defaultImage);
+                foreach (Player player in players)
+                {
+                    gameContext.Add(generateTextFromPlayer(player));
+                }
+                rolePlayPresenter.loadedGameContext(gameContext.ToArray());
+            }
+        }
+
+        private string generateTextFromPlayer(Player player)
+        {
+            string textPlayer = "";
+            textPlayer += player.name + SEPARATOR;
+            textPlayer += player.image + SEPARATOR;
+            foreach (Skill skill in player.skills)
+            {
+                textPlayer += skill.name + SEPARATOR + skill.score + SEPARATOR;
+            }
+            return textPlayer;
+
         }
     }
 }
