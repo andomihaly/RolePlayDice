@@ -7,10 +7,105 @@ namespace RolePlayGUI
 {
     public partial class RolePlayBoard
     {
+
+        public void refillStoryBox(String[] story)
+        {
+            storyBox.Clear();
+            for (int i = story.Length; i > 0; i--)
+            {
+                storyBox.Text += i.ToString() + ". lépés:" + (story[i - 1] + NEW_LINE);
+                if (i == story.Length)
+                {
+                    storyBox.Text += (NEW_LINE);
+                }
+            }
+
+
+        }
+        public void VisualizeLastDiceRolls(RolledDiceInTurn rolledDices)
+        {
+            if (rolledDices.opponent.Count != 0)
+            {
+                opponentDiceLabel.Visible = true;
+                opponenetDicesPictureBox.Visible = true;
+                opponenetDicesPictureBox.Image = ImageCreator.generateDiceImage(rolledDices.opponent);
+            }
+            else
+            {
+                opponentDiceLabel.Visible = false;
+                opponenetDicesPictureBox.Visible = false;
+            }
+            playerDiceLabel.Visible = true;
+            playerDicesPictureBox.Visible = true;
+            playerDicesPictureBox.Image = ImageCreator.generateDiceImage(rolledDices.player);
+        }
+
+
+        private void nextTurn()
+        {
+            if (isPointsAndNumbersConvertable())
+            {
+                try
+                {
+                    prepareNextTurnAndSend();
+                }
+                catch (Exception)
+                {
+                    notSavedGameLabel.Visible = true;
+                }
+            }
+        }
+
+        private void prepareNextTurnAndSend()
+        {
+            string actualPlayerName = "";
+            if (playersComboBox.SelectedItem != null)
+            {
+                actualPlayerName = playersComboBox.SelectedItem.ToString();
+            }
+            else if (playersComboBox.Text != null && !playersComboBox.Text.ToString().Equals(rm.GetString("playerName", actualCultureInfo)))
+            {
+                actualPlayerName = playersComboBox.Text.ToString();
+            }
+            if (opponentRadioButton.Checked)
+            {
+                sendOpponentEvent(actualPlayerName);
+            }
+            else
+            {
+                sendTaskEven(actualPlayerName);
+
+            }
+            eventDescription.Text = "";
+        }
+
+        private void sendOpponentEvent(string actualName)
+        {
+            if (isConverttableToInt(opponentPoint.Text))
+            {
+                gameCoordinator.addTurnOpponentEvent(eventDescription.Text, actualName,
+                    Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
+                    Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(),
+                    Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
+            }
+        }
+
+        private void sendTaskEven(string actualName)
+        {
+            String taskName = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
+            if (taskName != null)
+            {
+                gameCoordinator.addTurnTaskEvent(eventDescription.Text, actualName,
+                        Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
+                        Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), taskName);
+            }
+        }
+
+
         private void loadAndFillEventTasks()
         {
             ladderComboBox.Items.Clear();
-            foreach (Task task in taskList)
+            foreach (Task task in gameCoordinator.taskList)
             {
                 ladderComboBox.Items.Add(task.name);
             }
@@ -19,7 +114,7 @@ namespace RolePlayGUI
 
         private string findEventTaskBasedOnEventTaskName(string eventTaskName)
         {
-            foreach (Task task in taskList)
+            foreach (Task task in gameCoordinator.taskList)
             { 
                 if (task.name.Equals(eventTaskName))
                     return task.name;
@@ -28,18 +123,12 @@ namespace RolePlayGUI
         }
 
 
-        private bool isPointsAndNumbersConvertable()
-        {
-            return (isConverttableToInt(playerBasedPoint.Text) && isConverttableToInt(playerExtraPoint.Text) &&
-                    isConverttableToInt(numberOfDice.Text));
-        }
-
 
 
         private void fillGUIWithGame()
         {
             notSavedGameLabel.Visible = false;
-            foreach (GamePlayer player in gamePlayers)
+            foreach (GamePlayer player in gameCoordinator.gamePlayers)
             {
                 playersComboBox.Items.Add(player.name);
             }
@@ -68,7 +157,7 @@ namespace RolePlayGUI
 
         private void reloadImage(string playerName)
         {
-            GamePlayer player = findGamePlayer(playerName);
+            GamePlayer player = gameCoordinator.findGamePlayer(playerName);
             reloadDefaultImage();
             if (player != null && !player.imagePath.Equals(""))
             {
@@ -77,9 +166,9 @@ namespace RolePlayGUI
         }
         private void reloadDefaultImage()
         {
-            if (!defaultImagePath.Equals(""))
+            if (!gameCoordinator.defaultImagePath.Equals(""))
             {
-                playerPicture.Image = Image.FromFile(defaultImagePath);
+                playerPicture.Image = Image.FromFile(gameCoordinator.defaultImagePath);
             }
         }
 
@@ -134,7 +223,7 @@ namespace RolePlayGUI
             opponentGroupBox.Text = rm.GetString("eventType", actualCultureInfo);
 
             diceType.Items.Clear();
-            foreach (string actualDiceType in dicesList)
+            foreach (string actualDiceType in gameCoordinator.dicesList)
             {
                 diceType.Items.Add(actualDiceType);
             }
@@ -147,6 +236,13 @@ namespace RolePlayGUI
         }
 
 
+
+
+        private bool isPointsAndNumbersConvertable()
+        {
+            return (isConverttableToInt(playerBasedPoint.Text) && isConverttableToInt(playerExtraPoint.Text) &&
+                    isConverttableToInt(numberOfDice.Text));
+        }
 
 
         private bool isConverttableToInt(string number)

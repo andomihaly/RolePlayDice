@@ -10,8 +10,10 @@ namespace RolePlayGUI
 {
     public partial class RolePlayBoard : Form
     {
-        private RolePlayGame rolePlayGamers;
-        private static int ZERO = 0;
+        internal static int ZERO = 0;
+
+        private GameCoordinator gameCoordinator;
+
         private static int DEFAULT_NUMBER_OF_DICE = 4;
         private static string NEW_LINE = Environment.NewLine;
 
@@ -20,23 +22,14 @@ namespace RolePlayGUI
         private CultureInfo actualCultureInfo;
         private ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
 
-
-        //actualGame contect
-        private string defaultImagePath = "";
-        private List<GamePlayer> gamePlayers = new List<GamePlayer>();
-        private List<string> dicesList = new List<string>();
-        private List<Task> taskList = new List<Task>();
-
-
-        public RolePlayBoard(RolePlayGame rolePlayGamers)
+        public RolePlayBoard(GameCoordinator gameCoordinator)
         {
             InitializeComponent();
-            this.rolePlayGamers = rolePlayGamers;
+            this.gameCoordinator = gameCoordinator;
         }
 
         private void RolePlay_Load(object sender, EventArgs e)
         {
-            rolePlayGamers.initRolePlayBoard();
             actualCultureInfo = huCultureInfo;
             loadLanguageTexts();
             loadAndFillEventTasks();
@@ -44,7 +37,6 @@ namespace RolePlayGUI
             reloadDefaultImage();
 
             ladderRadioButton.Checked = true;
-
 
             playerDiceLabel.Visible = false;
             opponentDiceLabel.Visible = false;
@@ -54,12 +46,11 @@ namespace RolePlayGUI
         {
             if (newGameName.Text != "")
             {
-                rolePlayGamers.generateNewGame(newGameName.Text);
+                gameCoordinator.generateNewGame(newGameName.Text);
                 rolePlayGameName.Text = newGameName.Text;
             }
             else
             {
-
                 createNotificationFormFauilt(rm.GetString("errorAddNameNewGame", actualCultureInfo));
             }
         }
@@ -67,53 +58,12 @@ namespace RolePlayGUI
         private void throwDice_Click(object sender, EventArgs e)
         {
             notSavedGameLabel.Visible = false;
-            if (isPointsAndNumbersConvertable())
-            {
-                try
-                {
-                    string actualName = "";
-                    if (playersComboBox.SelectedItem!= null)
-                    {
-                        actualName = playersComboBox.SelectedItem.ToString();
-                    }
-                    else if (playersComboBox.Text != null && !playersComboBox.Text.ToString().Equals(rm.GetString("playerName", actualCultureInfo)))
-                    {
-                        actualName = playersComboBox.Text.ToString();
-                    }
-                    if (opponentRadioButton.Checked)
-                    {
-                        if (isConverttableToInt(opponentPoint.Text))
-                        {
-                            rolePlayGamers.addTurnOpponentEvent(eventDescription.Text, actualName,
-                                Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
-                                Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(),
-                                Convert.ToInt32(opponentPoint.Text), opponenetThrowDiceToo.Checked);
-                        }
-                    }
-                    else
-                    {
-                        String taskName = findEventTaskBasedOnEventTaskName(ladderComboBox.SelectedItem.ToString());
-                        if (taskName != null)
-                        {
-                            rolePlayGamers.addTurnTaskEvent(eventDescription.Text, actualName,
-                                    Convert.ToInt32(playerBasedPoint.Text), Convert.ToInt32(playerExtraPoint.Text),
-                                    Convert.ToInt32(numberOfDice.Text), diceType.SelectedItem.ToString(), taskName);
-                        }
 
-                    }
-                    eventDescription.Text = "";
-                }
-                catch (Exception)
-                {
-                    notSavedGameLabel.Visible = true;
-                }
+            nextTurn();
 
-            }
             opponenetThrowDiceToo.Checked = false;
             playerExtraPoint.Text = ZERO.ToString();
             actualEvent.Text = "";
-
-            //refillStoryBox();
         }
 
         private void loadGame_Click(object sender, EventArgs e)
@@ -122,7 +72,7 @@ namespace RolePlayGUI
             {
                 playersComboBox.Items.Clear();
                 playerSkillComboBox.Items.Clear();
-                rolePlayGamers.loadGame(rolePlayGameName.Text);
+                gameCoordinator.loadGame(rolePlayGameName.Text);
                 fillGUIWithGame();
             }
             catch (Exception)
@@ -150,7 +100,7 @@ namespace RolePlayGUI
             }
             else if (!playersComboBox.SelectedItem.ToString().Equals(""))
             {
-                GamePlayer player = findGamePlayer(playersComboBox.SelectedItem.ToString());
+                GamePlayer player = gameCoordinator.findGamePlayer(playersComboBox.SelectedItem.ToString());
                 if (player != null)
                 { 
                     reloadSkillList(player.gamePlayerSkills);
@@ -162,41 +112,10 @@ namespace RolePlayGUI
 
         private void playerSkillComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            setThePlayerBasedPoint();
-        }
-
-        private void setThePlayerBasedPoint()
-        {
-            playerBasedPoint.Text = ZERO.ToString();
-            GamePlayer player = findGamePlayer(playersComboBox.SelectedItem.ToString());
-            if (player != null && playerSkillComboBox.SelectedItem != null)
+            if (playerSkillComboBox.SelectedItem != null)
             {
-                playerBasedPoint.Text = getSkillPoint(player, playerSkillComboBox.SelectedItem.ToString()).ToString();
+                playerBasedPoint.Text = gameCoordinator.getPlayersSkillBasedPoint(playersComboBox.SelectedItem.ToString(), playerSkillComboBox.SelectedItem.ToString()).ToString();
             }
-        }
-
-        private GamePlayer findGamePlayer(String gamePlayerName)
-        {
-            foreach(GamePlayer gamePlayer in gamePlayers)
-            {
-                if (gamePlayer.name.Equals(gamePlayerName))
-                {
-                    return gamePlayer;
-                }
-            }
-            return null;
-        }
-
-        private int getSkillPoint(GamePlayer player, string skillName)
-        {
-            foreach (GamePlayerSkill skill in player.gamePlayerSkills)
-            {
-                if (skill.gamePlayerSkillName.Equals(skillName))
-                {
-                    return skill.gamePlayerSkillPoint;
-                }
-            }
-            return ZERO;
         }
 
         private void playerBasedPoint_TextChanged(object sender, EventArgs e)
@@ -209,7 +128,6 @@ namespace RolePlayGUI
             calculateSumPlayerPoint();
         }
 
-       
 
         private void opponentPoint_TextChanged(object sender, EventArgs e)
         {
@@ -272,7 +190,7 @@ namespace RolePlayGUI
             {
                 if (!eventDescription.Text.Equals(""))
                 {
-                    rolePlayGamers.addNarration(eventDescription.Text);
+                    gameCoordinator.addNarration(eventDescription.Text);
                 }
             }
             catch (Exception)
@@ -285,7 +203,6 @@ namespace RolePlayGUI
             opponenetDicesPictureBox.Visible = false;
             playerDiceLabel.Visible = false;
             opponentDiceLabel.Visible = false;
-            //refillStoryBox();
         }
     }
 }

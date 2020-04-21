@@ -7,16 +7,16 @@ namespace RolePlayGUI
 {
     public class RolePlayGameGUIPresenter : RolePlayPresenter
     {
-        private RolePlayBoard rolePlayBoard;
+        private GameCoordinator gameCoordinator;
 
-        public void connectToBoard(RolePlayBoard rolePlayBoard)
+        public void connectToBoard(GameCoordinator gameCoordinator)
         {
-            this.rolePlayBoard = rolePlayBoard;
+            this.gameCoordinator = gameCoordinator;
         }
 
         public void initRolePlayContext(string[] initContext)
         {
-            rolePlayBoard.storeRolePlayInitContext(convertTextToDiceList(initContext[0]), convertTextToTaskList(initContext[1]));
+            gameCoordinator.storeRolePlayInitContext(convertTextToDiceList(initContext[0]), convertTextToTaskList(initContext[1]));
         }
 
         private List<string> convertTextToDiceList(string dicesText)
@@ -50,7 +50,7 @@ namespace RolePlayGUI
             {
                 gamePlayers.Add(convertTextToGamePlayer(gameContext[i]));
             }
-            rolePlayBoard.storeGameContext(gameContext[1], gamePlayers);
+            gameCoordinator.storeGameContext(gameContext[1], gamePlayers);
         }
 
         private GamePlayer convertTextToGamePlayer(string player)
@@ -76,7 +76,7 @@ namespace RolePlayGUI
             {
                 diceInTurn.opponent = convertTextToRolledDiceList(rolledDice[1]);
             }
-            rolePlayBoard.VisualizeLastDiceRolls(diceInTurn);
+            gameCoordinator.VisualizeLastDiceRolls(diceInTurn);
         }
 
         private List<Dice> convertTextToRolledDiceList(string rolledDicesText)
@@ -94,7 +94,7 @@ namespace RolePlayGUI
 
         public void changeStory(string[] story)
         {
-            rolePlayBoard.refillStoryBox(story);
+            gameCoordinator.refillStoryBox(story);
         }
 
         public void displayError(string[] error)

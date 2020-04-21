@@ -22,15 +22,13 @@ namespace ERolePlay
             IntervalRandomGenerator intervalRandomGenerator = new VisualStudioRandomGenerator();
             Dice[] dices = { new DiceFudge(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
 
+            RolePlayGameGUIPresenter rolePlayGameGUIPresenter = new RolePlayGameGUIPresenter();
+            
+            RolePlayGame rolePlayGame = new RolePlayGameCoordinator(storeGateway, dices, rolePlayGameGUIPresenter);
+            GameCoordinator gameCoord = new GameCoordinator(rolePlayGame);
+            rolePlayGameGUIPresenter.connectToBoard(gameCoord);
 
-            RolePlayGameGUIPresenter visualizeLastDiceRolls = new RolePlayGameGUIPresenter();
-
-            RolePlayGame rolePlayGame = new RolePlayGameCoordinator(storeGateway, dices, visualizeLastDiceRolls);
-            RolePlayBoard rolePlayBoard = new RolePlayBoard(rolePlayGame);
-            visualizeLastDiceRolls.connectToBoard(rolePlayBoard);
-
-
-            Application.Run(rolePlayBoard);
+            gameCoord.stratNewPlayRoleBoardGame();
         }
     }
 }
