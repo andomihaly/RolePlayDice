@@ -63,7 +63,7 @@ namespace RolePlayGUI
             {
                 actualPlayerName = playersComboBox.SelectedItem.ToString();
             }
-            else if (playersComboBox.Text != null && !playersComboBox.Text.ToString().Equals(rm.GetString("playerName", actualCultureInfo)))
+            else if (playersComboBox.Text != null && !playersComboBox.Text.ToString().Equals(resourceManager.GetString("playerName", actualCultureInfo)))
             {
                 actualPlayerName = playersComboBox.Text.ToString();
             }
@@ -109,7 +109,7 @@ namespace RolePlayGUI
             {
                 ladderComboBox.Items.Add(task.name);
             }
-            ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
+            ladderComboBox.Text = resourceManager.GetString("ladderTask", actualCultureInfo);
         }
 
         private string findEventTaskBasedOnEventTaskName(string eventTaskName)
@@ -152,7 +152,7 @@ namespace RolePlayGUI
             {
                 playerSkillComboBox.Items.Add(skill.gamePlayerSkillName);
             }
-            playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
+            playerSkillComboBox.Text = resourceManager.GetString("skill", actualCultureInfo);
         }
 
         private void reloadImage(string playerName)
@@ -193,34 +193,34 @@ namespace RolePlayGUI
 
         private void loadLanguageTexts()
         {
-            this.Text = rm.GetString("rolePlayBoard", actualCultureInfo);
-            narrationButton.Text = rm.GetString("narration", actualCultureInfo);
-            actualEvent.Text = rm.GetString("actualEvent", actualCultureInfo);
-            diceLabel.Text = rm.GetString("diceInstruction", actualCultureInfo);
-            throwDice.Text = rm.GetString("throwDice", actualCultureInfo);
-            basePontLabel.Text = rm.GetString("basePoint", actualCultureInfo);
-            extraPointLabel.Text = rm.GetString("extraPoint", actualCultureInfo);
-            sumPointLabel.Text = rm.GetString("sumPoint", actualCultureInfo);
-            opponentPointLabel.Text = rm.GetString("opponentPoint", actualCultureInfo);
-            vsLabel.Text = rm.GetString("vs", actualCultureInfo);
-            opponenetThrowDiceToo.Text = rm.GetString("opponentThrowToo", actualCultureInfo);
-            languageGroupBox.Text = rm.GetString("languageTag", actualCultureInfo);
-            languageRadioButtonHu.Text = rm.GetString("hu", actualCultureInfo);
-            languageRadioButtonEn.Text = rm.GetString("en", actualCultureInfo);
-            loadGame.Text = rm.GetString("loadGame", actualCultureInfo); ;
-            generateGame.Text = rm.GetString("generateGame", actualCultureInfo);
-            historyLabel.Text = rm.GetString("story", actualCultureInfo);
-            playersComboBox.Text = rm.GetString("playerName", actualCultureInfo);
-            playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
-            notSavedGameLabel.Text = rm.GetString("gameIsNotSaved", actualCultureInfo);
+            this.Text = resourceManager.GetString("rolePlayBoard", actualCultureInfo);
+            narrationButton.Text = resourceManager.GetString("narration", actualCultureInfo);
+            actualEvent.Text = resourceManager.GetString("actualEvent", actualCultureInfo);
+            diceLabel.Text = resourceManager.GetString("diceInstruction", actualCultureInfo);
+            throwDice.Text = resourceManager.GetString("throwDice", actualCultureInfo);
+            basePontLabel.Text = resourceManager.GetString("basePoint", actualCultureInfo);
+            extraPointLabel.Text = resourceManager.GetString("extraPoint", actualCultureInfo);
+            sumPointLabel.Text = resourceManager.GetString("sumPoint", actualCultureInfo);
+            opponentPointLabel.Text = resourceManager.GetString("opponentPoint", actualCultureInfo);
+            vsLabel.Text = resourceManager.GetString("vs", actualCultureInfo);
+            opponenetThrowDiceToo.Text = resourceManager.GetString("opponentThrowToo", actualCultureInfo);
+            languageGroupBox.Text = resourceManager.GetString("languageTag", actualCultureInfo);
+            languageRadioButtonHu.Text = resourceManager.GetString("hu", actualCultureInfo);
+            languageRadioButtonEn.Text = resourceManager.GetString("en", actualCultureInfo);
+            loadGame.Text = resourceManager.GetString("loadGame", actualCultureInfo); ;
+            generateGame.Text = resourceManager.GetString("generateGame", actualCultureInfo);
+            historyLabel.Text = resourceManager.GetString("story", actualCultureInfo);
+            playersComboBox.Text = resourceManager.GetString("playerName", actualCultureInfo);
+            playerSkillComboBox.Text = resourceManager.GetString("skill", actualCultureInfo);
+            notSavedGameLabel.Text = resourceManager.GetString("gameIsNotSaved", actualCultureInfo);
 
-            playerDiceLabel.Text = rm.GetString("playerDiceRoll", actualCultureInfo);
-            opponentDiceLabel.Text = rm.GetString("opponentDiceRoll", actualCultureInfo);
+            playerDiceLabel.Text = resourceManager.GetString("playerDiceRoll", actualCultureInfo);
+            opponentDiceLabel.Text = resourceManager.GetString("opponentDiceRoll", actualCultureInfo);
 
-            ladderRadioButton.Text = rm.GetString("task", actualCultureInfo);
-            opponentRadioButton.Text = rm.GetString("opponent", actualCultureInfo);
-            ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
-            opponentGroupBox.Text = rm.GetString("eventType", actualCultureInfo);
+            ladderRadioButton.Text = resourceManager.GetString("task", actualCultureInfo);
+            opponentRadioButton.Text = resourceManager.GetString("opponent", actualCultureInfo);
+            ladderComboBox.Text = resourceManager.GetString("ladderTask", actualCultureInfo);
+            opponentGroupBox.Text = resourceManager.GetString("eventType", actualCultureInfo);
 
             diceType.Items.Clear();
             foreach (string actualDiceType in gameCoordinator.dicesList)

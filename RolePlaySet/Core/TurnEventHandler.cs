@@ -13,12 +13,6 @@ namespace RolePlaySet.Core
         private static string DEFAULT_PLAYER_NAME = "Játékos";
         private RolePlayPresenter rolePlayPresenter;
 
-        public TurnEventHandler(Dice[] dices, NewTurnTextBuilder newTurnTextBuilder)
-        {
-            this.dices = dices;
-            this.turnTextBuilder = newTurnTextBuilder;
-        }
-
         public TurnEventHandler(Dice[] dices, NewTurnTextBuilder newTurnTextBuilder, RolePlayPresenter diceRollNotification)
         {
             this.dices = dices;

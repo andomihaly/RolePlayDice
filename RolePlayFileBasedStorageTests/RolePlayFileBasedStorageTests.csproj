@@ -63,6 +63,10 @@
       <Project>{9D5F2804-64B4-40AE-B565-0796B1463307}</Project>
       <Name>RolePlayFileBasedStorage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RolePlaySet\RolePlaySet.csproj">
+      <Project>{F7BD3A2A-B241-479A-8B45-E1720C96B561}</Project>
+      <Name>RolePlaySet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,5 +1,5 @@
 ﻿using RolePlayEntity;
-using RolePlaySet;
+using RolePlaySet.Core;
 
 namespace RolePlaySetTests.UnitTest
 {

@@ -1,5 +1,6 @@
 ﻿using RandomDice;
 using RolePlayEntity;
+using RolePlaySet.Gateway.Persistence;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace RolePlaySet.Core
     public class RolePlayGameCoordinator : RolePlayGame
     {
         internal static string SEPARATOR = "|";
-        private StoreGateway storeGateway;
+        private PersistenceGateway persistenceGateway;
         private TurnEventHandler turnHandle;
         private Dice[] dices;
 
@@ -19,20 +20,12 @@ namespace RolePlaySet.Core
 
         private RolePlayPresenter rolePlayPresenter;
 
-        public RolePlayGameCoordinator(StoreGateway storeGateway, Dice[] dices, RolePlayPresenter rolePlayPresenter)
+        public RolePlayGameCoordinator(PersistenceGateway storeGateway, Dice[] dices, RolePlayPresenter rolePlayPresenter)
         {
-            this.storeGateway = storeGateway;
+            this.persistenceGateway = storeGateway;
             this.dices = dices;
             turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder(), rolePlayPresenter);
             this.rolePlayPresenter = rolePlayPresenter;
-        }
-
-        public void generateNewGame(string gameName)
-        {
-            checkGameName(gameName);
-            this.gameName = reformatGameName(gameName);
-
-            storeGateway.createNewGame(gameName);
         }
 
         public void initRolePlayBoard()
@@ -40,22 +33,60 @@ namespace RolePlaySet.Core
             sendInitContextToPresenter();
         }
 
+        public void generateNewGame(string gameName)
+        {
+            try
+            {
+                checkGameName(gameName);
+                this.gameName = reformatGameName(gameName);
+
+                persistenceGateway.createNewGame(gameName);
+            }
+            catch (GameNameIsNotValidException)
+            {
+                sendErrorCodeToPresenter(ErrorCode.GameNameIsNotValid);
+            }
+            catch (CouldNotCreateNewGameException cncnge)
+            {
+                sendErrorCodeToPresenter(ErrorCode.CouldNotCreateNewGame, cncnge.Message.ToString());
+            }
+            catch (Exception)
+            {
+                sendErrorCodeToPresenter(ErrorCode.NotCategorisedError);
+            }
+        }
+
         public void loadGame(string gameName)
         {
-            players = new Player[] { };
-            checkGameName(gameName);
-            this.gameName = reformatGameName(gameName);
-            defaultImage = storeGateway.loadDefaultImage(gameName);
-            loadPlayers();
-            sendGameContextToPresenter();
-            loadStory();
+            try
+            {
+                players = new Player[] { };
+                checkGameName(gameName);
+                this.gameName = reformatGameName(gameName);
+                defaultImage = persistenceGateway.loadDefaultImage(gameName);
+                loadPlayers();
+                sendGameContextToPresenter();
+                loadStory();
+            }
+            catch (GameNameIsNotValidException)
+            {
+                sendErrorCodeToPresenter(ErrorCode.GameNameIsNotValid);
+            }
+            catch (GameIsNotFoundException ginfe)
+            {
+                sendErrorCodeToPresenter(ErrorCode.GameIsNotFound, ginfe.Message.ToString());
+            }
+            catch (Exception)
+            {
+                sendErrorCodeToPresenter(ErrorCode.NotCategorisedError);
+            }
         }
 
         public void addNarration(string narration)
         {
             story.events.Add(narration);
             sendStoryToPresenter();
-            storeGateway.saveGame(story, gameName);
+            persistenceGateway.saveGame(story, gameName);
         }
 
         public void addTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, string taskName)
@@ -63,11 +94,21 @@ namespace RolePlaySet.Core
             TaskType taskType = findTaskTypeByName(taskName);
             if (taskType == null)
             {
-                throw new InvalidTaskTypeException(taskName);
+                sendErrorCodeToPresenter(ErrorCode.InvalidTaskType);
             }
-            story.events.Add(turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, taskType));
-            sendStoryToPresenter();
-            storeGateway.saveGame(story, gameName);
+            else
+            {
+                try
+                {
+                    story.events.Add(turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, taskType));
+                    sendStoryToPresenter();
+                    persistenceGateway.saveGame(story, gameName);
+                }
+                catch (NotSupportedDiceTypeException nsdte)
+                {
+                    sendErrorCodeToPresenter(ErrorCode.NotSupportedDiceType, nsdte.Message.ToString());
+                }
+            }
         }
 
         private TaskType findTaskTypeByName(string taskName)
@@ -82,23 +123,30 @@ namespace RolePlaySet.Core
             return null;
         }
 
-        public void addTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
+        public void addTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentRollToo)
         {
-            story.events.Add(turnHandle.generateTurnOpponentEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, opponentPoint, isOpponentThrowToo));
-            sendStoryToPresenter();
-            storeGateway.saveGame(story, gameName);
+            try
+            {
+                story.events.Add(turnHandle.generateTurnOpponentEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, opponentPoint, isOpponentRollToo));
+                sendStoryToPresenter();
+                persistenceGateway.saveGame(story, gameName);
+            }
+            catch (NotSupportedDiceTypeException nsdte)
+            {
+                sendErrorCodeToPresenter(ErrorCode.NotSupportedDiceType, nsdte.Message.ToString());
+            }
         }
 
-        private void checkGameName(string gameName)
+    private void checkGameName(string gameName)
         {
             if (gameName == null)
             {
-                throw new GameNameIsNotValid(gameName);
+                throw new GameNameIsNotValidException();
             }
             gameName = gameName.Trim();
             if (gameName.Equals(""))
             {
-                throw new GameNameIsNotValid(gameName);
+                throw new GameNameIsNotValidException();
             }
         }
 
@@ -115,7 +163,7 @@ namespace RolePlaySet.Core
         {
             try
             {
-                players = storeGateway.loadPlayers(gameName);
+                players = persistenceGateway.loadPlayers(gameName);
             }
             catch (Exception)
             {
@@ -125,7 +173,7 @@ namespace RolePlaySet.Core
 
         private void loadStory()
         {
-            Story teamStory = storeGateway.loadStory(gameName);
+            Story teamStory = persistenceGateway.loadStory(gameName);
             if (teamStory != null)
             {
                 story = teamStory;
@@ -198,6 +246,22 @@ namespace RolePlaySet.Core
             }
             return textPlayer;
 
+        }
+
+
+        private void sendErrorCodeToPresenter(ErrorCode errorCode, string message)
+        {
+            if (rolePlayPresenter != null)
+            {
+                string errorMessage = errorCode.ToString();
+                errorMessage += message.Equals("") ? "" : SEPARATOR + message;
+                rolePlayPresenter.displayError(errorMessage);
+            }
+        }
+
+        private void sendErrorCodeToPresenter(ErrorCode errorCode)
+        {
+            sendErrorCodeToPresenter(errorCode, "");
         }
     }
 }

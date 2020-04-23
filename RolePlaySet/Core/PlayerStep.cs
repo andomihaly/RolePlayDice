@@ -1,4 +1,4 @@
-﻿namespace RolePlaySet
+﻿namespace RolePlaySet.Core
 {
     public class PlayerStep
     {

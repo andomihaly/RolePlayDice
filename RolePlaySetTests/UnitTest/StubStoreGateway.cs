@@ -1,17 +1,24 @@
-﻿using RolePlaySet;
-using RolePlayEntity;
+﻿using RolePlayEntity;
+using RolePlaySet.Gateway.Persistence;
 
 namespace RolePlaySetTests
 {
-    class StubStoreGateway : StoreGateway
+    class StubStoreGateway : PersistenceGateway
     {
         public void createNewGame(string gameName)
         {
-            
+            if (gameName.Equals("createingNewGameIssue"))
+            {
+                throw new CouldNotCreateNewGameException(gameName);
+            }
         }
 
         public string loadDefaultImage(string gameName)
         {
+            if (gameName.Equals("fake_game"))
+            {
+                throw new GameIsNotFoundException(gameName);
+            }
             return "";
         }
 

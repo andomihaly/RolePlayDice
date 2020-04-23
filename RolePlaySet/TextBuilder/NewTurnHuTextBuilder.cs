@@ -2,7 +2,7 @@
 using RolePlayEntity;
 using System.Linq;
 
-namespace RolePlaySet
+namespace RolePlaySet.Core
 {
     public class NewTurnHuTextBuilder : NewTurnTextBuilder
     {

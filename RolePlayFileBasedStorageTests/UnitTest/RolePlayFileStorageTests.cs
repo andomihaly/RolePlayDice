@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using RolePlayEntity;
+
 using RolePlayFileBasedStorage;
+using RolePlaySet.Gateway.Persistence;
 
 namespace RolePlayFileBasedStorageTests.UnitTest
 {
@@ -39,25 +41,11 @@ namespace RolePlayFileBasedStorageTests.UnitTest
             Assert.AreEqual(playerFileExample, playerFileLines);            
         }
 
-        [ExpectedException(typeof(GameNameIsNotValid))]
-        [TestMethod()]
-        public void loadPlayersWithEmptyGameNameTest()
-        {
-            RolePlayFileStorage fs = new RolePlayFileStorage();
-            fs.loadPlayers("");
-        }
-        [ExpectedException(typeof(GameNameIsNotValid))]
-        [TestMethod()]
-        public void loadPlayersWithNullGameNameTest()
-        {
-            RolePlayFileStorage fs = new RolePlayFileStorage();
-            fs.loadPlayers(null);
-        }
-
-        [ExpectedException(typeof(GameNameIsNotValid))]
+        [ExpectedException(typeof(GameIsNotFoundException))]
         [TestMethod()]
         public void loadPlayersWithFakeGameNameTest()
         {
+            
             RolePlayFileStorage fs = new RolePlayFileStorage();
             fs.loadPlayers("fake");
         }

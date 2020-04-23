@@ -135,6 +135,12 @@
   <data name="errorFromGame" xml:space="preserve">
     <value>" játékból!</value>
   </data>
+  <data name="errorGameIsNotFound" xml:space="preserve">
+    <value>Az alábbi játék nem található: </value>
+  </data>
+  <data name="errorGameNameNotValid" xml:space="preserve">
+    <value>A játékneve nem megfelelő!</value>
+  </data>
   <data name="errorNotFound" xml:space="preserve">
     <value>Nem találtuk meg a(z) "</value>
   </data>

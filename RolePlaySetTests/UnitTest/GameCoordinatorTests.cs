@@ -70,5 +70,16 @@ namespace RolePlaySetTests.UnitTest
             Assert.AreEqual(4, numberOfStory);
             Assert.AreEqual(narration, spyUIPresenter.lastStory[numberOfStory - 1]);
         }
+
+        [TestMethod()]
+        public void getErrorCodeWhenaddinvalidTurnTaskEvent()
+        {
+            SpyUIPresenter spyRolledDice = new SpyUIPresenter();
+            Dice[] dices = { new Dice1() };
+            Assert.AreEqual(0, spyRolledDice.lastStory.Length);
+            RolePlayGameCoordinator gameCoordinator = new RolePlayGameCoordinator(new StubStoreGateway(), dices, spyRolledDice);
+            gameCoordinator.addTurnTaskEvent("a", "a", 0, 0, 1, "d1", "invalidTask");
+            Assert.AreEqual("InvalidTaskType", spyRolledDice.lastErrorCode);
+        }
     }
 }

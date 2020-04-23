@@ -1,8 +1,8 @@
 ﻿using RolePlayEntity;
 
-namespace RolePlaySet
+namespace RolePlaySet.Gateway.Persistence
 {
-    public interface StoreGateway
+    public interface PersistenceGateway
     {
         void createNewGame(string gameName);
         void saveGame(Story story, string gameName);

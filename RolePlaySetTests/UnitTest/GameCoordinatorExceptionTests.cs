@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RandomDice;
+using RolePlaySet;
 using RolePlaySet.Core;
 using RolePlaySetTests.Common;
 
@@ -8,55 +9,71 @@ namespace RolePlaySetTests.UnitTest
     [TestClass()]
     public class GameCoordinatorExceptionTests
     {
-        private RolePlayGameCoordinator sg;
+        private RolePlayGameCoordinator rolePlayCoordinator;
+        private SpyUIPresenter spyUIPresenter;
 
         [TestInitialize()]
         public void setup()
         {
             Dice[] dices = { new FakeDice() };
-            sg = new RolePlayGameCoordinator(new StubStoreGateway(), dices, new SpyUIPresenter());
+            spyUIPresenter = new SpyUIPresenter();
+            rolePlayCoordinator = new RolePlayGameCoordinator(new StubStoreGateway(), dices, spyUIPresenter);
         }
 
-        [ExpectedException(typeof(GameNameIsNotValid))]
         [TestMethod()]
         public void chechEmptyGameNameTest()
         {
-            sg.loadGame("");
+            rolePlayCoordinator.loadGame("");
+            Assert.AreEqual(ErrorCode.GameNameIsNotValid.ToString(), spyUIPresenter.lastErrorCode);
         }
 
-        [ExpectedException(typeof(GameNameIsNotValid))]
         [TestMethod()]
         public void chechNullGameNameTest()
         {
-            sg.loadGame(null);
+            rolePlayCoordinator.loadGame(null);
+            Assert.AreEqual(ErrorCode.GameNameIsNotValid.ToString(), spyUIPresenter.lastErrorCode);
         }
 
-        [ExpectedException(typeof(GameNameIsNotValid))]
         [TestMethod()]
         public void chechOnlySpacesGameNameTest()
         {
-            sg.loadGame("   ");
+            rolePlayCoordinator.loadGame("   ");
+            Assert.AreEqual(ErrorCode.GameNameIsNotValid.ToString(), spyUIPresenter.lastErrorCode);
+        }
+        
+        [TestMethod()]
+        public void loadGameWithValidNameButGameNotExistsTest()
+        {
+            rolePlayCoordinator.loadGame("fake_game");
+            Assert.AreEqual(ErrorCode.GameIsNotFound.ToString()+"|fake_game", spyUIPresenter.lastErrorCode);
         }
 
-        [ExpectedException(typeof(GameNameIsNotValid))]
         [TestMethod()]
         public void generateNewEmptyGameNameTest()
         {
-            sg.generateNewGame("");
+            rolePlayCoordinator.generateNewGame("");
+            Assert.AreEqual(ErrorCode.GameNameIsNotValid.ToString(), spyUIPresenter.lastErrorCode);
         }
 
-        [ExpectedException(typeof(GameNameIsNotValid))]
         [TestMethod()]
         public void generateNewNullGameNameTest()
         {
-            sg.generateNewGame(null);
+            rolePlayCoordinator.generateNewGame(null);
+            Assert.AreEqual(ErrorCode.GameNameIsNotValid.ToString(), spyUIPresenter.lastErrorCode);
         }
 
-        [ExpectedException(typeof(GameNameIsNotValid))]
         [TestMethod()]
         public void generateNewOnlySpacesGameNameTest()
         {
-            sg.generateNewGame("   ");
+            rolePlayCoordinator.generateNewGame("   ");
+            Assert.AreEqual(ErrorCode.GameNameIsNotValid.ToString(), spyUIPresenter.lastErrorCode);
+        }
+
+        [TestMethod()]
+        public void errorDuringCreateingNewGameTest()
+        {
+            rolePlayCoordinator.generateNewGame("createingNewGameIssue");
+            Assert.AreEqual(ErrorCode.CouldNotCreateNewGame.ToString()+ "|createingNewGameIssue", spyUIPresenter.lastErrorCode);
         }
     }
 }

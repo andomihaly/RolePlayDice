@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="GameCoordinator.cs" />
     <Compile Include="ImageCreator.cs" />
+    <Compile Include="PersistenceProblemException.cs" />
     <Compile Include="Resources\Language\language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

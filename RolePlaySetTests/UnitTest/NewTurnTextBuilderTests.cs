@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using RolePlayEntity;
-using RolePlaySet;
+using RolePlaySet.Core;
 
 namespace RolePlaySetTests.UnitTest
 {

@@ -7,6 +7,7 @@ using System;
 using System.Windows.Forms;
 using RandomDice.RandomGenerator;
 using RandomDice;
+using RolePlaySet.Gateway.Persistence;
 
 namespace ERolePlay
 {
@@ -18,7 +19,7 @@ namespace ERolePlay
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            StoreGateway storeGateway = new RolePlayFileStorage();
+            PersistenceGateway storeGateway = new RolePlayFileStorage();
             IntervalRandomGenerator intervalRandomGenerator = new VisualStudioRandomGenerator();
             Dice[] dices = { new DiceFudge(intervalRandomGenerator), new Dice3(intervalRandomGenerator), new Dice6(intervalRandomGenerator) };
 

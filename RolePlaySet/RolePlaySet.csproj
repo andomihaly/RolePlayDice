@@ -34,20 +34,22 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gateway\Persistence\CouldNotCreateNewGameException.cs" />
     <Compile Include="Core\EventTaskGenerator.cs" />
-    <Compile Include="Core\GameNameIsNotValid.cs" />
-    <Compile Include="Core\InvalidTaskTypeException.cs" />
-    <Compile Include="Core\NotSupportedDiceTypeException.cs" />
+    <Compile Include="Gateway\Persistence\GameIsNotFoundException.cs" />
+    <Compile Include="Core\Exception\GameNameIsNotValidException.cs" />
+    <Compile Include="Core\Exception\NotSupportedDiceTypeException.cs" />
     <Compile Include="Core\TurnEventHandler.cs" />
+    <Compile Include="Core\ErrorCode.cs" />
     <Compile Include="RolePlayPresenter.cs" />
-    <Compile Include="PlayerStep.cs" />
-    <Compile Include="RealPlayerStep.cs" />
+    <Compile Include="Core\PlayerStep.cs" />
+    <Compile Include="Core\RealPlayerStep.cs" />
     <Compile Include="TextBuilder\NewTurnHuTextBuilder.cs" />
-    <Compile Include="NewTurnTextBuilder.cs" />
+    <Compile Include="Core\NewTurnTextBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePlayGame.cs" />
     <Compile Include="Core\RolePlayGameCoordinator.cs" />
-    <Compile Include="StoreGateway.cs" />
+    <Compile Include="Gateway\Persistence\PersistenceGateway.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RandomDice\RandomDice.csproj">
@@ -59,6 +61,7 @@
       <Name>RolePlayEntity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -103,5 +103,20 @@ namespace RolePlayGUI
         {
             rolePlayBoard.refillStoryBox(story);
         }
+
+        public void generateErrorMessage(String message)
+        {
+            rolePlayBoard.createNotificationFormFauilt(message);
+        }
+
+        public void generateErrorMessageWithLanguageText(String languageText, String message)
+        {
+            rolePlayBoard.createNotificationFormFauilt(rolePlayBoard.resourceManager.GetString(languageText, rolePlayBoard.actualCultureInfo) + message);
+        }
+
+        public void generateErrorMessageWithLanguageText(String languageText)
+        {
+            generateErrorMessageWithLanguageText(languageText, "");
+        }
     }
 }

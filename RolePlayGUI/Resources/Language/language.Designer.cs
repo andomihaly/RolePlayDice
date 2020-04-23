@@ -115,6 +115,24 @@ namespace RolePlayGUI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following game is not found: .
+        /// </summary>
+        internal static string errorGameIsNotFound {
+            get {
+                return ResourceManager.GetString("errorGameIsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game name is invalid!.
+        /// </summary>
+        internal static string errorGameNameNotValid {
+            get {
+                return ResourceManager.GetString("errorGameNameNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;.
         /// </summary>
         internal static string errorNotFound {

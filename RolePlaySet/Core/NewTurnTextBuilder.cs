@@ -1,5 +1,5 @@
 ﻿using RolePlayEntity;
-namespace RolePlaySet
+namespace RolePlaySet.Core
 {
     public interface NewTurnTextBuilder
     {

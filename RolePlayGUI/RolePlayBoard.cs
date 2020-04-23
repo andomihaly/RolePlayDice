@@ -19,8 +19,8 @@ namespace RolePlayGUI
 
         private CultureInfo huCultureInfo = new CultureInfo("hu-HU");
         private CultureInfo enCultureInfo = new CultureInfo("en-US");
-        private CultureInfo actualCultureInfo;
-        private ResourceManager rm = new ResourceManager(typeof(Resources.Language.language));
+        public CultureInfo actualCultureInfo;
+        public ResourceManager resourceManager = new ResourceManager(typeof(Resources.Language.language));
 
         public RolePlayBoard(GameCoordinator gameCoordinator)
         {
@@ -51,7 +51,7 @@ namespace RolePlayGUI
             }
             else
             {
-                createNotificationFormFauilt(rm.GetString("errorAddNameNewGame", actualCultureInfo));
+                createNotificationFormFauilt(resourceManager.GetString("errorAddNameNewGame", actualCultureInfo));
             }
         }
 
@@ -68,23 +68,16 @@ namespace RolePlayGUI
 
         private void loadGame_Click(object sender, EventArgs e)
         {
-            try
-            {
-                playersComboBox.Items.Clear();
-                playerSkillComboBox.Items.Clear();
-                gameCoordinator.loadGame(rolePlayGameName.Text);
-                fillGUIWithGame();
-            }
-            catch (Exception)
-            {
-                createNotificationFormFauilt("Nem tudtuk betölteni a \"" + rolePlayGameName.Text + "\" játékot!");
-            }
+            playersComboBox.Items.Clear();
+            playerSkillComboBox.Items.Clear();
+            gameCoordinator.loadGame(rolePlayGameName.Text);
+            fillGUIWithGame();
         }
 
         
         private void playersComboBox_KeyDown(object sender, KeyEventArgs e)
         {
-            playerSkillComboBox.Text = rm.GetString("skill", actualCultureInfo);
+            playerSkillComboBox.Text = resourceManager.GetString("skill", actualCultureInfo);
             playerSkillComboBox.Items.Clear();
             playerBasedPoint.Text = ZERO.ToString();
             reloadDefaultImage();
@@ -163,9 +156,9 @@ namespace RolePlayGUI
             }
         }
 
-        private void createNotificationFormFauilt(string message)
+        public void createNotificationFormFauilt(string message)
         {
-            MessageBox.Show(message, rm.GetString("errorTag", actualCultureInfo), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            MessageBox.Show(message, resourceManager.GetString("errorTag", actualCultureInfo), MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
         private void ladderRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -178,7 +171,7 @@ namespace RolePlayGUI
         private void opponentRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             ladderComboBox.Visible = false;
-            ladderComboBox.Text = rm.GetString("ladderTask", actualCultureInfo);
+            ladderComboBox.Text = resourceManager.GetString("ladderTask", actualCultureInfo);
             opponenetThrowDiceToo.Visible = true;
             opponentPoint.Visible = true;
         }

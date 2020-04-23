@@ -16,7 +16,7 @@ namespace RolePlaySetTests.SystemTest
         public void setup()
         {
             Dice[] dices = { new DiceMinus1(), new Dice1() };
-            turnEventHandler = new TurnEventHandler(dices, new NewTurnHuTextBuilder());
+            turnEventHandler = new TurnEventHandler(dices, new NewTurnHuTextBuilder(), new SpyUIPresenter());
         }
 
         [TestMethod()]

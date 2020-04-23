@@ -1,14 +1,14 @@
-﻿using RolePlaySet;
-using RolePlayEntity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Drawing;
 using System.Text;
+using RolePlayEntity;
+using RolePlaySet.Gateway.Persistence;
 
 namespace RolePlayFileBasedStorage
 {
-    public class RolePlayFileStorage : StoreGateway
+    public class RolePlayFileStorage : PersistenceGateway
     {
         private static string PLAYER_FILE_NAME = "players.txt";
         private static string STORY_FILE_NAME = "story.txt";
@@ -29,7 +29,6 @@ namespace RolePlayFileBasedStorage
 
         public void createNewGame(string gameName)
         {
-            checkNewGameName(gameName);
             this.gameName = gameName;
             generateGameStructure();
         }
@@ -117,23 +116,9 @@ namespace RolePlayFileBasedStorage
 
         private void checkGameName(string gameName)
         {
-            checkNewGameName(gameName);
             if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\" + gameName))
             {
-                throw new GameNameIsNotValid(gameName);
-            }
-        }
-
-        private void checkNewGameName(string gameName)
-        {
-            if (gameName == null)
-            {
-                throw new GameNameIsNotValid(gameName);
-            }
-            gameName = gameName.Trim();
-            if (gameName.Equals(""))
-            {
-                throw new GameNameIsNotValid(gameName);
+                throw new GameIsNotFoundException(gameName);
             }
         }
 
@@ -149,7 +134,7 @@ namespace RolePlayFileBasedStorage
             }
             catch (Exception)
             {
-                throw new CouldNotCreateNewGameFileStructure("\"" + gameName + "\" structure creation is faild.");
+                throw new CouldNotCreateNewGameException("\"" + gameName + "\" structure creation is faild.");
             }
         }
 

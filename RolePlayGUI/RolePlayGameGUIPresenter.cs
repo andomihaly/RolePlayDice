@@ -72,7 +72,7 @@ namespace RolePlayGUI
         {
             RolledDiceInTurn diceInTurn = new RolledDiceInTurn();
             diceInTurn.player = convertTextToRolledDiceList(rolledDice[0]);
-            if (rolledDice.Length>1)
+            if (rolledDice.Length > 1)
             {
                 diceInTurn.opponent = convertTextToRolledDiceList(rolledDice[1]);
             }
@@ -97,9 +97,38 @@ namespace RolePlayGUI
             gameCoordinator.refillStoryBox(story);
         }
 
-        public void displayError(string[] error)
+        public void displayError(string errorMessage)
         {
-            throw new NotImplementedException();
+            string[] splittedError = errorMessage.Split('|');
+            string errorCode = splittedError[0];
+            if (errorCode.Equals("InvalidTaskType"))
+            {
+                gameCoordinator.generateErrorMessage("Invalid Task Type sent!");
+            }
+            else if (errorCode.Equals("GameNameIsNotValid"))
+            {
+                gameCoordinator.generateErrorMessageWithLanguageText("errorGameNameNotValid");
+            }
+            else if (errorCode.Equals("GameIsNotFound"))
+            {
+                gameCoordinator.generateErrorMessageWithLanguageText("errorGameIsNotFound", splittedError[1]);
+            }
+            else if (errorCode.Equals("CouldNotCreateNewGame"))
+            {
+                gameCoordinator.generateErrorMessage("Could not create " + splittedError[1] + " game");
+            }
+            else if (errorCode.Equals("NotSupportedDiceType"))
+            {
+                gameCoordinator.generateErrorMessage("The following dice is not supported:" + splittedError[1] + "!");
+            }
+            else if (errorCode.Equals("NotCategorisedError"))
+            {
+                gameCoordinator.generateErrorMessage("Unexpeted error happend!");
+            }
+            else
+            {
+                gameCoordinator.generateErrorMessage("Following exception happend:" + errorCode);
+            }
         }
     }
 }
