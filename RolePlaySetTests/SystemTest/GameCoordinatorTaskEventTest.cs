@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RandomDice;
-using RolePlayEntity;
 using RolePlayFileBasedStorage;
 using RolePlaySet.Core;
 using RolePlaySetTests.Common;
@@ -10,7 +9,7 @@ using System.IO;
 namespace RolePlaySetTests.SystemTest
 {
     [TestClass()]
-    public class GameCoordinatorTaskEvent
+    public class GameCoordinatorTaskEventTest
     {
         private RolePlayGameCoordinator rolePlayGameCoordinator;
         private SpyUIPresenter spyUIPresenter;

@@ -1,8 +1,9 @@
 ﻿using System;
 using RolePlayEntity;
 using System.Linq;
+using RolePlaySet.Core;
 
-namespace RolePlaySet.Core
+namespace RolePlaySet.TextBuilder
 {
     public class NewTurnHuTextBuilder : NewTurnTextBuilder
     {

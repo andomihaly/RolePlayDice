@@ -11,41 +11,31 @@ namespace RolePlaySet.Core
         private List<string> rolledDicesInTurn = new List<string>();
 
         private static string DEFAULT_PLAYER_NAME = "Játékos";
-        private RolePlayPresenter rolePlayPresenter;
 
-        public TurnEventHandler(Dice[] dices, NewTurnTextBuilder newTurnTextBuilder, RolePlayPresenter diceRollNotification)
+        public TurnEventHandler(Dice[] dices, NewTurnTextBuilder newTurnTextBuilder)
         {
             this.dices = dices;
             this.turnTextBuilder = newTurnTextBuilder;
-            this.rolePlayPresenter = diceRollNotification;
         }
 
-        public string generateTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskType taskName)
+        public CalculatedTurnResult generateTurnTaskEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, TaskType taskName)
         {
             rolledDicesInTurn.Clear();
             RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
             string generatedText = turnTextBuilder.GeneratePlayerVSTaskText(actualEventDescription, playerStep, taskName);
-            sendRolledDicesToPresenter();
-            return generatedText;
+            return new CalculatedTurnResult(generatedText, rolledDicesInTurn.ToArray());
         }
 
-        public string generateTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
+        public CalculatedTurnResult generateTurnOpponentEvent(string actualEventDescription, string playerName, int basePoint, int extraPoint, int numberOfDice, string diceType, int opponentPoint, bool isOpponentThrowToo)
         {
             rolledDicesInTurn.Clear();
             RealPlayerStep playerStep = CreateRealPlayer(playerName, basePoint, extraPoint, numberOfDice, diceType);
             PlayerStep opponentStep = CreateOpponentPlayer(numberOfDice, diceType, opponentPoint, isOpponentThrowToo);
             TurnResult tr = calculateTurnResult(opponentStep, playerStep);
             string generatedText = turnTextBuilder.GeneratePlayerVSOpponentText(actualEventDescription, playerStep, opponentStep, tr);
-            sendRolledDicesToPresenter();
-            return generatedText;
+            return new CalculatedTurnResult(generatedText, rolledDicesInTurn.ToArray());
         }
-        private void sendRolledDicesToPresenter()
-        {
-            if (rolePlayPresenter != null)
-            {
-                rolePlayPresenter.rolledDicesInTurn(rolledDicesInTurn.ToArray());
-            }
-        }
+        
 
         private static TurnResult calculateTurnResult(PlayerStep opponentStep, RealPlayerStep playerStep)
         {

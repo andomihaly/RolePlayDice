@@ -1,6 +1,7 @@
 ﻿using RandomDice;
 using RolePlayEntity;
 using RolePlaySet.Gateway.Persistence;
+using RolePlaySet.TextBuilder;
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +25,7 @@ namespace RolePlaySet.Core
         {
             this.persistenceGateway = storeGateway;
             this.dices = dices;
-            turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder(), rolePlayPresenter);
+            turnHandle = new TurnEventHandler(dices, new NewTurnHuTextBuilder());
             this.rolePlayPresenter = rolePlayPresenter;
         }
 
@@ -100,7 +101,9 @@ namespace RolePlaySet.Core
             {
                 try
                 {
-                    story.events.Add(turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, taskType));
+                    CalculatedTurnResult ctr = turnHandle.generateTurnTaskEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, taskType);
+                    story.events.Add(ctr.generatedText);
+                    sendRolledDicesToPresenter(ctr.rolledDices);
                     sendStoryToPresenter();
                     persistenceGateway.saveGame(story, gameName);
                 }
@@ -127,7 +130,9 @@ namespace RolePlaySet.Core
         {
             try
             {
-                story.events.Add(turnHandle.generateTurnOpponentEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, opponentPoint, isOpponentRollToo));
+                CalculatedTurnResult ctr = turnHandle.generateTurnOpponentEvent(actualEventDescription, playerName, basePoint, extraPoint, numberOfDice, diceType, opponentPoint, isOpponentRollToo);
+                story.events.Add(ctr.generatedText);
+                sendRolledDicesToPresenter(ctr.rolledDices);
                 sendStoryToPresenter();
                 persistenceGateway.saveGame(story, gameName);
             }
@@ -262,6 +267,14 @@ namespace RolePlaySet.Core
         private void sendErrorCodeToPresenter(ErrorCode errorCode)
         {
             sendErrorCodeToPresenter(errorCode, "");
+        }
+
+        private void sendRolledDicesToPresenter(String [] rolledDices)
+        {
+            if (rolePlayPresenter != null)
+            {
+                rolePlayPresenter.rolledDicesInTurn(rolledDices);
+            }
         }
     }
 }

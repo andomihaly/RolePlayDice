@@ -1,6 +1,6 @@
 ﻿using RandomDice;
 
-namespace RolePlaySetTests.SystemTest
+namespace RolePlaySetTests.Common
 {
     public class DiceMinus1 : Dice
     {

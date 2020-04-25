@@ -2,6 +2,7 @@
 using System;
 using RolePlayEntity;
 using RolePlaySet.Core;
+using RolePlaySet.TextBuilder;
 
 namespace RolePlaySetTests.UnitTest
 {

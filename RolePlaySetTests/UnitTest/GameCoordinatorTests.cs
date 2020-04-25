@@ -60,7 +60,7 @@ namespace RolePlaySetTests.UnitTest
         }
 
         [TestMethod()]
-        public void addNarration()
+        public void addNarrationTest()
         {
             gameCoordinator.loadGame("ValidGame");
             string narration = "AM";
@@ -72,7 +72,7 @@ namespace RolePlaySetTests.UnitTest
         }
 
         [TestMethod()]
-        public void getErrorCodeWhenaddinvalidTurnTaskEvent()
+        public void getErrorCodeWhenAddinvalidTurnTaskEventTest()
         {
             SpyUIPresenter spyRolledDice = new SpyUIPresenter();
             Dice[] dices = { new Dice1() };
