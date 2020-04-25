@@ -1,10 +1,8 @@
-﻿using RolePlaySet;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Resources;
 using System.Globalization;
 using RolePlayGUI.ViewModel;
-using System.Collections.Generic;
 
 namespace RolePlayGUI
 {
